@@ -25,7 +25,7 @@ namespace evansbros { namespace math {
             data = nullptr;
         } else {
             data = new real[rows * columns];
-            std::memset(data, 0, sizeof(real[rows * columns]));
+            std::memset(data, 0, sizeof(real) * rows * columns);
         }
     }
 
@@ -134,7 +134,7 @@ namespace evansbros { namespace math {
             data = nullptr;
         } else {
             data = new real[rows * columns];
-            std::memcpy(data, other.data, sizeof(real[rows * columns]));
+            std::memcpy(data, other.data, sizeof(real) * rows * columns);
         }
     }
 
