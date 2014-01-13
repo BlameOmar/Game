@@ -43,7 +43,7 @@ namespace evansbros { namespace graphics {
     public:
         virtual void setup() = 0;
         virtual void render(seconds interpolation) = 0;
-        virtual void resizeViewport(real width, real height) = 0;
+        virtual void resizeViewport(natural width, natural height) = 0;
 
         void setGameState(const GameState *gameState);
 
