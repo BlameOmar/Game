@@ -1,0 +1,14 @@
+# Build directories
+Build/
+build/
+
+# Temp files
+*.swp
+*.lock
+
+# OS X
+.DS_Store
+
+# Xcode
+xcuserdata
+
