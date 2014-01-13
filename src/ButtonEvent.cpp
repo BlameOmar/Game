@@ -7,3 +7,8 @@
 //
 
 #include "ButtonEvent.h"
+
+namespace evansbros {
+	namespace game {
+	}
+}

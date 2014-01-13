@@ -82,10 +82,17 @@ namespace evansbros { namespace game {
         BUTTON_RELEASE
     };
 
+#if (!defined _MSC_VER || _MSC_VER > 1800)
     struct ButtonEvent {
         ButtonEventType type;
         ButtonID        id;
 
         ButtonEvent(ButtonEventType type, ButtonID id) : type(type), id(id) {}
     };
+#else
+	struct ButtonEvent {
+		ButtonEventType type;
+		ButtonID        id;
+	};
+#endif
 } }

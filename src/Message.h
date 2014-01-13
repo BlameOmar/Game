@@ -13,56 +13,72 @@
 #include "ButtonEvent.h"
 
 #include <stdexcept>
-namespace evansbros { namespace game {
-    struct Point2D {
-        real x;
-        real y;
+namespace evansbros {
+	namespace game {
 
-        Point2D() : Point2D(0.0, 0.0) {}
-        Point2D(real x, real y) : x(x), y(y) {}
-    };
+#if (!defined _MSC_VER || _MSC_VER > 1800)
+		struct Point2D {
+			real x = 0.0f;
+			real y = 0.0f;
 
-    enum class MessageType : natural {
-        GENERIC_MESSAGE,
-        GENERIC_EVENT,
-        BUTTON_EVENT,
-        MOUSE_EVENT
-    };
+			Point2D() = default;
+			Point2D(real x, real y) : x(x), y(y) {}
+		};
+#else
+		struct Point2D {
+			real x;
+			real y;
+		};
+#endif
 
-    enum class MouseEventType : natural {
-        MOUSE_MOVE
-    };
+		enum class MessageType : natural {
+			GENERIC_MESSAGE,
+			GENERIC_EVENT,
+			BUTTON_EVENT,
+			MOUSE_EVENT
+		};
 
-    namespace MessageExceptions {
-        class InvalidOperation : public std::runtime_error {
-        public:
-            InvalidOperation(string what) : std::runtime_error(what) {}
-        };
-    }
+		enum class MouseEventType : natural {
+			MOUSE_MOVE
+		};
 
-    struct MouseEvent {
-        MouseEventType type;
-        Point2D        location;
+		namespace MessageExceptions {
+			class InvalidOperation : public std::runtime_error {
+			public:
+				InvalidOperation(string what) : std::runtime_error(what) {}
+			};
+		}
 
-        MouseEvent(MouseEventType type, Point2D location) : type(type), location(location) {}
-    };
+#if (!defined _MSC_VER || _MSC_VER > 1800)
+		struct MouseEvent {
+			MouseEventType type;
+			Point2D        location;
 
-    class Message {
-        MessageType type;
-        union {
-            ButtonEvent buttonEvent;
-            MouseEvent mouseEvent;
-        };
+			MouseEvent(MouseEventType type, Point2D location) : type(type), location(location) {}
+		};
+#else
+		struct MouseEvent {
+			MouseEventType type;
+			Point2D        location;
+		};
+#endif
 
-    public:
-        Message();
-        Message(ButtonEventType buttonEventType, ButtonID buttonID);
-        Message(MouseEventType mouseEventType, Point2D mouseLocation);
-        Message(Data data);
+		class Message {
+			MessageType type;
+			union {
+				ButtonEvent buttonEvent;
+				MouseEvent mouseEvent;
+			};
 
-        MessageType getType() const;
-        ButtonEvent getButtonEvent() const;
-        MouseEvent getMouseEvent() const;
-    };
+		public:
+			Message();
+			Message(ButtonEventType buttonEventType, ButtonID buttonID);
+			Message(MouseEventType mouseEventType, Point2D mouseLocation);
+			Message(Data data);
 
-} }
+			MessageType getType() const;
+			ButtonEvent getButtonEvent() const;
+			MouseEvent getMouseEvent() const;
+		};
+	}
+}
