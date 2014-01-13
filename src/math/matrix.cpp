@@ -77,7 +77,7 @@ namespace evansbros { namespace math {
         return M;
     }
 
-    real & matrix::operator() (natural i, natural j) throw(std::domain_error)
+    real & matrix::operator() (natural i, natural j)
     {
         if (i >= rows || j >= columns) {
             std::ostringstream out;
@@ -88,7 +88,7 @@ namespace evansbros { namespace math {
         return data[i * columns + j];
     }
 
-    real   matrix::operator() (natural i, natural j) const throw(std::domain_error)
+    real   matrix::operator() (natural i, natural j) const
     {
         if (i >= rows || j >= columns) {
             std::ostringstream out;
@@ -138,7 +138,7 @@ namespace evansbros { namespace math {
         }
     }
 
-    matrix& matrix::operator+=(const matrix & other) throw(std::domain_error)
+    matrix& matrix::operator+=(const matrix & other)
     {
         if (rows != other.rows || columns != other.columns) {
             throw std::domain_error("Addition is not defined on matricies of differeing size.");
@@ -160,7 +160,7 @@ namespace evansbros { namespace math {
         return *this;
     }
 
-    matrix operator+(const matrix & A, const matrix & B) throw(std::domain_error)
+    matrix operator+(const matrix & A, const matrix & B)
     {
         return matrix(A) += B;
     }

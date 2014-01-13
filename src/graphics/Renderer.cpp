@@ -39,7 +39,7 @@ namespace evansbros { namespace graphics {
 
         for (natural x = 0; x < tileMap.width; ++x) {
             for (natural y = 0; y < tileMap.height; ++y) {
-                tiles[tileMap.textureDefinitions.at(tileMap(x, tileMap.height - y - 1))].push_back({x - tileMap.width / 2.0, y - tileMap.height / 2.0, -1.0});
+                tiles[tileMap.textureDefinitions.at(tileMap(x, tileMap.height - y - 1))].push_back({x - tileMap.width / 2.0f, y - tileMap.height / 2.0f, -1.0f});
             }
         }
 

@@ -42,7 +42,7 @@ namespace evansbros { namespace game {
         void stop();
     private:
         const natural TARGET_UPDATE_FREQUENCY = 30; // HERTZ
-        const nanoseconds TARGET_UPDATE_PERIOD { 1000 * 1000 * 1000 / TARGET_UPDATE_FREQUENCY };
+        const microseconds TARGET_UPDATE_PERIOD { 1000 * 1000 / TARGET_UPDATE_FREQUENCY };
         const natural MAX_UPDATES_PER_CYCLE = 3;
 
         std::thread runloopThread;

@@ -30,7 +30,7 @@ namespace evansbros { namespace math {
         /**
          * Returns the size of the vector (always 2)
          */
-        constexpr natural size() { return 2; }
+        natural size() const { return 2; }
 
         /**
          * Returns the array of components
@@ -73,5 +73,5 @@ namespace evansbros { namespace math {
     vector2 operator * (const real c, const vector2 & v);
     inline vector2 operator - (const vector2 & v) { return -1.0 * v; };
     inline vector2 operator * (const vector2 & v, const real c) { return c * v; }
-    inline vector2 operator / (const vector2 & v, const real c) { return 1.0 / c * v; }
+    inline vector2 operator / (const vector2 & v, const real c) { return 1.0f / c * v; }
 } }

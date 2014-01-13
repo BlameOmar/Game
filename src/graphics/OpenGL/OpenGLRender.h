@@ -59,7 +59,7 @@ namespace evansbros { namespace graphics {
     public:
         virtual void setup();
         virtual void render(seconds interpolation);
-        virtual void resizeViewport(real width, real height);
+        virtual void resizeViewport(natural width, natural height);
     };
 
 } }

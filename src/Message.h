@@ -61,8 +61,8 @@ namespace evansbros { namespace game {
         Message(Data data);
 
         MessageType getType() const;
-        ButtonEvent getButtonEvent() const throw(MessageExceptions::InvalidOperation);
-        MouseEvent getMouseEvent() const throw(MessageExceptions::InvalidOperation);
+        ButtonEvent getButtonEvent() const;
+        MouseEvent getMouseEvent() const;
     };
 
 } }

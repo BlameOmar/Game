@@ -1,61 +1,252 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{e6ea026e-2677-46fe-880b-6af3b3211ae0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Windows\Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="Windows\Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Windows\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{d2693365-fc2c-40b2-a3d0-c296c45215c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Header Files">
+      <UniqueIdentifier>{0832809f-eceb-4ff8-8229-e8e87ae81237}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Engine\Source Files">
+      <UniqueIdentifier>{0af9315b-5afb-417a-9357-161d6a34cb28}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{5f1254fb-1b56-435d-a0f2-480bfcdf350f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Header Files">
+      <UniqueIdentifier>{c1cd0daf-005e-44cb-9568-ceb667363409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Source Files">
+      <UniqueIdentifier>{537286c9-0e12-4e9f-a000-b9e05f9f7093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL">
+      <UniqueIdentifier>{816949c9-3d12-4d30-bf07-23a2739cbf79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL\Header Files">
+      <UniqueIdentifier>{2e7c51f8-0417-4eb9-a119-9303688b760d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL\Source Files">
+      <UniqueIdentifier>{63ba563e-971b-4a76-abc0-418f6ad72e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{24ce3f97-116b-47bb-96a5-d3f50541f3f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Header Files">
+      <UniqueIdentifier>{ead8d392-fca8-4be2-b393-c47b65f6119a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Source Files">
+      <UniqueIdentifier>{59073b4a-cee5-4062-aeab-d2338b3c5daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{b00e7634-e6c7-44e9-86b8-3d9d18bfc4cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Header Files">
+      <UniqueIdentifier>{4c1d9a29-9a40-4ee8-8922-6ba9caf11003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Source Files">
+      <UniqueIdentifier>{9614305c-32ab-47db-8eba-cbb199f8f400}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameWindow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Windows\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Windows\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\OpenGLWindow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Windows\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\WGLContextObj.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Windows\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Window.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Windows\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ButtonEvent.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Data.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameController.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameState.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameSystem.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameSystem_AssetLoading.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameSystem_MessageHandling.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Message.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MessageQueue.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\TileMap.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\Color.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\PixelData.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\Quad.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\Renderer.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\Vertex.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.cpp">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRender.cpp">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\math\matrix.cpp">
+      <Filter>Math\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\math\vector2.cpp">
+      <Filter>Math\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\math\vector3.cpp">
+      <Filter>Math\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\math\vector4.cpp">
+      <Filter>Math\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\utilities\utilities.cpp">
+      <Filter>Utilities\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameWindow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Windows\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WGLContextObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Window.h">
-      <Filter>Header Files</Filter>
+      <Filter>Windows\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resources\resource.h">
-      <Filter>Header Files</Filter>
+      <Filter>Windows\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WGLContextObj.h">
+      <Filter>Windows\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window.h">
+      <Filter>Windows\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\types.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Data.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\GameController.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\GameState.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\GameSystem.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Message.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MessageQueue.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\TileMap.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ButtonEvent.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\Color.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\PixelData.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\Quad.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\Renderer.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\Vertex.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRender.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\math\mathematical_constants.h">
+      <Filter>Math\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\math\matrix.h">
+      <Filter>Math\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\math\numerical_types.h">
+      <Filter>Math\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\math\vector2.h">
+      <Filter>Math\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\math\vector3.h">
+      <Filter>Math\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\math\vector4.h">
+      <Filter>Math\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\utilities\native_utilities.h">
+      <Filter>Utilities\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\utilities\utilities.h">
+      <Filter>Utilities\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\icon1.ico">
-      <Filter>Resource Files</Filter>
+      <Filter>Windows\Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources\OpenGL.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>Windows\Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

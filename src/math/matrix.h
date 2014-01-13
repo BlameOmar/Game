@@ -35,18 +35,18 @@ namespace evansbros { namespace math {
 
         static matrix identity(natural_16bit n);
 
-        matrix& operator+=(const matrix & other) throw(std::domain_error);
+        matrix& operator+=(const matrix & other);
         matrix& operator*=(real c);
 
-        friend matrix operator+(const matrix & A, const matrix & B) throw(std::domain_error);
+        friend matrix operator+(const matrix & A, const matrix & B);
 
         friend matrix operator*(const matrix & A, real c);
         friend matrix operator*(real c, const matrix & A);
 
         friend matrix transpose(const matrix & A);
 
-        real & operator() (natural i, natural j) throw(std::domain_error);
-        real   operator() (natural i, natural j) const throw(std::domain_error);
+        real & operator() (natural i, natural j);
+        real   operator() (natural i, natural j) const;
 
         const real * getData() const;
         natural_16bit getRows() const;

@@ -45,9 +45,9 @@ namespace evansbros {
         if (shouldPremultiplyAlpha) {
             natural_16bit *pixels = reinterpret_cast<natural_16bit *>(buffer);
             for (unsigned int i = 0; i < bufferSize / sizeof(natural_16bit); i += 4) {
-                pixels[i + 0] *= pixels[i + 3] / float(0xFFFF);
-                pixels[i + 1] *= pixels[i + 3] / float(0xFFFF);
-                pixels[i + 2] *= pixels[i + 3] / float(0xFFFF);
+                pixels[i + 0] *= (natural_16bit) (pixels[i + 3] / float(0xFFFF));
+				pixels[i + 1] *= (natural_16bit) (pixels[i + 3] / float(0xFFFF));
+				pixels[i + 2] *= (natural_16bit) (pixels[i + 3] / float(0xFFFF));
             }
         }
 

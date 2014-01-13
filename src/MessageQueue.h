@@ -31,7 +31,7 @@ namespace evansbros { namespace game {
         std::atomic_size_t tail;
 
     public:
-        MessageQueue(size_t capacity) throw(std::domain_error);
+        MessageQueue(size_t capacity);
         ~MessageQueue();
 
         MessageQueue(const MessageQueue & other) = delete;

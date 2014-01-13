@@ -34,14 +34,14 @@ namespace evansbros { namespace game {
         return type;
     }
 
-    ButtonEvent Message::getButtonEvent() const throw(MessageExceptions::InvalidOperation) {
+    ButtonEvent Message::getButtonEvent() const {
         if (type != MessageType::BUTTON_EVENT) {
             throw MessageExceptions::InvalidOperation("This message is not a ButtonEvent");
         }
         return buttonEvent;
     }
 
-    MouseEvent Message::getMouseEvent() const throw(MessageExceptions::InvalidOperation) {
+    MouseEvent Message::getMouseEvent() const {
         if (type != MessageType::MOUSE_EVENT) {
             throw MessageExceptions::InvalidOperation("This message is not a MouseEvent");
         }

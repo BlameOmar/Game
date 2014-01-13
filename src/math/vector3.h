@@ -48,7 +48,7 @@ namespace evansbros { namespace math {
          * natural size()
          * Returns the size of the vector (always 3)
          */
-        constexpr natural size() { return 3; }
+        natural size() const { return 3; }
 
         /**
          * real * components()
@@ -92,6 +92,6 @@ namespace evansbros { namespace math {
     vector3 operator * (const real c, const vector3 & v);
     inline vector3 operator - (const vector3 & v) { return -1.0 * v; }
     inline vector3 operator * (const vector3 & v, const real c) { return c * v; }
-    inline vector3 operator / (const vector3 & v, const real c) { return 1.0 / c * v; }
+    inline vector3 operator / (const vector3 & v, const real c) { return 1.0f / c * v; }
 
 } }

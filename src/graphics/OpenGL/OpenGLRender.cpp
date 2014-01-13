@@ -142,7 +142,7 @@ namespace evansbros { namespace graphics {
 //        glFlush();
     }
 
-    void OpenGlRenderer::resizeViewport(real width, real height)
+    void OpenGlRenderer::resizeViewport(natural width, natural height)
     {
         viewport.width = width;
         viewport.height = height;

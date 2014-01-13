@@ -11,10 +11,9 @@
 
 #include <cmath>
 #include <algorithm>
+#include <numeric>
 #include <vector>
 #include <stdexcept>
-
-#include "functional.h"
 
 namespace evansbros { namespace math {
 
@@ -86,7 +85,7 @@ namespace evansbros { namespace math {
         std::vector<real> temp(size());
 
         std::transform(begin(), end(), temp.begin(), [](real x) { return std::abs(x); });
-        return fast_reduce(temp.data(), size(), [](real x, real y) { return x + y; });
+        return std::accumulate(temp.begin(), temp.end(), 0.0f, [](real x, real y) { return x + y; });
     }
 
     real abstract_vector::get2Norm() const 
@@ -94,7 +93,7 @@ namespace evansbros { namespace math {
         std::vector<real> temp(size());
 
         std::transform(begin(), end(), temp.begin(), [](real x) { return x * x; });
-        return std::sqrt(fast_reduce(temp.data(), size(), [](real x, real y) { return x + y; }));
+		return std::sqrt(std::accumulate(temp.begin(), temp.end(), 0.0f, [](real x, real y) { return x + y; }));
     }
 
     real abstract_vector::getUniformNorm() const 
@@ -102,7 +101,7 @@ namespace evansbros { namespace math {
         std::vector<real> temp(size());
 
         std::transform(begin(), end(), temp.begin(), [](real x) { return std::abs(x); });
-        return fast_reduce(temp.data(), size(), [](real x, real y) { return std::fmax(x, y); });
+        return std::accumulate(temp.begin(), temp.end(), 0.0f, [](real x, real y) { return std::fmax(x, y); });
     }
 
     real abstract_vector::getPNorm(real p) const 
@@ -110,7 +109,7 @@ namespace evansbros { namespace math {
         std::vector<real> temp(size());
 
         transform(begin(), end(), temp.begin(), [&](real x) { return std::pow(std::abs(x), p); });
-        return std::pow(fast_reduce(temp.data(), size(), [](real x, real y) { return x + y; }), 1.0 / p);
+		return std::pow(std::accumulate(temp.begin(), temp.end(), 0.0f, [](real x, real y) { return x + y; }), 1.0f / p);
     }
 
     void abstract_vector::add_to(abstract_vector * u, const abstract_vector * v)

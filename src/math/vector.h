@@ -23,9 +23,9 @@ namespace evansbros { namespace math {
         vector(std::initializer_list<real>);
         vector(const vector & original);
 
-        natural size() const noexcept { return _size; }
-        real * components() noexcept { return _components; }
-        real const * components() const noexcept { return _components; }
+        natural size() const { return _size; }
+        real * components() { return _components; }
+        real const * components() const { return _components; }
 
         vector& add(const vector& other);
         vector& subtract(const vector& other);
@@ -43,7 +43,7 @@ namespace evansbros { namespace math {
         friend vector operator - (const vector& u, const vector& v);
         friend vector operator * (const vector& v, const real c);
         friend vector operator * (const real c, const vector& v) { return v * c; }
-        friend vector operator / (const vector& v, const real c) { return v * (1.0 / c); }
+        friend vector operator / (const vector& v, const real c) { return v * (1.0f / c); }
     };
 
 } }

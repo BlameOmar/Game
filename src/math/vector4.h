@@ -58,7 +58,7 @@ namespace evansbros { namespace math {
         /**
          * Returns the size of the vector (always 4)
          */
-        constexpr natural size() { return 4; }
+        natural size() const { return 4; }
 
         /**
          * Returns the array of components
@@ -102,6 +102,6 @@ namespace evansbros { namespace math {
     vector4 operator * (const real c, const vector4 & v);
     inline vector4 operator - (const vector4 & v) { return -1.0 * v; }
     inline vector4 operator * (const vector4 & v, const real c) { return c * v; }
-    inline vector4 operator / (const vector4 & v, const real c) { return 1.0 / c * v; }
+    inline vector4 operator / (const vector4 & v, const real c) { return 1.0f / c * v; }
 
 } }

@@ -15,7 +15,7 @@
 
 namespace evansbros { namespace game {
 
-    MessageQueue::MessageQueue(size_t capacity) throw(std::domain_error) : size(capacity + 1), head(0), tail(0)
+    MessageQueue::MessageQueue(size_t capacity) : size(capacity + 1), head(0), tail(0)
     {
         switch (size) {
             case 0:
