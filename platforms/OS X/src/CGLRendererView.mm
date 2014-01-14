@@ -22,8 +22,6 @@ using namespace evansbros;
 {
     _renderer = renderer;
     self.renderer->setNativeGraphicsContext((CGLContextObj)[self.openGLContext CGLContextObj]);
-
-    [self.openGLContext makeCurrentContext];
 }
 
 - (void)reshape
