@@ -12,8 +12,6 @@
 
 #include <OpenGL/OpenGL.h>
 
-#include <atomic>
-
 namespace evansbros {
     namespace graphics {
 
