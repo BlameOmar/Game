@@ -1,5 +1,5 @@
 /**************************************************************************************************
- * Title:         OpenGLRender.cpp
+ * Title:         OpenGLRenderer.cpp
  * Author:        Omar Stefan Evans
  * Created on:    2013-11-15
  * Description:   <#Description#>
@@ -7,7 +7,7 @@
  * Modifications: <#Modifications#>
  **************************************************************************************************/
 
-#include "OpenGLRender.h"
+#include "OpenGLRenderer.h"
 
 #include "utilities.h"
 #include "OpenGL_utilities.h"
@@ -17,7 +17,7 @@
 
 namespace evansbros { namespace graphics {
 
-    void OpenGlRenderer::setup() {
+    void OpenGLRenderer::setup() {
         std::cout << glGetString( GL_VERSION ) << std::endl;
 
         /* Enable some attributes */
@@ -82,7 +82,7 @@ namespace evansbros { namespace graphics {
     }
 
 
-    void OpenGlRenderer::render(seconds interpolation)
+    void OpenGLRenderer::render(seconds interpolation)
     {
         string programName = "default";
         GLuint programHandle = shaderPrograms[programName];
@@ -127,7 +127,7 @@ namespace evansbros { namespace graphics {
         endDrawing();
     }
 
-    void OpenGlRenderer::beginDrawing()
+    void OpenGLRenderer::beginDrawing()
     {
         glClearColor (0.0, 0.0, 0.0, 1.0);
         glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -135,14 +135,14 @@ namespace evansbros { namespace graphics {
         glEnable(GL_FRAMEBUFFER_SRGB);
     }
 
-    void OpenGlRenderer::endDrawing()
+    void OpenGLRenderer::endDrawing()
     {
         glDisable(GL_FRAMEBUFFER_SRGB);
 
 //        glFlush();
     }
 
-    void OpenGlRenderer::resizeViewport(natural width, natural height)
+    void OpenGLRenderer::resizeViewport(natural width, natural height)
     {
         viewport.width = width;
         viewport.height = height;
@@ -152,7 +152,7 @@ namespace evansbros { namespace graphics {
         glViewport(0, 0, viewport.width, viewport.height);
     }
 
-    void OpenGlRenderer::updateTextureQuality()
+    void OpenGLRenderer::updateTextureQuality()
     {
         if (viewport.height >= 2160) {
             setTextureQuality(TextureQuality::ULTRA_HD);
@@ -171,7 +171,7 @@ namespace evansbros { namespace graphics {
         }
     }
 
-    void OpenGlRenderer::drawQuads(Quad quad, string texture, std::vector<vector3> positions)
+    void OpenGLRenderer::drawQuads(Quad quad, string texture, std::vector<vector3> positions)
     {
         const GLuint VERTEX_COORDINATE_LOCATION  = 0;
         const GLuint VERTEX_COLOR_LOCATION       = 1;
@@ -262,7 +262,7 @@ namespace evansbros { namespace graphics {
         glDeleteBuffers(1, &quadPositionBufferHandle);
     }
 
-    GLuint OpenGlRenderer::loadShaderFromFile(const string filename, GLenum shaderType) {
+    GLuint OpenGLRenderer::loadShaderFromFile(const string filename, GLenum shaderType) {
         Data shaderData = loadAsset(filename);
         string shaderSource = string((char *)shaderData.getBytes(), shaderData.getSize());
 
@@ -271,7 +271,7 @@ namespace evansbros { namespace graphics {
         return shader;
     }
 
-    GLuint OpenGlRenderer::loadShader(const string source, GLenum shaderType) {
+    GLuint OpenGLRenderer::loadShader(const string source, GLenum shaderType) {
         const char *source_c_str = source.c_str();
 
         GLuint shader = 0;
@@ -299,21 +299,21 @@ namespace evansbros { namespace graphics {
         return shader;
     }
 
-    void OpenGlRenderer::loadGPU_Textures()
+    void OpenGLRenderer::loadGPU_Textures()
     {
         for (auto texture : (*textures).at(textureQuality)) {
             GPU_Textures[texture.first] = loadTexture(texture.second);
         }
     }
 
-    void OpenGlRenderer::loadGPU_Textures(const std::vector<string> & textureNames)
+    void OpenGLRenderer::loadGPU_Textures(const std::vector<string> & textureNames)
     {
         for (string textureName : textureNames) {
             GPU_Textures[textureName] = loadTexture(textures->at(textureQuality).at(textureName));
         }
     }
 
-    void OpenGlRenderer::unloadGPU_Textures()
+    void OpenGLRenderer::unloadGPU_Textures()
     {
         std::vector<GLuint> textureHandles;
 
@@ -324,7 +324,7 @@ namespace evansbros { namespace graphics {
         glDeleteTextures((GLsizei)textureHandles.size(), textureHandles.data());
     }
 
-    void OpenGlRenderer::unloadGPU_Textures(const std::vector<string> & textureNames)
+    void OpenGLRenderer::unloadGPU_Textures(const std::vector<string> & textureNames)
     {
         std::vector<GLuint> textureHandles;
 
@@ -335,7 +335,7 @@ namespace evansbros { namespace graphics {
         glDeleteTextures((GLsizei)textureHandles.size(), textureHandles.data());
     }
 
-    GLuint OpenGlRenderer::loadTexture(PixelData imageData)
+    GLuint OpenGLRenderer::loadTexture(PixelData imageData)
     {
         GLuint texture;
 

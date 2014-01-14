@@ -128,9 +128,6 @@
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.cpp">
       <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRender.cpp">
-      <Filter>OpenGL\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\math\matrix.cpp">
       <Filter>Math\Source Files</Filter>
     </ClCompile>
@@ -145,6 +142,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\utilities\utilities.cpp">
       <Filter>Utilities\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\native_utilities.cpp">
+      <Filter>Windows\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WGLRenderer.cpp">
+      <Filter>Windows\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.cpp">
+      <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,9 +217,6 @@
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.h">
       <Filter>OpenGL\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRender.h">
-      <Filter>OpenGL\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\math\mathematical_constants.h">
       <Filter>Math\Header Files</Filter>
     </ClInclude>
@@ -237,6 +240,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\utilities\utilities.h">
       <Filter>Utilities\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Windows.h">
+      <Filter>Windows\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WGLRenderer.h">
+      <Filter>Windows\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.h">
+      <Filter>OpenGL\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

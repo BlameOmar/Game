@@ -102,6 +102,12 @@
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,6 +122,12 @@
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -134,6 +146,12 @@
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,6 +170,12 @@
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy DLLs</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\ButtonEvent.cpp" />
@@ -162,7 +186,7 @@
     <ClCompile Include="..\..\..\src\GameSystem_AssetLoading.cpp" />
     <ClCompile Include="..\..\..\src\GameSystem_MessageHandling.cpp" />
     <ClCompile Include="..\..\..\src\graphics\Color.cpp" />
-    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRender.cpp" />
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.cpp" />
     <ClCompile Include="..\..\..\src\graphics\PixelData.cpp" />
     <ClCompile Include="..\..\..\src\graphics\Quad.cpp" />
@@ -178,8 +202,10 @@
     <ClCompile Include="..\..\..\src\utilities\utilities.cpp" />
     <ClCompile Include="src\GameWindow.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\native_utilities.cpp" />
     <ClCompile Include="src\OpenGLWindow.cpp" />
     <ClCompile Include="src\WGLContextObj.cpp" />
+    <ClCompile Include="src\WGLRenderer.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +216,7 @@
     <ClInclude Include="..\..\..\src\GameSystem.h" />
     <ClInclude Include="..\..\..\src\graphics\Color.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL.h" />
-    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRender.h" />
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.h" />
     <ClInclude Include="..\..\..\src\graphics\PixelData.h" />
     <ClInclude Include="..\..\..\src\graphics\Quad.h" />
@@ -212,7 +238,9 @@
     <ClInclude Include="src\GameWindow.h" />
     <ClInclude Include="src\OpenGLWindow.h" />
     <ClInclude Include="src\WGLContextObj.h" />
+    <ClInclude Include="src\WGLRenderer.h" />
     <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\Windows.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\icon1.ico" />
@@ -223,6 +251,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\external\libpng-1.6.8\projects\vstudio\libpng\libpng.vcxproj">
       <Project>{d6973076-9317-4ef2-a0b8-b7a18ac0713e}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

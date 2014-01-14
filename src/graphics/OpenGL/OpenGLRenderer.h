@@ -1,5 +1,5 @@
 /**************************************************************************************************
- * Title:         OpenGLRender.h
+ * Title:         OpenGLRenderer.h
  * Author:        Omar Stefan Evans
  * Created on:    2013-11-15
  * Description:   <#Description#>
@@ -22,7 +22,7 @@
 using std::vector;
 
 namespace evansbros { namespace graphics {
-    class OpenGlRenderer : public Renderer {
+    class OpenGLRenderer : public Renderer {
     private:
         std::map<string, GLuint> shaderPrograms;
         std::map<string, GLuint> GPU_Textures;
