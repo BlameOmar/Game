@@ -14,6 +14,7 @@
 		071AEBDE186BF94D00BDE25A /* vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071AEBBB186BD11E00BDE25A /* vector3.cpp */; };
 		071AEBDF186BF95000BDE25A /* vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071AEBBD186BD14700BDE25A /* vector4.cpp */; };
 		0752099D1852EC7D009F41DF /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0752099B1852EC7D009F41DF /* Component.cpp */; };
+		0752A0B11884B9F200F27438 /* OpenGLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */; };
 		0792172B1852F2090049268B /* SpatialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079217291852F2090049268B /* SpatialComponent.cpp */; };
 		07A4516F185E52CF00CD41E5 /* ButtonEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A4516D185E52CF00CD41E5 /* ButtonEvent.cpp */; };
 		07BD122B1841721B007B8E10 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD122A1841721B007B8E10 /* Cocoa.framework */; };
@@ -34,7 +35,6 @@
 		07BD127818417400007B8E10 /* PixelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD126418417400007B8E10 /* PixelData.cpp */; };
 		07BD127A18417400007B8E10 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD126B18417400007B8E10 /* Message.cpp */; };
 		07BD127B18417400007B8E10 /* MessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD126D18417400007B8E10 /* MessageQueue.cpp */; };
-		07BD127C18417400007B8E10 /* OpenGLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD126F18417400007B8E10 /* OpenGLRender.cpp */; };
 		07BD127D18417400007B8E10 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD127218417400007B8E10 /* utilities.cpp */; };
 		07BD127F18417458007B8E10 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 07BD127E18417458007B8E10 /* assets */; };
 		07C744F7184175510094B04C /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C744F5184175510094B04C /* Renderer.cpp */; };
@@ -88,6 +88,8 @@
 		071AEBC1186BD8EF00BDE25A /* vector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector4.h; sourceTree = "<group>"; };
 		0752099B1852EC7D009F41DF /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = src/engine/components/Component.cpp; sourceTree = SOURCE_ROOT; };
 		0752099C1852EC7D009F41DF /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Component.h; path = src/engine/components/Component.h; sourceTree = SOURCE_ROOT; };
+		0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLRenderer.cpp; sourceTree = "<group>"; };
+		0752A0B01884B9F200F27438 /* OpenGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRenderer.h; sourceTree = "<group>"; };
 		079217291852F2090049268B /* SpatialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpatialComponent.cpp; path = src/engine/components/SpatialComponent.cpp; sourceTree = SOURCE_ROOT; };
 		0792172A1852F2090049268B /* SpatialComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpatialComponent.h; path = src/engine/components/SpatialComponent.h; sourceTree = SOURCE_ROOT; };
 		07A4516D185E52CF00CD41E5 /* ButtonEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ButtonEvent.cpp; sourceTree = "<group>"; };
@@ -128,8 +130,6 @@
 		07BD126C18417400007B8E10 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		07BD126D18417400007B8E10 /* MessageQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageQueue.cpp; sourceTree = "<group>"; };
 		07BD126E18417400007B8E10 /* MessageQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQueue.h; sourceTree = "<group>"; };
-		07BD126F18417400007B8E10 /* OpenGLRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLRender.cpp; sourceTree = "<group>"; };
-		07BD127018417400007B8E10 /* OpenGLRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRender.h; sourceTree = "<group>"; };
 		07BD127118417400007B8E10 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		07BD127218417400007B8E10 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		07BD127318417400007B8E10 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
@@ -388,9 +388,9 @@
 		07EFD10918611B3800C41FAF /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */,
+				0752A0B01884B9F200F27438 /* OpenGLRenderer.h */,
 				07EFD10E18611C8E00C41FAF /* OpenGL.h */,
-				07BD127018417400007B8E10 /* OpenGLRender.h */,
-				07BD126F18417400007B8E10 /* OpenGLRender.cpp */,
 				07EFD10B18611BB100C41FAF /* OpenGL_utilities.h */,
 				07EFD10C18611BBC00C41FAF /* OpenGL_utilities.cpp */,
 			);
@@ -553,7 +553,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BD127C18417400007B8E10 /* OpenGLRender.cpp in Sources */,
 				07EFD1121861201200C41FAF /* Color.cpp in Sources */,
 				0752099D1852EC7D009F41DF /* Component.cpp in Sources */,
 				07BD127718417400007B8E10 /* GameSystem.cpp in Sources */,
@@ -571,6 +570,7 @@
 				07EFD10D18611BBC00C41FAF /* OpenGL_utilities.cpp in Sources */,
 				07C74506184181FB0094B04C /* CGLRendererView.mm in Sources */,
 				071AEBDF186BF95000BDE25A /* vector4.cpp in Sources */,
+				0752A0B11884B9F200F27438 /* OpenGLRenderer.cpp in Sources */,
 				07C744FC184175C00094B04C /* CGLRenderer.cpp in Sources */,
 				07C7450C184271B20094B04C /* matrix.cpp in Sources */,
 				07BD127D18417400007B8E10 /* utilities.cpp in Sources */,
