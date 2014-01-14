@@ -33,6 +33,6 @@ evansbros::graphics::Renderer * getPlatformRenderer() {
     return new graphics::CGLRenderer;
 }
 
-evansbros::graphics::Renderer * getPlatformRenderer(evansbros::graphics::RenderType hint) {
+evansbros::graphics::Renderer * getPlatformRenderer(graphics::RenderType hint) {
     return new graphics::CGLRenderer;
 }
