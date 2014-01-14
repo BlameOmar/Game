@@ -1,7 +1,6 @@
 #include "WGLContextObj.h"
 
-#include <GL\glew.h>
-#include <GL\wglew.h>
+#include <Windows.h>
 
 #include <stdexcept>
 
@@ -13,23 +12,13 @@ namespace evansbros {
 		{
 			openGLContext = wglCreateContext(deviceContext);
 			wglMakeCurrent(deviceContext, openGLContext);
-
-			GLenum status = glewInit();
-			if (status != GLEW_OK) {
-				throw std::runtime_error((char *)glewGetErrorString(status));
+			
+			if (gl3wInit()) {
+				throw std::runtime_error("Failed to initialize OpenGL");
 			}
 
-			if (wglewIsSupported("WGL_ARB_create_context") == 1) {
-				HGLRC temp = openGLContext;
-				int attributes[] {
-					WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
-					WGL_CONTEXT_MINOR_VERSION_ARB, 3,
-					WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-					0
-				};
-				openGLContext = wglCreateContextAttribsARB(deviceContext, nullptr, attributes);
-				wglMakeCurrent(deviceContext, openGLContext);
-				wglDeleteContext(temp);
+			if (!gl3wIsSupported(3, 3)) {
+				throw std::runtime_error("OpenGL 3.3 is not supported");
 			}
 		}
 
@@ -58,10 +47,29 @@ namespace evansbros {
 			wglMakeCurrent(deviceContext, openGLContext);
 		}
 
+		void WGLContextObj::makeNotCurrent()
+		{
+			wglMakeCurrent(deviceContext, nullptr);
+		}
+
 		void WGLContextObj::flush()
 		{
 			glFlush();
 			SwapBuffers(deviceContext);
+		}
+
+		HDC WGLContextObj::getDeviceContext()
+		{
+			return deviceContext;
+		}
+
+		HGLRC WGLContextObj::getOpenGLContext()
+		{
+			return openGLContext;
+		}
+		void WGLContextObj::setOpenGLContext(HGLRC context)
+		{
+			openGLContext = context;
 		}
 	}
 }

@@ -68,26 +68,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Build\Products\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\Intermediates\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\glew-1.10.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)external\glew-1.10.0\lib\Release\$(Platform);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\gl3w\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Build\Products\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\Intermediates\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\glew-1.10.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)external\glew-1.10.0\lib\Release\$(Platform);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\gl3w\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Build\Products\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\Intermediates\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\glew-1.10.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)external\glew-1.10.0\lib\Release\$(Platform);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\gl3w\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Build\Products\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\Intermediates\$(OS)\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\glew-1.10.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)external\glew-1.10.0\lib\Release\$(Platform);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)external\libpng-1.6.8;$(SolutionDir)external\gl3w\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,18 +91,20 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)src\utilities;$(SolutionDir)src\math;$(SolutionDir)src\graphics;$(SolutionDir)src\graphics\OpenGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_MX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <CustomBuildStep />
     <PostBuildEvent>
-      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
-    </PostBuildEvent>
-    <PostBuildEvent>
-      <Message>Copy DLLs</Message>
+      <Command>ROBOCOPY $(OutDir)..\..\libpng\Release\ $(OutDir) libpng16.dll
+ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,18 +113,20 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)src\utilities;$(SolutionDir)src\math;$(SolutionDir)src\graphics;$(SolutionDir)src\graphics\OpenGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_MX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <CustomBuildStep />
     <PostBuildEvent>
-      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
-    </PostBuildEvent>
-    <PostBuildEvent>
-      <Message>Copy DLLs</Message>
+      <Command>ROBOCOPY $(OutDir)..\..\libpng\Release\ $(OutDir) libpng16.dll
+ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,20 +137,22 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)src\utilities;$(SolutionDir)src\math;$(SolutionDir)src\graphics;$(SolutionDir)src\graphics\OpenGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_MX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <CustomBuildStep />
     <PostBuildEvent>
-      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
-    </PostBuildEvent>
-    <PostBuildEvent>
-      <Message>Copy DLLs</Message>
+      <Command>ROBOCOPY $(OutDir)..\..\libpng\Release\ $(OutDir) libpng16.dll
+ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,23 +163,26 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)src;$(SolutionDir)src\utilities;$(SolutionDir)src\math;$(SolutionDir)src\graphics;$(SolutionDir)src\graphics\OpenGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_MX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>wmainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <CustomBuildStep />
     <PostBuildEvent>
-      <Command>xcopy /y $(OutDir)..\..\libpng\Release\libpng16.dll $(OutDir)</Command>
-    </PostBuildEvent>
-    <PostBuildEvent>
-      <Message>Copy DLLs</Message>
+      <Command>ROBOCOPY $(OutDir)..\..\libpng\Release\ $(OutDir) libpng16.dll
+ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\external\gl3w\src\gl3w.c" />
     <ClCompile Include="..\..\..\src\ButtonEvent.cpp" />
     <ClCompile Include="..\..\..\src\Data.cpp" />
     <ClCompile Include="..\..\..\src\GameController.cpp" />

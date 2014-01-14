@@ -16,12 +16,12 @@ const string getPathOfAssetDirectory()
 
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 	string pathToExecutable = converter.to_bytes(pathToExecutable_UTF16);
-	return pathToExecutable.substr(0, pathToExecutable.find_last_of("\\"));
+	return pathToExecutable.substr(0, pathToExecutable.find_last_of("\\")) + "\\assets";
 }
 
 const Data loadAsset(const string assetPath)
 {
-	string assetLocation = getPathOfAssetDirectory() + assetPath;
+	string assetLocation = getPathOfAssetDirectory() + "\\" + assetPath;
 
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 	std::wstring assetLocation_UTF16 = converter.from_bytes(assetLocation.c_str());

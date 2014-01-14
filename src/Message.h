@@ -32,10 +32,9 @@ namespace evansbros {
 #endif
 
 		enum class MessageType : natural {
-			GENERIC_MESSAGE,
-			GENERIC_EVENT,
-			BUTTON_EVENT,
-			MOUSE_EVENT
+			GENERIC,
+			BUTTON,
+			MOUSE
 		};
 
 		enum class MouseEventType : natural {

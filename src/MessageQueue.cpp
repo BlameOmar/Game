@@ -12,6 +12,7 @@
  **************************************************************************************************/
 
 #include "MessageQueue.h"
+#include "Message.h"
 
 namespace evansbros { namespace game {
 

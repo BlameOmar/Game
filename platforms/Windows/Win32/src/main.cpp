@@ -16,6 +16,7 @@
 #include <iostream>
 #endif
 
+#include "GameSystem.h"
 #include "GameWindow.h"
 
 using namespace evansbros::WindowsGUI;
@@ -55,24 +56,18 @@ int wmain(int argc, wchar_t *argv[])
 }
 
 int WindowsApplicationMain(int argc, wchar_t *argv[], HINSTANCE instanceHandle)
-{
+try {
 	/* Create the main window */
-
-	PIXELFORMATDESCRIPTOR pixelFormatDescriptor;
-	ZeroMemory(&pixelFormatDescriptor, sizeof(pixelFormatDescriptor));
-	pixelFormatDescriptor.nSize = sizeof(PIXELFORMATDESCRIPTOR);
-	pixelFormatDescriptor.nVersion = 1;
-	pixelFormatDescriptor.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-	pixelFormatDescriptor.iPixelType = PFD_TYPE_RGBA;
-	pixelFormatDescriptor.cColorBits = 32;
-	pixelFormatDescriptor.cDepthBits = 24;
-	pixelFormatDescriptor.cStencilBits = 8;
-
-	Window *mainWindow = new GameWindow(instanceHandle, "Main Window", 640, 360, pixelFormatDescriptor);
+	GameWindow *mainWindow = new GameWindow("Main Window", 640, 360);
 
 	/* Display the main window */
 	mainWindow->display();
 	mainWindow->update();
+
+	game::GameSystem *gameSystem = new evansbros::game::GameSystem();
+	mainWindow->setGameSystemMessageQueue(gameSystem->getMessageQueue());
+	mainWindow->setRenderer(static_cast<graphics::WGLRenderer *>(gameSystem->getRenderer()));
+	gameSystem->start();
 
 	/* Enter message handling loop */
 	MSG message;
@@ -86,8 +81,15 @@ int WindowsApplicationMain(int argc, wchar_t *argv[], HINSTANCE instanceHandle)
 		DispatchMessageW(&message);
 	}
 
+	gameSystem->stop();
+	delete gameSystem;
+
 	/* Destroy the main window */
 	delete mainWindow;
 
 	return (int)message.wParam;
+}
+catch (std::runtime_error error) {
+	MessageBoxA(0, error.what(), "Error!", MB_ICONEXCLAMATION | MB_OK);
+	PostQuitMessage(-1);
 }

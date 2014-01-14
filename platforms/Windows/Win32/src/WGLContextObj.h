@@ -1,7 +1,10 @@
 #pragma once
 
-#include <Windows.h>
+#include <GL\gl3w.h>
 #include <mutex>
+
+typedef struct HDC__ *HDC;
+typedef struct HWND__ *HWND;
 
 namespace evansbros {
 	namespace WindowsGUI {
@@ -20,7 +23,13 @@ namespace evansbros {
 			void unlock();
 
 			void makeCurrent();
+			void makeNotCurrent();
 			void flush();
+
+			HDC getDeviceContext();
+
+			HGLRC getOpenGLContext();
+			void setOpenGLContext(HGLRC context);
 		};
 
 	}

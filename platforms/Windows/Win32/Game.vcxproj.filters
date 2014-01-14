@@ -152,6 +152,9 @@
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.cpp">
       <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\external\gl3w\src\gl3w.c">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameWindow.h">

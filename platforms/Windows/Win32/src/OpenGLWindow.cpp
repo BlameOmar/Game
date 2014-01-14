@@ -5,9 +5,18 @@
 namespace evansbros {
 	namespace WindowsGUI {
 
-		OpenGLWindow::OpenGLWindow(HINSTANCE instanceHandle, string title, unsigned int width, unsigned int height, PIXELFORMATDESCRIPTOR &pixelFormatDescriptor)
-			try : Window(instanceHandle, title, width, height)
+		OpenGLWindow::OpenGLWindow(string title, unsigned int width, unsigned int height) try : Window(title, width, height)
 		{
+			PIXELFORMATDESCRIPTOR pixelFormatDescriptor;
+			ZeroMemory(&pixelFormatDescriptor, sizeof(pixelFormatDescriptor));
+			pixelFormatDescriptor.nSize = sizeof(PIXELFORMATDESCRIPTOR);
+			pixelFormatDescriptor.nVersion = 1;
+			pixelFormatDescriptor.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+			pixelFormatDescriptor.iPixelType = PFD_TYPE_RGBA;
+			pixelFormatDescriptor.cColorBits = 32;
+			pixelFormatDescriptor.cDepthBits = 24;
+			pixelFormatDescriptor.cStencilBits = 8;
+
 			int pixelFormatIndex = ChoosePixelFormat(deviceContext, &pixelFormatDescriptor);
 			SetPixelFormat(deviceContext, pixelFormatIndex, &pixelFormatDescriptor);
 
