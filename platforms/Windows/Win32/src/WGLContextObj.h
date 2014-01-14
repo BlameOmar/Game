@@ -6,8 +6,7 @@
 namespace evansbros {
 	namespace WindowsGUI {
 
-		class WGLContextObj
-		{
+		class WGLContextObj {
 			HDC   deviceContext = nullptr;
 			HGLRC openGLContext = nullptr;
 
