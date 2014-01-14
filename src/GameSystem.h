@@ -17,13 +17,18 @@
 
 #include "PixelData.h"
 
-#include "MessageQueue.h"
-#include "Renderer.h"
-
 #include "GameController.h"
 #include "GameState.h"
 
-namespace evansbros { namespace game {
+namespace evansbros { 
+	namespace graphics {
+		class Renderer;
+	}
+	namespace game {
+
+	class MessageQueue;
+	class Message;
+	struct ButtonEvent;
 
     using graphics::Renderer;
     using graphics::TextureQuality;
@@ -46,7 +51,7 @@ namespace evansbros { namespace game {
         const natural MAX_UPDATES_PER_CYCLE = 3;
 
         std::thread runloopThread;
-        MessageQueue messageQueue;
+        MessageQueue *messageQueue;
 
         bool running;
         bool paused;
@@ -62,11 +67,11 @@ namespace evansbros { namespace game {
         GameController p2Controller;
         GameState gameState;
 
-        void handleMessage(Message message);
+        void handleMessage(Message &message);
 
-        void handleButtonEvent(ButtonEvent buttonEvent);
-        void handleButtonPressEvent(ButtonEvent buttonEvent);
-        void handleButtonReleaseEvent(ButtonEvent buttonEvent);
+        void handleButtonEvent(ButtonEvent &buttonEvent);
+        void handleButtonPressEvent(ButtonEvent &buttonEvent);
+        void handleButtonReleaseEvent(ButtonEvent &buttonEvent);
 
         void update(seconds dTime);
         void run();

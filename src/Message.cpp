@@ -11,20 +11,20 @@
 namespace evansbros { namespace game {
 
     Message::Message()
-    : type(MessageType::GENERIC_MESSAGE)
+    : type(MessageType::GENERIC)
     {
         /* Intentionally Left Blank */
     }
 
 #if (!defined _MSC_VER || _MSC_VER > 1800)
     Message::Message(ButtonEventType buttonEventType, ButtonID buttonID)
-    : type(MessageType::BUTTON_EVENT), buttonEvent(buttonEventType, buttonID)
+    : type(MessageType::BUTTON), buttonEvent(buttonEventType, buttonID)
     {
         /* Intentionally Left Blank */
     }
 #else
 	Message::Message(ButtonEventType buttonEventType, ButtonID buttonID)
-		: type(MessageType::BUTTON_EVENT)
+		: type(MessageType::BUTTON)
 	{
 		buttonEvent.type = buttonEventType;
 		buttonEvent.id = buttonID;
@@ -33,13 +33,13 @@ namespace evansbros { namespace game {
 
 #if (!defined _MSC_VER || _MSC_VER > 1800)
     Message::Message(MouseEventType mouseEventType, Point2D mouseLocation)
-    : type(MessageType::MOUSE_EVENT), mouseEvent(mouseEventType, mouseLocation)
+    : type(MessageType::MOUSE), mouseEvent(mouseEventType, mouseLocation)
     {
         /* Intentionally Left Blank */
     }
 #else
 	Message::Message(MouseEventType mouseEventType, Point2D mouseLocation)
-		: type(MessageType::MOUSE_EVENT)
+		: type(MessageType::MOUSE)
 	{
 		mouseEvent.type = mouseEventType;
 		mouseEvent.location = mouseLocation;
@@ -53,14 +53,14 @@ namespace evansbros { namespace game {
     }
 
     ButtonEvent Message::getButtonEvent() const {
-        if (type != MessageType::BUTTON_EVENT) {
+        if (type != MessageType::BUTTON) {
             throw MessageExceptions::InvalidOperation("This message is not a ButtonEvent");
         }
         return buttonEvent;
     }
 
     MouseEvent Message::getMouseEvent() const {
-        if (type != MessageType::MOUSE_EVENT) {
+        if (type != MessageType::MOUSE) {
             throw MessageExceptions::InvalidOperation("This message is not a MouseEvent");
         }
         return mouseEvent;

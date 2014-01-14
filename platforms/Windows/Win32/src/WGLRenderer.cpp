@@ -22,9 +22,21 @@ namespace evansbros {
 			nativeGraphicsContext->lock();
 			nativeGraphicsContext->makeCurrent();
 
+			if (gl3wInit()) {
+				throw std::runtime_error("Failed to initialize OpenGL");
+			}
+
+			if (!gl3wIsSupported(3, 3)) {
+				throw std::runtime_error("OpenGL 3.3 is not supported");
+			}
+
+			glDepthRange(1, 0);
+
 			OpenGLRenderer::setup();
 
 			nativeGraphicsContext->flush();
+
+			nativeGraphicsContext->makeNotCurrent();
 			nativeGraphicsContext->unlock();
 		}
 
@@ -34,8 +46,9 @@ namespace evansbros {
 			nativeGraphicsContext->makeCurrent();
 
 			OpenGLRenderer::render(interpolation);
-
 			nativeGraphicsContext->flush();
+
+			nativeGraphicsContext->makeNotCurrent();
 			nativeGraphicsContext->unlock();
 		}
 	}

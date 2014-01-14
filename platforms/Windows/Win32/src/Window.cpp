@@ -8,18 +8,21 @@
 
 namespace evansbros {
 	namespace WindowsGUI {
+
+		LRESULT CALLBACK WindowHandleMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam);
+
 		/* Public member function definitions */
-		Window::Window(HINSTANCE instanceHandle, string title, unsigned int width, unsigned int height)
+		Window::Window(string title, unsigned int width, unsigned int height)
 			try : title(title), width(width), height(height)
 		{
-			if (!wasRegistered(instanceHandle)) {
-				Register(instanceHandle);
+			if (!wasRegistered) {
+				Register();
 			}
 
 			std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 			std::wstring title_UTF16 = converter.from_bytes(title.c_str());
 
-			windowHandle = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW, CLASS_NAME, title_UTF16.c_str(), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, instanceHandle, nullptr);
+			windowHandle = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW, CLASS_NAME, title_UTF16.c_str(), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
 			if (!windowHandle) {
 				throw std::runtime_error("Failed to create Window");
 			}
@@ -43,10 +46,15 @@ namespace evansbros {
 			return windows[windowHandle];
 		}
 
+		size_t Window::count()
+		{
+			return windows.size();
+		}
+
 		/* Private static variables */
 		const wchar_t Window::CLASS_NAME[7] = L"Window";
-		std::unordered_set<HINSTANCE> Window::registeredInstances;
 		std::unordered_map<HWND, Window *> Window::windows;
+		bool Window::wasRegistered = false;
 
 		/* Private member functions */
 
@@ -63,12 +71,12 @@ namespace evansbros {
 			reshape(width, height);
 		}
 
-		void Window::keyDown(WPARAM keyCode, bool isRepeat, unsigned short int repeatCount)
+		void Window::keyDown(size_t keyCode, bool isRepeat, unsigned short int repeatCount)
 		{
 			/* Default Implementation Does Nothing */
 		}
 
-		void Window::keyUp(WPARAM keyCode)
+		void Window::keyUp(size_t keyCode)
 		{
 			/* Default Implementation Does Nothing */
 		}
@@ -97,8 +105,9 @@ namespace evansbros {
 			windowHandle = nullptr;			
 		}
 
-		void Window::Register(HINSTANCE instanceHandle)
+		void Window::Register()
 		try {
+			HINSTANCE instanceHandle = GetModuleHandleW(nullptr);
 			WNDCLASSEXW windowClass;
 			ZeroMemory(&windowClass, sizeof(windowClass));
 
@@ -116,17 +125,13 @@ namespace evansbros {
 				throw std::runtime_error("Registration of Window failed");
 			}
 
-			registeredInstances.insert(instanceHandle);
+			wasRegistered = true;
 		} catch (std::runtime_error error) {
 			MessageBoxA(0, error.what(), "Error!", MB_ICONEXCLAMATION | MB_OK);
 			PostQuitMessage(-1);
 		}
 
-		bool Window::wasRegistered(HINSTANCE instanceHandle)
-		{
-			return registeredInstances.count(instanceHandle) != 0;
-		}
-
+		
 
 		/* Private functions */
 
@@ -135,24 +140,24 @@ namespace evansbros {
 		{
 			switch (message) {
 			case WM_KEYDOWN:
-				Window::windows[windowHandle]->keyDown(wParam, lParam >> 30 & 0x01, lParam & 0xFFFF);
+				Window::getWindow(windowHandle)->keyDown(wParam, lParam >> 30 & 0x01, lParam & 0xFFFF);
 				break;
 			case WM_KEYUP:
-				Window::windows[windowHandle]->keyUp(wParam);
+				Window::getWindow(windowHandle)->keyUp(wParam);
 				break;
 			case WM_PAINT:
 			case WM_ERASEBKGND:
-				Window::windows[windowHandle]->draw();
+				Window::getWindow(windowHandle)->draw();
 				break;
 			case WM_SIZE:
-				Window::windows[windowHandle]->resize(LOWORD(lParam), HIWORD(lParam));
-				Window::windows[windowHandle]->draw();
+				Window::getWindow(windowHandle)->resize(LOWORD(lParam), HIWORD(lParam));
+				Window::getWindow(windowHandle)->draw();
 				break;
 			case WM_CLOSE:
-				Window::windows[windowHandle]->close();
+				Window::getWindow(windowHandle)->close();
 				break;
 			case WM_DESTROY:
-				if (Window::windows.empty()) {
+				if (Window::count() == 0) {
 					PostQuitMessage(0);
 				}
 				break;

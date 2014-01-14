@@ -10,12 +10,14 @@
 #include "GameSystem.h"
 #include <iostream>
 
+#include <Message.h>
+
 namespace evansbros { namespace game {
 
-    void GameSystem::handleMessage(Message message)
+    void GameSystem::handleMessage(Message &message)
     {
         switch (message.getType()) {
-            case MessageType::BUTTON_EVENT:
+            case MessageType::BUTTON:
                 handleButtonEvent(message.getButtonEvent());
                 break;
 
@@ -24,7 +26,7 @@ namespace evansbros { namespace game {
         }
     }
 
-    void GameSystem::handleButtonEvent(ButtonEvent buttonEvent)
+    void GameSystem::handleButtonEvent(ButtonEvent &buttonEvent)
     {
         switch (buttonEvent.type) {
             case ButtonEventType::BUTTON_PRESS:
@@ -39,7 +41,7 @@ namespace evansbros { namespace game {
         }
     }
 
-    void GameSystem::handleButtonPressEvent(ButtonEvent buttonEvent)
+    void GameSystem::handleButtonPressEvent(ButtonEvent &buttonEvent)
     {
         switch (buttonEvent.id) {
 
@@ -85,7 +87,7 @@ namespace evansbros { namespace game {
         }
     }
 
-    void GameSystem::handleButtonReleaseEvent(ButtonEvent buttonEvent)
+    void GameSystem::handleButtonReleaseEvent(ButtonEvent &buttonEvent)
     {
         switch (buttonEvent.id) {
 

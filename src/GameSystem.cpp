@@ -9,6 +9,10 @@
 
 #include "GameSystem.h"
 
+#include "MessageQueue.h"
+#include "Message.h"
+#include "Renderer.h"
+
 #include <iostream>
 #include <thread>
 #include <numeric>
@@ -24,8 +28,9 @@ namespace evansbros { namespace game {
 
     using graphics::Renderer;
 
-    GameSystem::GameSystem() : messageQueue(100), running(false), paused(false)
+    GameSystem::GameSystem() : running(false), paused(false)
     {
+		messageQueue = new MessageQueue(100);
         renderer = getPlatformRenderer();
         renderer->setGameState(&gameState);
         renderer->setTextures(&textures);
@@ -33,7 +38,7 @@ namespace evansbros { namespace game {
 
     MessageQueue * GameSystem::getMessageQueue()
     {
-        return &messageQueue;
+        return messageQueue;
     }
 
     Renderer * GameSystem::getRenderer()
@@ -56,7 +61,7 @@ namespace evansbros { namespace game {
     }
 
     void GameSystem::run()
-    {
+    try {
         loadTextures();
         renderer->setup();
 
@@ -77,8 +82,8 @@ namespace evansbros { namespace game {
         while (running) {
             currentTime = Clock::now();
 
-            while (!messageQueue.wasEmpty()) {
-                handleMessage(messageQueue.dequeue());
+            while (!messageQueue->wasEmpty()) {
+                handleMessage(messageQueue->dequeue());
             }
 
             numberOfUpdates = 0;
@@ -109,7 +114,11 @@ namespace evansbros { namespace game {
 
             std::this_thread::yield();
         }
-    }
+	}
+	catch (std::runtime_error error) {
+		std::cout << error.what() << std::endl;
+		throw error;
+	}
 
 
 

@@ -1,15 +1,12 @@
 #pragma once
 
-#include <Windows.h>
-#include <GL\glew.h>
-#include <GL\wglew.h>
-#include <memory>
-
 #include "Window.h"
 #include "WGLContextObj.h"
 
 namespace evansbros {
 	namespace WindowsGUI {
+
+		class WGLContextObj;
 
 		class OpenGLWindow : public Window {
 		protected:
@@ -19,15 +16,13 @@ namespace evansbros {
 			virtual void reshape(unsigned int width, unsigned int height);
 
 		public:
-			OpenGLWindow(HINSTANCE instanceHandle, string title, unsigned int width, unsigned int height, PIXELFORMATDESCRIPTOR &pixelFormatDescriptor);
+			OpenGLWindow(string title, unsigned int width, unsigned int height);
 			OpenGLWindow(const OpenGLWindow & other) = delete;
 			~OpenGLWindow();
 
 			virtual void draw();
 
 			void close();
-			void display();
-			void update();
 		};
 	}
 }

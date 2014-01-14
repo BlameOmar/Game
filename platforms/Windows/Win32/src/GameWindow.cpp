@@ -1,14 +1,37 @@
 #include "GameWindow.h"
 
+#include "MessageQueue.h"
+#include "Message.h"
+
 #include <iostream>
 
 namespace evansbros {
 	namespace WindowsGUI {
 
-		GameWindow::GameWindow(HINSTANCE instanceHandle, string title, unsigned int width, unsigned int height, PIXELFORMATDESCRIPTOR &pixelFormatDescriptor)
-			: OpenGLWindow(instanceHandle, title, width, height, pixelFormatDescriptor)
+		GameWindow::GameWindow(string title, unsigned int width, unsigned int height) : OpenGLWindow(title, width, height)
 		{
 			/* Intentionally Left Blank */
+		}
+
+		game::MessageQueue * GameWindow::getGameSystemMessageQueue()
+		{
+			return gameSystemMessageQueue;
+		}
+
+		graphics::WGLRenderer * GameWindow::getRenderer()
+		{
+			return renderer;
+		}
+
+		void GameWindow::setRenderer(graphics::WGLRenderer * renderer)
+		{
+			this->renderer = renderer;
+			renderer->setNativeGraphicsContext(openGLContext);
+		}
+
+		void GameWindow::setGameSystemMessageQueue(game::MessageQueue *messageQueue)
+		{
+			gameSystemMessageQueue = messageQueue;
 		}
 
 		void GameWindow::draw()
@@ -18,10 +41,15 @@ namespace evansbros {
 
 			openGLContext->makeCurrent();
 
-			glClearColor(0.4f, 0.6f, 0.9f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			if (renderer) {
+				renderer->render(seconds(0.0f));
+			}
+			else {
+				glClearColor(0.4f, 0.6f, 0.9f, 1.0f);
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			openGLContext->flush();
+				openGLContext->flush();;
+			}
 
 
 			openGLContext->unlock();
@@ -32,9 +60,12 @@ namespace evansbros {
 			openGLContext->lock();
 
 
-			openGLContext->makeCurrent();
-
-			glViewport(0, 0, width, height);
+			if (renderer) {
+				renderer->resizeViewport(width, height);
+			}
+			else {
+				glViewport(0, 0, width, height);
+			}
 
 
 			openGLContext->unlock();
@@ -42,6 +73,8 @@ namespace evansbros {
 
 		void GameWindow::keyDown(WPARAM keyCode, bool isRepeat, unsigned short int repeatCount)
 		{
+			using namespace evansbros::game;
+
 			if (isRepeat) {
 				return;
 			}
@@ -49,81 +82,83 @@ namespace evansbros {
 			switch (keyCode) {
 				/* Player 1*/
 			case VK_ESCAPE:
-				std::cout << "Player 1 pressed the pause key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P1_PAUSE));
 				break;
 			case 'W':
 			case VK_UP:
-				std::cout << "Player 1 pressed the up key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P1_UP));
 				break;
 			case 'A':
 			case VK_LEFT:
-				std::cout << "Player 1 pressed the left key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P1_LEFT));
 				break;
 			case 'S':
 			case VK_DOWN:
-				std::cout << "Player 1 pressed the down key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P1_DOWN));
 				break;
 			case 'D':
 			case VK_RIGHT:
-				std::cout << "Player 1 pressed the right key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P1_RIGHT));
 				break;
 				/* Player 2*/
 			case 'P':
-				std::cout << "Player 2 pressed the pause key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P2_PAUSE));
 				break;
 			case 'I':
-				std::cout << "Player 2 pressed the up key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P2_UP));
 				break;
 			case 'J':
-				std::cout << "Player 2 pressed the left key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P2_LEFT));
 				break;
 			case 'K':
-				std::cout << "Player 2 pressed the down key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P2_DOWN));
 				break;
 			case 'L':
-				std::cout << "Player 2 pressed the right key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_PRESS, ButtonID::P2_RIGHT));
 				break;
 			}
 		}
 
 		void GameWindow::keyUp(WPARAM keyCode)
 		{
+			using namespace evansbros::game;
+
 			switch (keyCode) {
 				/* Player 1*/
 			case VK_ESCAPE:
-				std::cout << "Player 1 released the pause key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P1_PAUSE));
 				break;
 			case 'W':
 			case VK_UP:
-				std::cout << "Player 1 released the up key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P1_UP));
 				break;
 			case 'A':
 			case VK_LEFT:
-				std::cout << "Player 1 released the left key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P1_LEFT));
 				break;
 			case 'S':
 			case VK_DOWN:
-				std::cout << "Player 1 released the down key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P1_DOWN));
 				break;
 			case 'D':
 			case VK_RIGHT:
-				std::cout << "Player 1 released the right key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P1_RIGHT));
 				break;
 				/* Player 2*/
 			case 'P':
-				std::cout << "Player 2 released the pause key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P2_PAUSE));
 				break;
 			case 'I':
-				std::cout << "Player 2 released the up key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P2_UP));
 				break;
 			case 'J':
-				std::cout << "Player 2 released the left key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P2_LEFT));
 				break;
 			case 'K':
-				std::cout << "Player 2 released the down key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P2_DOWN));
 				break;
 			case 'L':
-				std::cout << "Player 2 released the right key\n";
+				gameSystemMessageQueue->enqueue(Message(ButtonEventType::BUTTON_RELEASE, ButtonID::P2_RIGHT));
 				break;
 			}
 		}
