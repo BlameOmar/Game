@@ -17,6 +17,9 @@
 
 #include "PixelData.h"
 
+#include "MessageQueue.h"
+#include "Message.h"
+
 #include "GameController.h"
 #include "GameState.h"
 
@@ -67,11 +70,11 @@ namespace evansbros {
         GameController p2Controller;
         GameState gameState;
 
-        void handleMessage(Message &message);
+        void handleMessage(Message message);
 
-        void handleButtonEvent(ButtonEvent &buttonEvent);
-        void handleButtonPressEvent(ButtonEvent &buttonEvent);
-        void handleButtonReleaseEvent(ButtonEvent &buttonEvent);
+        void handleButtonEvent(ButtonEvent buttonEvent);
+        void handleButtonPressEvent(ButtonEvent buttonEvent);
+        void handleButtonReleaseEvent(ButtonEvent buttonEvent);
 
         void update(seconds dTime);
         void run();

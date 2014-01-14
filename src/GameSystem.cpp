@@ -9,8 +9,7 @@
 
 #include "GameSystem.h"
 
-#include "MessageQueue.h"
-#include "Message.h"
+
 #include "Renderer.h"
 
 #include <iostream>

@@ -18,9 +18,9 @@
 #include <atomic>
 #include <stdexcept>
 
+#include "Message.h"
+
 namespace evansbros { namespace game {
-	
-	class Message;
 
     class MessageQueue {
     private:
