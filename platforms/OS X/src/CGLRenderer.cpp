@@ -31,7 +31,7 @@ namespace evansbros { namespace graphics {
         CGLLockContext(nativeGraphicsContext);
         CGLSetCurrentContext(nativeGraphicsContext);
 
-        OpenGlRenderer::setup();
+        OpenGLRenderer::setup();
 
         CGLFlushDrawable(nativeGraphicsContext);
 
@@ -42,7 +42,7 @@ namespace evansbros { namespace graphics {
     {
         CGLLockContext(nativeGraphicsContext);
 
-        OpenGlRenderer::render(interpolation);
+        OpenGLRenderer::render(interpolation);
 
         CGLFlushDrawable(nativeGraphicsContext);
         

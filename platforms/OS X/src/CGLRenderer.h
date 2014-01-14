@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "OpenGLRender.h"
+#include "OpenGLRenderer.h"
 
 #include <OpenGL/OpenGL.h>
 
 namespace evansbros {
     namespace graphics {
 
-        class CGLRenderer : public OpenGlRenderer {
+        class CGLRenderer : public OpenGLRenderer {
         private:
             CGLContextObj nativeGraphicsContext;
         public:
