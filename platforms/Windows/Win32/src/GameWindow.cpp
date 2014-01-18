@@ -27,6 +27,7 @@ namespace evansbros {
 		{
 			this->renderer = renderer;
 			renderer->setNativeGraphicsContext(openGLContext);
+			openGLContext->makeNotCurrent();
 		}
 
 		void GameWindow::setGameSystemMessageQueue(game::MessageQueue *messageQueue)
@@ -36,39 +37,24 @@ namespace evansbros {
 
 		void GameWindow::draw()
 		{
-			openGLContext->lock();
+			if (!renderer) {
+				openGLContext->makeCurrent();
 
-
-			openGLContext->makeCurrent();
-
-			if (renderer) {
-				renderer->render(seconds(0.0f));
-			}
-			else {
 				glClearColor(0.4f, 0.6f, 0.9f, 1.0f);
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-				openGLContext->flush();;
+				openGLContext->flush();
 			}
-
-
-			openGLContext->unlock();
 		}
 
 		void GameWindow::reshape(unsigned int width, unsigned int height)
 		{
-			openGLContext->lock();
-
-
-			if (renderer) {
-				renderer->resizeViewport(width, height);
-			}
-			else {
+			if (!renderer) {
 				glViewport(0, 0, width, height);
+				return;
 			}
-
-
-			openGLContext->unlock();
+			using namespace evansbros::game;
+			gameSystemMessageQueue->enqueue(Message(ViewportEventType::RESIZE, { width, height }));
 		}
 
 		void GameWindow::keyDown(WPARAM keyCode, bool isRepeat, unsigned short int repeatCount)

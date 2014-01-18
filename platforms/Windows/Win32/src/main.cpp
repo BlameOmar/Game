@@ -75,7 +75,7 @@ try {
 	while ((quitMessageNotReceived = GetMessageW(&message, nullptr, 0, 0)) != FALSE) {
 		if (quitMessageNotReceived == -1) {
 			MessageBoxW(nullptr, L"Something went horribly wrong", L"Error!", MB_ICONEXCLAMATION | MB_OK);
-			exit(EXIT_FAILURE);
+			break;
 		}
 		TranslateMessage(&message);
 		DispatchMessageW(&message);
@@ -87,7 +87,7 @@ try {
 	/* Destroy the main window */
 	delete mainWindow;
 
-	return (int)message.wParam;
+	exit(EXIT_SUCCESS);
 }
 catch (std::runtime_error error) {
 	MessageBoxA(0, error.what(), "Error!", MB_ICONEXCLAMATION | MB_OK);

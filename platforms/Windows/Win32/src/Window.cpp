@@ -138,6 +138,7 @@ namespace evansbros {
 
 		LRESULT CALLBACK WindowHandleMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
 		{
+			RECT rect;
 			switch (message) {
 			case WM_KEYDOWN:
 				Window::getWindow(windowHandle)->keyDown(wParam, lParam >> 30 & 0x01, lParam & 0xFFFF);
@@ -149,9 +150,12 @@ namespace evansbros {
 			case WM_ERASEBKGND:
 				Window::getWindow(windowHandle)->draw();
 				break;
+			case WM_SIZING:
+				rect = *(RECT *)lParam;
+				Window::getWindow(windowHandle)->resize(rect.right - rect.left, rect.top = rect.bottom);
+				break;
 			case WM_SIZE:
 				Window::getWindow(windowHandle)->resize(LOWORD(lParam), HIWORD(lParam));
-				Window::getWindow(windowHandle)->draw();
 				break;
 			case WM_CLOSE:
 				Window::getWindow(windowHandle)->close();

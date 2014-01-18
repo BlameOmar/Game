@@ -137,7 +137,7 @@ namespace evansbros { namespace graphics {
 
     void OpenGLRenderer::resizeViewport(natural width, natural height)
     {
-        glViewport(0, 0, viewport.width, viewport.height);
+        glViewport(0, 0, width, height);
 
         viewport.width = width;
         viewport.height = height;
