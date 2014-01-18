@@ -9,37 +9,14 @@
 #pragma once
 
 #include "types.h"
-#include "Data.h"
+
 #include "ButtonEvent.h"
+#include "MouseEvent.h"
+#include "ViewportEvent.h"
 
 #include <stdexcept>
 namespace evansbros {
 	namespace game {
-
-#if (!defined _MSC_VER || _MSC_VER > 1800)
-		struct Point2D {
-			real x = 0.0f;
-			real y = 0.0f;
-
-			Point2D() = default;
-			Point2D(real x, real y) : x(x), y(y) {}
-		};
-#else
-		struct Point2D {
-			real x;
-			real y;
-		};
-#endif
-
-		enum class MessageType : natural {
-			GENERIC,
-			BUTTON,
-			MOUSE
-		};
-
-		enum class MouseEventType : natural {
-			MOUSE_MOVE
-		};
 
 		namespace MessageExceptions {
 			class InvalidOperation : public std::runtime_error {
@@ -48,36 +25,32 @@ namespace evansbros {
 			};
 		}
 
-#if (!defined _MSC_VER || _MSC_VER > 1800)
-		struct MouseEvent {
-			MouseEventType type;
-			Point2D        location;
-
-			MouseEvent(MouseEventType type, Point2D location) : type(type), location(location) {}
+		enum class MessageType : natural {
+			GENERIC,
+			BUTTON,
+			MOUSE,
+            VIEWPORT
 		};
-#else
-		struct MouseEvent {
-			MouseEventType type;
-			Point2D        location;
-		};
-#endif
 
 		class Message {
 			MessageType type;
 			union {
 				ButtonEvent buttonEvent;
 				MouseEvent mouseEvent;
+                ViewportEvent viewportEvent;
 			};
 
 		public:
 			Message();
 			Message(ButtonEventType buttonEventType, ButtonID buttonID);
 			Message(MouseEventType mouseEventType, Point2D mouseLocation);
-			Message(Data data);
+            Message(ViewportEventType viewportEventType, Size2D size);
 
 			MessageType getType() const;
 			ButtonEvent getButtonEvent() const;
 			MouseEvent getMouseEvent() const;
+            ViewportEvent getViewportEvent() const;
 		};
+        
 	}
 }

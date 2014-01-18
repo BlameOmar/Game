@@ -33,8 +33,6 @@ namespace evansbros { namespace graphics {
 
         OpenGLRenderer::setup();
 
-        CGLFlushDrawable(nativeGraphicsContext);
-
         CGLUnlockContext(nativeGraphicsContext);
     }
 

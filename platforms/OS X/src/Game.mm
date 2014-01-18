@@ -6,11 +6,11 @@
 //
 //
 
-#import "AppDelegate.h"
+#import "Game.h"
 
 using std::thread;
 
-@implementation AppDelegate
+@implementation Game
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -55,7 +55,7 @@ using std::thread;
     };
 
     NSOpenGLPixelFormat *pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes: pixelFormatAttributes];
-    self.window.contentView = self.gameView = [[CGLRendererView alloc] initWithFrame:[self.window.contentView bounds] pixelFormat:pixelFormat];
+    self.window.contentView = self.gameView = [[GameView alloc] initWithFrame:[self.window.contentView bounds] pixelFormat:pixelFormat];
 }
 
 @end

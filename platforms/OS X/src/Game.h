@@ -7,16 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CGLRendererView.h"
+#import "GameView.h"
 
 #include <thread>
 
 #include "GameSystem.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface Game : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property CGLRendererView *gameView;
+@property GameView *gameView;
 @property (assign) ::evansbros::game::GameSystem *gameSystem;
 
 @end

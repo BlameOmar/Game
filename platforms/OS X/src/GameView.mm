@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 MainChat. All rights reserved.
 //
 
-#import "CGLRendererView.h"
+#import "GameView.h"
 #import <Carbon/Carbon.h>
 
 using namespace evansbros;
 
-@implementation CGLRendererView
+@implementation GameView
 
 -(evansbros::graphics::CGLRenderer *)renderer
 {
@@ -24,17 +24,22 @@ using namespace evansbros;
     self.renderer->setNativeGraphicsContext((CGLContextObj)[self.openGLContext CGLContextObj]);
 }
 
+- (void)prepareOpenGL
+{
+    swapInterval = 0;
+    [self.openGLContext setValues:&swapInterval forParameter:NSOpenGLCPSwapInterval];
+}
+
 - (void)reshape
 {
-    CGLContextObj contextObj = (CGLContextObj)[self.openGLContext CGLContextObj];
-    CGLLockContext(contextObj);
-
-    if (self.renderer) {
-        self.renderer->resizeViewport(self.bounds.size.width, self.bounds.size.height);
-    } else {
+    if (!self.renderer) {
         glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
+        return;
     }
 
+    CGLContextObj contextObj = (CGLContextObj)[self.openGLContext CGLContextObj];
+    CGLLockContext(contextObj);
+    self.renderer->resizeViewport(self.bounds.size.width, self.bounds.size.height);
     CGLUnlockContext(contextObj);
 }
 
@@ -50,18 +55,10 @@ using namespace evansbros;
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    CGLContextObj contextObj = (CGLContextObj)[self.openGLContext CGLContextObj];
-    CGLLockContext(contextObj);
-
-    if (self.renderer) {
-        self.renderer->render(seconds(0.0));
-    } else {
-        glClearColor(0.0, 0.0, 0.0, 1.0);
+    if (!self.renderer) {
         glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         [self.openGLContext flushBuffer];
     }
-
-    CGLUnlockContext(contextObj);
 }
 
 - (BOOL)acceptsFirstResponder

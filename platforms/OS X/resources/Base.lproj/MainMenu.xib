@@ -172,7 +172,7 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="494" customClass="AppDelegate">
+        <customObject id="494" customClass="Game">
             <connections>
                 <outlet property="window" destination="l3B-KQ-iKx" id="M1N-ys-oWd"/>
             </connections>

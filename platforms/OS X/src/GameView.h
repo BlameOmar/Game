@@ -10,8 +10,9 @@
 #include "MessageQueue.h"
 #include "CGLRenderer.h"
 
-@interface CGLRendererView : NSOpenGLView {
+@interface GameView : NSOpenGLView {
     ::evansbros::graphics::CGLRenderer *_renderer;
+    GLint swapInterval;
 }
 
 @property (assign) ::evansbros::game::MessageQueue *gameSystemMessageQueue;

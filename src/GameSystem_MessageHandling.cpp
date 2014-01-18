@@ -18,7 +18,8 @@ namespace evansbros { namespace game {
             case MessageType::BUTTON:
                 handleButtonEvent(message.getButtonEvent());
                 break;
-
+            case MessageType::VIEWPORT:
+                handleViewportEvent(message.getViewportEvent());
             default:
                 ;
         }
@@ -35,7 +36,7 @@ namespace evansbros { namespace game {
                 break;
 
             default:
-                break;
+                ;
         }
     }
 
@@ -126,6 +127,17 @@ namespace evansbros { namespace game {
 
             default:
                 std::cout << "SOME UNHANDLED BUTTON WAS RELEASED\n";
+        }
+    }
+
+    void GameSystem::handleViewportEvent(ViewportEvent viewportEvent)
+    {
+        switch (viewportEvent.type) {
+            case ViewportEventType::RESIZE:
+                renderer->resizeViewport(viewportEvent.size.width, viewportEvent.size.height);
+                break;
+            default:
+                ;
         }
     }
 

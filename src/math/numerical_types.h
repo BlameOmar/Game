@@ -23,6 +23,8 @@ namespace evansbros {
     using natural_32bit     = uint32_t;
 //    using natural_64bit     = uint64_t;
 
+    
+
     using real_32bit        = float;
     using real_64bit        = double;
 

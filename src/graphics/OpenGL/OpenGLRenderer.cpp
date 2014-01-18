@@ -22,10 +22,18 @@ namespace evansbros { namespace graphics {
 
         /* Enable some attributes */
         glEnable (GL_DEPTH_TEST);
+        glDepthRange(1.0, 0.0);
+        glDepthFunc(GL_LEQUAL);
+
         glEnable (GL_MULTISAMPLE);
+
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBlendEquation(GL_FUNC_ADD);
+
+        glEnable(GL_FRAMEBUFFER_SRGB);
+
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         /* Set the viewport attributes */
         glGetIntegerv( GL_VIEWPORT, (GLint *)&viewport );
@@ -33,10 +41,17 @@ namespace evansbros { namespace graphics {
         /* Set the texture quality */
         updateTextureQuality();
 
-        /* Create a Vertex Buffer Object */
-        glGenBuffers(1, &vertexBufferObject);
-        glGenBuffers(1, &elementBufferObject);
+        /* Create a VertexArrayObject */
         glGenVertexArrays(1, &vertexArrayObject);
+
+        /* Create a vertex BufferObject and element BufferObject */
+        vertexBufferObject = unique_ptr<BufferObject>{ new BufferObject() };
+        elementBufferObject = unique_ptr<BufferObject>{ new BufferObject() };
+
+        /* Create the Quad element BufferObject */
+        GLint quadElements[2][3] {{0, 1, 2}, {2, 3, 0}};
+        quadElementBufferObject = unique_ptr<BufferObject>{ new BufferObject() };
+        quadElementBufferObject->setData({sizeof(quadElements), (byte *)quadElements}, GL_STATIC_DRAW);
 
         /* Load the shaders */
         std::map<string, GLuint> shaders;
@@ -46,12 +61,12 @@ namespace evansbros { namespace graphics {
 
         /* Link the shaders into programs */
         GLuint program;
+
         /** Default Shader Program **/
         program = glCreateProgram();
 
         glAttachShader(program, shaders["instancedVertexShader"]);
         glAttachShader(program, shaders["defaultFragmentShader"]);
-
         glLinkProgram(program);
 
         /*** Verify some things about the program ***/
@@ -79,18 +94,14 @@ namespace evansbros { namespace graphics {
         for (auto keyValuePair : shaders) {
             glDeleteShader(keyValuePair.second);
         }
-    }
 
+        /* Set the current program */
+        useShaderProgram("default");
+    }
 
     void OpenGLRenderer::render(seconds interpolation)
     {
-        string programName = "default";
-        GLuint programHandle = shaderPrograms[programName];
-
-        glUseProgram(programHandle);
-
         math::matrix viewMatrix = math::matrix::identity(4);
-        math::matrix projectionMatrix = math::matrix::identity(4);
 
         vector3 cameraPosition = gameState->cameraState.position + gameState->cameraState.velocity * interpolation.count();
 
@@ -98,21 +109,10 @@ namespace evansbros { namespace graphics {
         viewMatrix(1,3) = -cameraPosition.y;
         viewMatrix(2,3) = -cameraPosition.z;
 
-        GLfloat viewportAspectRatio = (GLfloat) viewport.width / viewport.height;
-
-        projectionMatrix(0, 0) /= viewportAspectRatio;
-
-        projectionMatrix(0, 0) *= viewportAspectRatio / 10;
-        projectionMatrix(1, 1) *= viewportAspectRatio / 10;
-        projectionMatrix(2, 2) *= viewportAspectRatio / 10;
-
-        GLint viewMatrixUniform = glGetUniformLocation(programHandle, "view");
+        GLint viewMatrixUniform = glGetUniformLocation(currentProgram, "view");
         glUniformMatrix4fv(viewMatrixUniform, 1, GL_TRUE, viewMatrix.getData());
 
-        GLint projectionMatrixUniform = glGetUniformLocation(programHandle, "projection");
-        glUniformMatrix4fv(projectionMatrixUniform, 1, GL_TRUE, projectionMatrix.getData());
-
-        beginDrawing();
+        glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         drawTileMap();
 
@@ -123,33 +123,43 @@ namespace evansbros { namespace graphics {
                       gameState->p1State.position + gameState->p1State.velocity * interpolation.count() - vector3(0.5, 0.5, 0.0),
                       gameState->p2State.position + gameState->p2State.velocity * interpolation.count() - vector3(0.5, 0.5, 0.0)
                   });
-
-        endDrawing();
     }
 
-    void OpenGLRenderer::beginDrawing()
+    void OpenGLRenderer::useShaderProgram(string programName)
     {
-        glClearColor (0.0, 0.0, 0.0, 1.0);
-        glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        GLuint programID = shaderPrograms[programName];
+        glUseProgram(programID);
+        currentProgram = programID;
 
-        glEnable(GL_FRAMEBUFFER_SRGB);
-    }
-
-    void OpenGLRenderer::endDrawing()
-    {
-        glDisable(GL_FRAMEBUFFER_SRGB);
-
-//        glFlush();
+        /* Update Dependencies */
+        updateProjectionMatrix();
     }
 
     void OpenGLRenderer::resizeViewport(natural width, natural height)
     {
+        glViewport(0, 0, viewport.width, viewport.height);
+
         viewport.width = width;
         viewport.height = height;
 
+        /* Update Dependencies */
         updateTextureQuality();
+        updateProjectionMatrix();
+    }
 
-        glViewport(0, 0, viewport.width, viewport.height);
+    void OpenGLRenderer::updateProjectionMatrix()
+    {
+        math::matrix projectionMatrix = math::matrix::identity(4);
+        GLfloat viewportAspectRatio = (GLfloat) viewport.width / viewport.height;
+
+        projectionMatrix(0, 0) /= viewportAspectRatio;
+
+        projectionMatrix(0, 0) *= viewportAspectRatio / 10;
+        projectionMatrix(1, 1) *= viewportAspectRatio / 10;
+        projectionMatrix(2, 2) *= viewportAspectRatio / 10;
+
+        GLint projectionMatrixUniform = glGetUniformLocation(currentProgram, "projection");
+        glUniformMatrix4fv(projectionMatrixUniform, 1, GL_TRUE, projectionMatrix.getData());
     }
 
     void OpenGLRenderer::updateTextureQuality()
@@ -173,13 +183,6 @@ namespace evansbros { namespace graphics {
 
     void OpenGLRenderer::drawQuads(Quad quad, string texture, std::vector<vector3> positions)
     {
-        const GLuint VERTEX_COORDINATE_LOCATION  = 0;
-        const GLuint VERTEX_COLOR_LOCATION       = 1;
-        const GLuint VERTEX_POSITION_LOCATION    = 2;
-        const GLuint TEXTURE_COORDINATE_LOCATION = 3;
-        
-        GLint elements[2][3] {{0, 1, 2}, {2, 3, 0}};
-
         GLfloat vertexData[4][9] {
             {
                 quad.v1.position.x,
@@ -225,8 +228,12 @@ namespace evansbros { namespace graphics {
 
         glBindVertexArray(vertexArrayObject);
 
-        glBindBuffer(GL_ARRAY_BUFFER, vertexArrayObject);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+        if (vertexBufferObject->size() < sizeof(vertexData)) {
+            vertexBufferObject->setData({sizeof(vertexData), (byte *)vertexData}, GL_STREAM_DRAW);
+        } else {
+            vertexBufferObject->updateData({sizeof(vertexData), (byte *)vertexData});
+        }
+        vertexBufferObject->bindTo(GL_ARRAY_BUFFER);
 
         glEnableVertexAttribArray(VERTEX_COORDINATE_LOCATION);
         glEnableVertexAttribArray(VERTEX_COLOR_LOCATION);
@@ -236,6 +243,8 @@ namespace evansbros { namespace graphics {
         glVertexAttribPointer(VERTEX_COLOR_LOCATION, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (GLvoid *)(3 * sizeof(float)));
         glVertexAttribPointer(TEXTURE_COORDINATE_LOCATION, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (GLvoid *)(7 * sizeof(float)));
 
+        quadElementBufferObject->bindTo(GL_ELEMENT_ARRAY_BUFFER);
+
         if (texture != "") {
             glBindTexture(GL_TEXTURE_2D, (GPU_Textures)[texture]);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
@@ -244,22 +253,15 @@ namespace evansbros { namespace graphics {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         }
 
-        GLuint quadPositionBufferHandle;
-        glGenBuffers(1, &quadPositionBufferHandle);
-
-        glBindBuffer(GL_ARRAY_BUFFER, quadPositionBufferHandle);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vector3) * positions.size(), positions.data(), GL_STATIC_DRAW);
+        BufferObject positionBufferObject;
+        positionBufferObject.setData({sizeof(vector3) * positions.size(), (byte *)positions.data()}, GL_DYNAMIC_DRAW);
+        positionBufferObject.bindTo(GL_ARRAY_BUFFER);
 
         glEnableVertexAttribArray(VERTEX_POSITION_LOCATION);
         glVertexAttribPointer(VERTEX_POSITION_LOCATION, 3, GL_FLOAT, GL_FALSE, 0, 0);
         glVertexAttribDivisor(VERTEX_POSITION_LOCATION, 1);
 
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferObject);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
         glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, (GLsizei) positions.size());
-
-        glDeleteBuffers(1, &quadPositionBufferHandle);
     }
 
     GLuint OpenGLRenderer::loadShaderFromFile(const string filename, GLenum shaderType) {

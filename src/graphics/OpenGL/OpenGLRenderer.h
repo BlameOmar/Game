@@ -11,6 +11,9 @@
 
 #include "Renderer.h"
 #include "OpenGL.h"
+#include "OpenGL_BufferObject.h"
+
+#include <memory>
 
 #include "PixelData.h"
 
@@ -20,12 +23,22 @@
 #include <map>
 
 using std::vector;
+using std::unique_ptr;
 
 namespace evansbros { namespace graphics {
+    using namespace evansbros::OpenGL;
+
     class OpenGLRenderer : public Renderer {
     private:
+        /* Shader Program Attribute Locations */
+        const GLuint VERTEX_COORDINATE_LOCATION  = 0;
+        const GLuint VERTEX_COLOR_LOCATION       = 1;
+        const GLuint VERTEX_POSITION_LOCATION    = 2;
+        const GLuint TEXTURE_COORDINATE_LOCATION = 3;
+
         std::map<string, GLuint> shaderPrograms;
         std::map<string, GLuint> GPU_Textures;
+        GLint currentProgram;
 
         struct {
             GLint x;
@@ -35,8 +48,9 @@ namespace evansbros { namespace graphics {
         } viewport;
 
         GLuint vertexArrayObject;
-        GLuint vertexBufferObject;
-        GLuint elementBufferObject;
+        unique_ptr<BufferObject> vertexBufferObject = nullptr;
+        unique_ptr<BufferObject> elementBufferObject = nullptr;
+        unique_ptr<BufferObject> quadElementBufferObject = nullptr;
 
         GLuint loadShaderFromFile(const string filename, GLenum shaderType);
         GLuint loadShader(const string source, GLenum shaderType);
@@ -51,10 +65,11 @@ namespace evansbros { namespace graphics {
 
         void updateTextureQuality();
 
-        void drawQuads(Quad quad, string texture, std::vector<vector3> positions);
+        void useShaderProgram(string programName);
 
-        void beginDrawing();
-        void endDrawing();
+        void updateProjectionMatrix();
+
+        void drawQuads(Quad quad, string texture, std::vector<vector3> positions);
 
     public:
         virtual void setup();

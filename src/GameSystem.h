@@ -49,16 +49,14 @@ namespace evansbros {
         void start();
         void stop();
     private:
+        const natural MAX_UPDATES_PER_CYCLE = 3;
         const natural TARGET_UPDATE_FREQUENCY = 30; // HERTZ
         const microseconds TARGET_UPDATE_PERIOD { 1000 * 1000 / TARGET_UPDATE_FREQUENCY };
-        const natural MAX_UPDATES_PER_CYCLE = 3;
 
         std::thread runloopThread;
         MessageQueue *messageQueue;
 
-        bool running;
-        bool paused;
-
+        GameState gameState;
         Renderer *renderer;
 
         time_point currentTime;
@@ -68,13 +66,17 @@ namespace evansbros {
 
         GameController p1Controller;
         GameController p2Controller;
-        GameState gameState;
+
+        bool running;
+        bool paused;
 
         void handleMessage(Message message);
 
         void handleButtonEvent(ButtonEvent buttonEvent);
         void handleButtonPressEvent(ButtonEvent buttonEvent);
         void handleButtonReleaseEvent(ButtonEvent buttonEvent);
+
+        void handleViewportEvent(ViewportEvent viewportEvent);
 
         void update(seconds dTime);
         void run();
