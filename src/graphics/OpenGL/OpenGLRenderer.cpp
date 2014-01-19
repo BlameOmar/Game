@@ -101,18 +101,11 @@ namespace evansbros { namespace graphics {
 
     void OpenGLRenderer::render(seconds interpolation)
     {
-        math::matrix viewMatrix = math::matrix::identity(4);
-
         vector3 cameraPosition = gameState->cameraState.position + gameState->cameraState.velocity * interpolation.count();
 
-        viewMatrix(0,3) = -cameraPosition.x;
-        viewMatrix(1,3) = -cameraPosition.y;
-        viewMatrix(2,3) = -cameraPosition.z;
+        updateViewMatrix(cameraPosition);
 
-        GLint viewMatrixUniform = glGetUniformLocation(currentProgram, "view");
-        glUniformMatrix4fv(viewMatrixUniform, 1, GL_TRUE, viewMatrix.getData());
-
-        glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        clearDrawing();
 
         drawTileMap();
 
@@ -147,6 +140,17 @@ namespace evansbros { namespace graphics {
         updateProjectionMatrix();
     }
 
+    void OpenGLRenderer::updateViewMatrix(vector3 cameraPosition) {
+        math::matrix viewMatrix = math::matrix::identity(4);
+        
+        viewMatrix(0,3) = -cameraPosition.x;
+        viewMatrix(1,3) = -cameraPosition.y;
+        viewMatrix(2,3) = -cameraPosition.z;
+
+        GLint viewMatrixUniform = glGetUniformLocation(currentProgram, "view");
+        glUniformMatrix4fv(viewMatrixUniform, 1, GL_TRUE, viewMatrix.getData());
+    }
+
     void OpenGLRenderer::updateProjectionMatrix()
     {
         math::matrix projectionMatrix = math::matrix::identity(4);
@@ -179,6 +183,11 @@ namespace evansbros { namespace graphics {
         } else {
             setTextureQuality(TextureQuality::nHD);
         }
+    }
+
+    void OpenGLRenderer::clearDrawing()
+    {
+        glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void OpenGLRenderer::drawQuads(Quad quad, string texture, std::vector<vector3> positions)
@@ -247,10 +256,6 @@ namespace evansbros { namespace graphics {
 
         if (texture != "") {
             glBindTexture(GL_TEXTURE_2D, (GPU_Textures)[texture]);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         }
 
         BufferObject positionBufferObject;
@@ -405,6 +410,10 @@ namespace evansbros { namespace graphics {
 
         glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, imageData.getWidth(), imageData.getHeight(), 0, GL_RGBA, componentType, imageData.getBytes());
         glGenerateMipmap(GL_TEXTURE_2D);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         return texture;
     }

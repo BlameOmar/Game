@@ -26,7 +26,7 @@ using namespace evansbros;
 
 - (void)prepareOpenGL
 {
-    swapInterval = 1;
+    swapInterval = 0;
     [self.openGLContext setValues:&swapInterval forParameter:NSOpenGLCPSwapInterval];
 }
 

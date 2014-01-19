@@ -67,8 +67,10 @@ namespace evansbros { namespace graphics {
 
         void useShaderProgram(string programName);
 
+        void updateViewMatrix(vector3 cameraPosition);
         void updateProjectionMatrix();
 
+        void clearDrawing();
         void drawQuads(Quad quad, string texture, std::vector<vector3> positions);
 
     public:
