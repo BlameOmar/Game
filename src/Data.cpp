@@ -10,16 +10,14 @@
 
 namespace evansbros {
 
-    Data::Data(size_t size, byte *bytes) : size(size) {
-        this->bytes = std::shared_ptr<byte>(new byte[size], std::default_delete<byte[]>());
+    Data::Data(size_t size, void *bytes) : size(size) {
+        this->bytes = std::shared_ptr<void>(new byte[size], std::default_delete<byte[]>());
 
-        for (int i = 0; i < size; ++i) {
-            this->bytes.get()[i] = bytes[i];
-        }
+        memcpy(this->bytes.get(), bytes, size);
     }
 
 
-    const byte * Data::getBytes() const
+    const void * Data::getBytes() const
     {
         return bytes.get();
     }

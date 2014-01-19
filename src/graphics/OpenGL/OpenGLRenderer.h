@@ -12,17 +12,16 @@
 #include "Renderer.h"
 #include "OpenGL.h"
 #include "OpenGL_BufferObject.h"
-
+#include "OpenGL_ShaderObject.h"
+#include "OpenGL_ShaderProgram.h"
 #include <memory>
 
 #include "PixelData.h"
 
-#include <exception>
-#include <stdexcept>
-
 #include <map>
 
 using std::vector;
+using std::shared_ptr;
 using std::unique_ptr;
 
 namespace evansbros { namespace graphics {
@@ -38,7 +37,6 @@ namespace evansbros { namespace graphics {
 
         std::map<string, GLuint> shaderPrograms;
         std::map<string, GLuint> GPU_Textures;
-        GLint currentProgram;
 
         struct {
             GLint x;
@@ -48,12 +46,13 @@ namespace evansbros { namespace graphics {
         } viewport;
 
         GLuint vertexArrayObject;
+
+        shared_ptr<ShaderProgram> currentProgram;
+        shared_ptr<ShaderProgram> defaultShaderProgram = nullptr;
+
         unique_ptr<BufferObject> vertexBufferObject = nullptr;
         unique_ptr<BufferObject> elementBufferObject = nullptr;
         unique_ptr<BufferObject> quadElementBufferObject = nullptr;
-
-        GLuint loadShaderFromFile(const string filename, GLenum shaderType);
-        GLuint loadShader(const string source, GLenum shaderType);
 
         void loadGPU_Textures();
         void loadGPU_Textures(const std::vector<string> & textureNames);
@@ -65,7 +64,7 @@ namespace evansbros { namespace graphics {
 
         void updateTextureQuality();
 
-        void useShaderProgram(string programName);
+        void useShaderProgram(shared_ptr<ShaderProgram> program);
 
         void updateViewMatrix(vector3 cameraPosition);
         void updateProjectionMatrix();

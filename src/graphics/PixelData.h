@@ -65,7 +65,7 @@ namespace evansbros {
         natural getWidth() const;
         natural getHeight() const;
         const PixelFormat getPixelFormat() const;
-        const byte *getBytes() const;
+        const void *getBytes() const;
     };
 
 }

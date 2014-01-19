@@ -25,7 +25,7 @@ namespace evansbros {
         return pixelFormat;
     }
 
-    const byte * PixelData::getBytes() const
+    const void * PixelData::getBytes() const
     {
         return pixelData.getBytes();
     }

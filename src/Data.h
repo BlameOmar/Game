@@ -18,7 +18,7 @@ namespace evansbros {
     class Data {
     private:
         size_t size = 0;
-        std::shared_ptr<byte> bytes = nullptr;
+        std::shared_ptr<void> bytes = nullptr;
 
     public:
         Data()                                  = default;
@@ -26,10 +26,10 @@ namespace evansbros {
         Data & operator=(const Data & other)    = default;
         ~Data()                                 = default;
 
-        Data(size_t size, byte *bytes);
+        Data(size_t size, void *bytes);
 
         size_t getSize() const;
-        const byte * getBytes() const;
+        const void * getBytes() const;
     };
     
 }
