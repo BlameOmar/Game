@@ -39,6 +39,9 @@ namespace evansbros {
             }
         }
 
+        ShaderObject::ShaderObject(ShaderType type, Data data)
+        : ShaderObject(type, string((char *)data.getBytes(), data.getSize())) {}
+
         ShaderObject::ShaderObject(ShaderObject && other)
         {
             this->_id = other._id;

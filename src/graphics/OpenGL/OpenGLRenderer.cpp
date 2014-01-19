@@ -53,15 +53,12 @@ namespace evansbros { namespace graphics {
         quadElementBufferObject->setData({sizeof(quadElements), (byte *)quadElements}, GL_STATIC_DRAW);
 
         /* Load and create the ShaderObjects */
-        Data shaderSourceData;
-        string shaderSource;
-
-        shaderSourceData = loadAsset("shaders/default.vsh");
-        shaderSource = string((char *)shaderSourceData.getBytes(), shaderSourceData.getSize());
+        Data shaderSource;
+        
+        shaderSource = loadAsset("shaders/default.vsh");
         ShaderObject vertexShader(ShaderType::VERTEX_SHADER, shaderSource);
 
-        shaderSourceData = loadAsset("shaders/default.fsh");
-        shaderSource = string((char *)shaderSourceData.getBytes(), shaderSourceData.getSize());
+        shaderSource = loadAsset("shaders/default.fsh");
         ShaderObject fragmentShader(ShaderType::FRAGMENT_SHADER, shaderSource);
 
         /* Link the ShaderObjects into a ShaderProgram */

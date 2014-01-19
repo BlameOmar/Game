@@ -11,6 +11,7 @@
 
 #include "OpenGL.h"
 #include "types.h"
+#include "Data.h"
 
 namespace evansbros {
     namespace OpenGL {
@@ -24,6 +25,7 @@ namespace evansbros {
         class ShaderObject {
         public:
             ShaderObject(ShaderType type, string source);
+            ShaderObject(ShaderType type, Data data);
             ShaderObject(const ShaderObject & other) = delete;
             ShaderObject(ShaderObject && other);
             ~ShaderObject();
