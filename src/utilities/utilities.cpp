@@ -26,7 +26,7 @@ namespace evansbros {
          * also useful to have linear RGB values to correctly premultiply the alpha channel.
          * Therefore all PNG data will be interpreted as 16 bit images, no exceptions.
          */
-        image.format = PNG_FORMAT_LINEAR_RGB_ALPHA;
+        image.format = PNG_FORMAT_FLAG_LINEAR | PNG_FORMAT_FLAG_COLOR | PNG_FORMAT_FLAG_ALPHA | PNG_FORMAT_FLAG_BGR;
 
         png_size_t bufferSize = PNG_IMAGE_SIZE(image);
         png_byte *buffer = new png_byte[bufferSize];
@@ -52,9 +52,10 @@ namespace evansbros {
         }
 
         natural_8bit numberOfBitsPerChannel = 16;
-        PixelChannel channels[] {{PixelChannelName::RED, PixelChannelType::UNSIGNED_INTEGER, numberOfBitsPerChannel},
-            {PixelChannelName::GREEN, PixelChannelType::UNSIGNED_INTEGER, numberOfBitsPerChannel},
+        PixelChannel channels[] {
             {PixelChannelName::BLUE, PixelChannelType::UNSIGNED_INTEGER, numberOfBitsPerChannel},
+            {PixelChannelName::GREEN, PixelChannelType::UNSIGNED_INTEGER, numberOfBitsPerChannel},
+            {PixelChannelName::RED, PixelChannelType::UNSIGNED_INTEGER, numberOfBitsPerChannel},
             {PixelChannelName::ALPHA, PixelChannelType::UNSIGNED_INTEGER, numberOfBitsPerChannel},
         };
         PixelFormat format {sizeof(channels) / sizeof(PixelChannel), channels};

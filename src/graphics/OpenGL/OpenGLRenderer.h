@@ -35,7 +35,6 @@ namespace evansbros { namespace graphics {
         const GLuint VERTEX_POSITION_LOCATION    = 2;
         const GLuint TEXTURE_COORDINATE_LOCATION = 3;
 
-        std::map<string, GLuint> shaderPrograms;
         std::map<string, GLuint> GPU_Textures;
 
         struct {
@@ -47,8 +46,8 @@ namespace evansbros { namespace graphics {
 
         GLuint vertexArrayObject;
 
-        shared_ptr<ShaderProgram> currentProgram;
-        shared_ptr<ShaderProgram> defaultShaderProgram = nullptr;
+        shared_ptr<ShaderProgram> currentProgram = nullptr;
+        shared_ptr<ShaderProgram> defaultProgram = nullptr;
 
         unique_ptr<BufferObject> vertexBufferObject = nullptr;
         unique_ptr<BufferObject> elementBufferObject = nullptr;

@@ -54,7 +54,7 @@ namespace evansbros { namespace graphics {
 
         /* Load and create the ShaderObjects */
         Data shaderSource;
-        
+
         shaderSource = loadAsset("shaders/default.vsh");
         ShaderObject vertexShader(ShaderType::VERTEX_SHADER, shaderSource);
 
@@ -62,12 +62,12 @@ namespace evansbros { namespace graphics {
         ShaderObject fragmentShader(ShaderType::FRAGMENT_SHADER, shaderSource);
 
         /* Link the ShaderObjects into a ShaderProgram */
-        defaultShaderProgram = shared_ptr<ShaderProgram>(new ShaderProgram{&vertexShader, &fragmentShader});
+        defaultProgram = shared_ptr<ShaderProgram>(new ShaderProgram{&vertexShader, &fragmentShader});
 
         loadGPU_Textures();
 
         /* Set the current program */
-        useShaderProgram(defaultShaderProgram);
+        useShaderProgram(defaultProgram);
 
         glFinish();
     }
@@ -343,7 +343,9 @@ namespace evansbros { namespace graphics {
                 break;
         }
 
-        glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, imageData.getWidth(), imageData.getHeight(), 0, GL_RGBA, componentType, imageData.getBytes());
+        //TODO: Check the number of channels instead of assuming 4
+        //TODO: Check the channel ordering instead of assuming BGRA/ARGB (little/big endian)
+        glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, imageData.getWidth(), imageData.getHeight(), 0, GL_BGRA, componentType, imageData.getBytes());
         glGenerateMipmap(GL_TEXTURE_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
