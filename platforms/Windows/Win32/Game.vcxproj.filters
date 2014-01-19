@@ -80,9 +80,6 @@
     <ClCompile Include="src\Window.cpp">
       <Filter>Windows\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\ButtonEvent.cpp">
-      <Filter>Engine\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\Data.cpp">
       <Filter>Engine\Source Files</Filter>
     </ClCompile>
@@ -153,6 +150,9 @@
       <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\external\gl3w\src\gl3w.c">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.cpp">
       <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -251,6 +251,18 @@
       <Filter>Windows\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\message_data_types.h">
+      <Filter>Engine\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MouseEvent.h">
+      <Filter>Engine\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ViewportEvent.h">
+      <Filter>Engine\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.h">
       <Filter>OpenGL\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

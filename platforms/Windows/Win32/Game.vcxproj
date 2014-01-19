@@ -183,7 +183,6 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\external\gl3w\src\gl3w.c" />
-    <ClCompile Include="..\..\..\src\ButtonEvent.cpp" />
     <ClCompile Include="..\..\..\src\Data.cpp" />
     <ClCompile Include="..\..\..\src\GameController.cpp" />
     <ClCompile Include="..\..\..\src\GameState.cpp" />
@@ -192,6 +191,7 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     <ClCompile Include="..\..\..\src\GameSystem_MessageHandling.cpp" />
     <ClCompile Include="..\..\..\src\graphics\Color.cpp" />
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.cpp" />
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.cpp" />
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.cpp" />
     <ClCompile Include="..\..\..\src\graphics\PixelData.cpp" />
     <ClCompile Include="..\..\..\src\graphics\Quad.cpp" />
@@ -222,6 +222,7 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     <ClInclude Include="..\..\..\src\graphics\Color.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.h" />
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.h" />
     <ClInclude Include="..\..\..\src\graphics\PixelData.h" />
     <ClInclude Include="..\..\..\src\graphics\Quad.h" />
@@ -235,10 +236,13 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     <ClInclude Include="..\..\..\src\math\vector4.h" />
     <ClInclude Include="..\..\..\src\Message.h" />
     <ClInclude Include="..\..\..\src\MessageQueue.h" />
+    <ClInclude Include="..\..\..\src\message_data_types.h" />
+    <ClInclude Include="..\..\..\src\MouseEvent.h" />
     <ClInclude Include="..\..\..\src\TileMap.h" />
     <ClInclude Include="..\..\..\src\types.h" />
     <ClInclude Include="..\..\..\src\utilities\native_utilities.h" />
     <ClInclude Include="..\..\..\src\utilities\utilities.h" />
+    <ClInclude Include="..\..\..\src\ViewportEvent.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="src\GameWindow.h" />
     <ClInclude Include="src\OpenGLWindow.h" />
