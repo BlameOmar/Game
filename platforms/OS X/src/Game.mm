@@ -32,7 +32,7 @@ using std::thread;
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
     [self createOpenGLView];
-    [self.window toggleFullScreen:self];
+    //[self.window toggleFullScreen:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
@@ -46,6 +46,7 @@ using std::thread;
         NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
         NSOpenGLPFAColorSize    , 24                           ,
         NSOpenGLPFAAlphaSize    , 8                            ,
+        NSOpenGLPFADepthSize    , 16                           ,
         NSOpenGLPFADoubleBuffer ,
         NSOpenGLPFAAccelerated  ,
         NSOpenGLPFASampleBuffers, 1,
