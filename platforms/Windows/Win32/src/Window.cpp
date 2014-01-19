@@ -150,10 +150,6 @@ namespace evansbros {
 			case WM_ERASEBKGND:
 				Window::getWindow(windowHandle)->draw();
 				break;
-			case WM_SIZING:
-				rect = *(RECT *)lParam;
-				Window::getWindow(windowHandle)->resize(rect.right - rect.left, rect.top = rect.bottom);
-				break;
 			case WM_SIZE:
 				Window::getWindow(windowHandle)->resize(LOWORD(lParam), HIWORD(lParam));
 				break;

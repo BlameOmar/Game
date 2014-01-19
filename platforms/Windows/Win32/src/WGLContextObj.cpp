@@ -24,22 +24,8 @@ namespace evansbros {
 
 		WGLContextObj::~WGLContextObj()
 		{
-			lock();
-
-			wglMakeCurrent(nullptr, nullptr);
+			makeNotCurrent();
 			wglDeleteContext(openGLContext);
-			
-			unlock();
-		}
-
-		void WGLContextObj::lock()
-		{
-			contextObjectMutex.lock();
-		}
-
-		void WGLContextObj::unlock()
-		{
-			contextObjectMutex.unlock();
 		}
 
 		void WGLContextObj::makeCurrent()
@@ -54,7 +40,6 @@ namespace evansbros {
 
 		void WGLContextObj::flush()
 		{
-			glFlush();
 			SwapBuffers(deviceContext);
 		}
 
