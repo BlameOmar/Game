@@ -344,8 +344,8 @@ namespace evansbros { namespace graphics {
         }
 
         //TODO: Check the number of channels instead of assuming 4
-        //TODO: Check the channel ordering instead of assuming BGRA/ARGB (little/big endian)
-        glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, imageData.getWidth(), imageData.getHeight(), 0, GL_BGRA, componentType, imageData.getBytes());
+        //TODO: Check the channel ordering instead of assuming RGBA
+        glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, imageData.getWidth(), imageData.getHeight(), 0, GL_RGBA, componentType, imageData.getBytes());
         glGenerateMipmap(GL_TEXTURE_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
