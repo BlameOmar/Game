@@ -7,17 +7,12 @@ using evansbros::WindowsGUI::WGLContextObj;
 namespace evansbros {
 	namespace graphics {
 
-		WGLContextObj * WGLRenderer::getNativeGraphicsContext()
+		WGLRenderer::WGLRenderer(WGLContextObj * context) : nativeGraphicsContext(context)
 		{
-			return nativeGraphicsContext;
+			/* Intentionally Left Blank */
 		}
 
-		void WGLRenderer::setNativeGraphicsContext(WGLContextObj *context)
-		{
-			nativeGraphicsContext = context;
-		}
-
-		void WGLRenderer::setup()
+		void WGLRenderer::init()
 		{
 			nativeGraphicsContext->makeCurrent();
 
@@ -28,8 +23,6 @@ namespace evansbros {
 			if (!gl3wIsSupported(3, 3)) {
 				throw std::runtime_error("OpenGL 3.3 is not supported");
 			}
-
-			OpenGLRenderer::setup();
 		}
 
 		void WGLRenderer::render(seconds interpolation)

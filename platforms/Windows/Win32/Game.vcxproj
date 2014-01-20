@@ -192,7 +192,10 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     <ClCompile Include="..\..\..\src\graphics\Color.cpp" />
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.cpp" />
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_Shader.cpp" />
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_ShaderProgram.cpp" />
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.cpp" />
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_VertexArrayObject.cpp" />
     <ClCompile Include="..\..\..\src\graphics\PixelData.cpp" />
     <ClCompile Include="..\..\..\src\graphics\Quad.cpp" />
     <ClCompile Include="..\..\..\src\graphics\Renderer.cpp" />
@@ -223,7 +226,10 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.h" />
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_Shader.h" />
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_ShaderProgram.h" />
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_utilities.h" />
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_VertexArrayObject.h" />
     <ClInclude Include="..\..\..\src\graphics\PixelData.h" />
     <ClInclude Include="..\..\..\src\graphics\Quad.h" />
     <ClInclude Include="..\..\..\src\graphics\Renderer.h" />

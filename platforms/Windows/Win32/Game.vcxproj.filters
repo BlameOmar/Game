@@ -155,6 +155,15 @@
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.cpp">
       <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_ShaderProgram.cpp">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_VertexArrayObject.cpp">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_Shader.cpp">
+      <Filter>OpenGL\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameWindow.h">
@@ -253,16 +262,25 @@
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGLRenderer.h">
       <Filter>OpenGL\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\src\message_data_types.h">
-      <Filter>Engine\Source Files</Filter>
+      <Filter>Engine\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\MouseEvent.h">
-      <Filter>Engine\Source Files</Filter>
+      <Filter>Engine\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\ViewportEvent.h">
-      <Filter>Engine\Source Files</Filter>
+      <Filter>Engine\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_BufferObject.h">
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_ShaderProgram.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_VertexArrayObject.h">
+      <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_Shader.h">
       <Filter>OpenGL\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,13 +19,8 @@ namespace evansbros {
 		public:
 			GameWindow(string title, unsigned int width, unsigned int height);
 
-			game::MessageQueue * getGameSystemMessageQueue();
-			graphics::WGLRenderer * getRenderer();
-
-			void setRenderer(graphics::WGLRenderer * renderer);
-			void setGameSystemMessageQueue(game::MessageQueue *messageQueue);
-
-			virtual void draw();
+			game::MessageQueue * messageQueue();
+			graphics::WGLRenderer * renderer();
 
 		protected:
 			virtual void reshape(unsigned int width, unsigned int height);
@@ -33,8 +28,8 @@ namespace evansbros {
 			virtual void keyUp(WPARAM keyCode);
 
 		private:
-			game::MessageQueue *gameSystemMessageQueue = nullptr;
-			graphics::WGLRenderer *renderer = nullptr;
+			graphics::WGLRenderer *_renderer = nullptr;
+			game::MessageQueue    *_messageQueue = nullptr;
 		};
 
 	}

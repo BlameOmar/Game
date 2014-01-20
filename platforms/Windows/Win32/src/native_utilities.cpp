@@ -44,13 +44,3 @@ const Data loadAsset(const string assetPath)
 
 	return dataObject;
 }
-
-evansbros::graphics::Renderer * getPlatformRenderer()
-{
-	return new graphics::WGLRenderer();
-}
-
-evansbros::graphics::Renderer * getPlatformRenderer(graphics::RenderType hint)
-{
-	return new graphics::WGLRenderer();
-}
