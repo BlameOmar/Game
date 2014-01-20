@@ -47,7 +47,7 @@ namespace evansbros { namespace graphics {
         }
 
         for (auto tile : tiles) {
-            drawQuads(Quad::COLORLESS, tile.first, tile.second);
+            drawQuads(Quad::COLORLESS_UNIT_SQUARE, tile.first, tile.second);
         }
     }
 

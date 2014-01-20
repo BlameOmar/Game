@@ -11,7 +11,7 @@
 
 namespace evansbros { namespace graphics {
 
-    const Quad Quad::COLORLESS({{0.0, 0.0}, Color()},
+    const Quad Quad::COLORLESS_UNIT_SQUARE({{0.0, 0.0}, Color()},
                                {{1.0, 0.0}, Color()},
                                {{1.0, 1.0}, Color()},
                                {{0.0, 1.0}, Color()});

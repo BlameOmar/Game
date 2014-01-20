@@ -22,7 +22,7 @@ namespace evansbros { namespace graphics {
         Quad() = delete;
         Quad(Vertex v1, Vertex v2, Vertex v3, Vertex v4);
 
-        static const Quad COLORLESS;
+        static const Quad COLORLESS_UNIT_SQUARE;
     };
 
 } }
