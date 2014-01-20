@@ -64,9 +64,7 @@ try {
 	mainWindow->display();
 	mainWindow->update();
 
-	game::GameSystem *gameSystem = new evansbros::game::GameSystem();
-	mainWindow->setGameSystemMessageQueue(gameSystem->getMessageQueue());
-	mainWindow->setRenderer(static_cast<graphics::WGLRenderer *>(gameSystem->getRenderer()));
+	game::GameSystem *gameSystem = new evansbros::game::GameSystem(mainWindow->renderer(), mainWindow->messageQueue());
 	gameSystem->start();
 
 	/* Enter message handling loop */

@@ -43,19 +43,12 @@ namespace evansbros {
 
 		void OpenGLWindow::draw()
 		{
-			openGLContext->makeCurrent();
-
-			glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-			openGLContext->flush();
+			/* Default Implementation Does Nothing */
 		}
 
 		void OpenGLWindow::reshape(unsigned int width, unsigned int height)
 		{
-			openGLContext->makeCurrent();
-
-			glViewport(0, 0, width, height);
+			/* Default Implementation Does Nothing */
 		}
 
 		void OpenGLWindow::close()

@@ -15,10 +15,9 @@ namespace evansbros {
 
 		class WGLRenderer : public OpenGLRenderer {
 		public:
-			WGLContextObj *getNativeGraphicsContext();
-			void setNativeGraphicsContext(WGLContextObj *context);
+			WGLRenderer(WGLContextObj *context);
 
-			void setup();
+			void init();
 			void render(seconds interpolation);
 		private:
 			WGLContextObj *nativeGraphicsContext = nullptr;
