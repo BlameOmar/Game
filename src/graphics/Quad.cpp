@@ -15,6 +15,11 @@ namespace evansbros { namespace graphics {
                                {{1.0, 0.0}, Color()},
                                {{1.0, 1.0}, Color()},
                                {{0.0, 1.0}, Color()});
+
+    const Quad Quad::COLORLESS_CENTERED_UNIT_SQUARE({{-0.5, -0.5}, Color()},
+                                                    {{ 0.5, -0.5}, Color()},
+                                                    {{ 0.5,  0.5}, Color()},
+                                                    {{-0.5,  0.5}, Color()});
     
     Quad::Quad(Vertex v1, Vertex v2, Vertex v3, Vertex v4) : v1(v1), v2(v2), v3(v3), v4(v4)
     {

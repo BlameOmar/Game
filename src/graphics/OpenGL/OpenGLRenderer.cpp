@@ -73,10 +73,10 @@ namespace evansbros { namespace graphics {
 
         drawTileMap();
 
-        drawQuads(Quad::COLORLESS_UNIT_SQUARE, "test",
+        drawQuads(Quad::COLORLESS_CENTERED_UNIT_SQUARE, "test",
                   {
-                      gameState->p1State.position + gameState->p1State.velocity * interpolation.count() - vector3(0.5, 0.5, 0.0),
-                      gameState->p2State.position + gameState->p2State.velocity * interpolation.count() - vector3(0.5, 0.5, 0.0)
+                      gameState->p1State.position + gameState->p1State.velocity * interpolation.count(),
+                      gameState->p2State.position + gameState->p2State.velocity * interpolation.count()
                   });
     }
 
