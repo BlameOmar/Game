@@ -1,10 +1,11 @@
-//
-//  natvie_utilities.h
-//  OpenGL Practice
-//
-//  Created by Omar Evans on 7/24/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         native_utilities.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-07-24
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #pragma once
 
@@ -15,5 +16,3 @@ using namespace evansbros;
 
 const string getPathOfAssetDirectory();
 const Data loadAsset(const string assetPath);
-evansbros::graphics::Renderer * getPlatformRenderer();
-evansbros::graphics::Renderer * getPlatformRenderer(evansbros::graphics::RenderType hint);

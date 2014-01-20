@@ -1,10 +1,11 @@
-//
-//  utilities.cpp
-//  OpenGL Practice
-//
-//  Created by Omar Evans on 7/26/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         utilities.cpp
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-07-26
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #include "utilities.h"
 #include "png.h"

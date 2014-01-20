@@ -16,7 +16,8 @@
 
 namespace evansbros { namespace graphics {
 
-    void OpenGLRenderer::setup() {
+    OpenGLRenderer::OpenGLRenderer()
+    {
         std::cout << glGetString( GL_VERSION ) << std::endl;
 
         /* Enable some attributes */
@@ -40,35 +41,25 @@ namespace evansbros { namespace graphics {
         /* Set the texture quality */
         updateTextureQuality();
 
-        /* Create a VertexArrayObject */
-        glGenVertexArrays(1, &vertexArrayObject);
-
-        /* Create a vertex BufferObject and element BufferObject */
-        vertexBufferObject = unique_ptr<BufferObject>{ new BufferObject() };
-        elementBufferObject = unique_ptr<BufferObject>{ new BufferObject() };
-
-        /* Create the Quad element BufferObject */
+        /* Initialize the Quad element BufferObject */
         GLint quadElements[2][3] {{0, 1, 2}, {2, 3, 0}};
-        quadElementBufferObject = unique_ptr<BufferObject>{ new BufferObject() };
-        quadElementBufferObject->setData({sizeof(quadElements), (byte *)quadElements}, GL_STATIC_DRAW);
+        quadElementBufferObject.setData({sizeof(quadElements), (byte *)quadElements}, GL_STATIC_DRAW);
 
         /* Load and create the ShaderObjects */
         Data shaderSource;
 
         shaderSource = loadAsset("shaders/default.vsh");
-        ShaderObject vertexShader(ShaderType::VERTEX_SHADER, shaderSource);
+        Shader vertexShader(ShaderType::VERTEX_SHADER, shaderSource);
 
         shaderSource = loadAsset("shaders/default.fsh");
-        ShaderObject fragmentShader(ShaderType::FRAGMENT_SHADER, shaderSource);
+        Shader fragmentShader(ShaderType::FRAGMENT_SHADER, shaderSource);
 
         /* Link the ShaderObjects into a ShaderProgram */
         defaultProgram = shared_ptr<ShaderProgram>(new ShaderProgram{&vertexShader, &fragmentShader});
-
-        loadGPU_Textures();
-
+        
         /* Set the current program */
         useShaderProgram(defaultProgram);
-
+        
         glFinish();
     }
 
@@ -82,9 +73,7 @@ namespace evansbros { namespace graphics {
 
         drawTileMap();
 
-        Quad uncoloredQuad({{0.0, 0.0}, Color()}, {{1.0, 0.0}, Color()}, {{1.0, 1.0}, Color()}, {{0.0, 1.0}, Color()});
-
-        drawQuads(uncoloredQuad, "test",
+        drawQuads(Quad::COLORLESS, "test",
                   {
                       gameState->p1State.position + gameState->p1State.velocity * interpolation.count() - vector3(0.5, 0.5, 0.0),
                       gameState->p2State.position + gameState->p2State.velocity * interpolation.count() - vector3(0.5, 0.5, 0.0)
@@ -207,14 +196,14 @@ namespace evansbros { namespace graphics {
             }
         };
 
-        glBindVertexArray(vertexArrayObject);
+        vertexArrayObject.bindToVertexArray();
 
-        if (vertexBufferObject->size() < sizeof(vertexData)) {
-            vertexBufferObject->setData({sizeof(vertexData), (byte *)vertexData}, GL_STREAM_DRAW);
+        if (vertexBufferObject.size() < sizeof(vertexData)) {
+            vertexBufferObject.setData({sizeof(vertexData), (byte *)vertexData}, GL_STREAM_DRAW);
         } else {
-            vertexBufferObject->updateData({sizeof(vertexData), (byte *)vertexData});
+            vertexBufferObject.updateData({sizeof(vertexData), (byte *)vertexData});
         }
-        vertexBufferObject->bindTo(GL_ARRAY_BUFFER);
+        vertexBufferObject.bindTo(GL_ARRAY_BUFFER);
 
         glEnableVertexAttribArray(VERTEX_COORDINATE_LOCATION);
         glEnableVertexAttribArray(VERTEX_COLOR_LOCATION);
@@ -224,7 +213,7 @@ namespace evansbros { namespace graphics {
         glVertexAttribPointer(VERTEX_COLOR_LOCATION, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (GLvoid *)(3 * sizeof(float)));
         glVertexAttribPointer(TEXTURE_COORDINATE_LOCATION, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (GLvoid *)(7 * sizeof(float)));
 
-        quadElementBufferObject->bindTo(GL_ELEMENT_ARRAY_BUFFER);
+        quadElementBufferObject.bindTo(GL_ELEMENT_ARRAY_BUFFER);
 
         if (texture != "") {
             glBindTexture(GL_TEXTURE_2D, (GPU_Textures)[texture]);

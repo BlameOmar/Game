@@ -11,6 +11,11 @@
 
 namespace evansbros { namespace graphics {
 
+    const Quad Quad::COLORLESS({{0.0, 0.0}, Color()},
+                               {{1.0, 0.0}, Color()},
+                               {{1.0, 1.0}, Color()},
+                               {{0.0, 1.0}, Color()});
+    
     Quad::Quad(Vertex v1, Vertex v2, Vertex v3, Vertex v4) : v1(v1), v2(v2), v3(v3), v4(v4)
     {
         /* Intentionally Left Blank */

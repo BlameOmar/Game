@@ -1,5 +1,5 @@
 /**************************************************************************************************
- * Title:         OpenGL_BufferObject.cpp
+ * Title:         OpenGL_BufferObject.h
  * Author:        Omar Stefan Evans
  * Created on:    2014-01-17
  * Description:   <#Description#>
@@ -15,15 +15,11 @@
 namespace evansbros {
     namespace OpenGL {
 
-        struct Range {
-            GLsizeiptr begining;
-            GLsizeiptr end;
-        };
-
         class BufferObject{
         public:
             BufferObject();
             BufferObject(GLsizeiptr size, GLenum usage);
+            BufferObject(const BufferObject & other);
             ~BufferObject();
 
             GLsizeiptr size() const;

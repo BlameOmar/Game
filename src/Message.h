@@ -1,10 +1,11 @@
-//
-//  Event.h
-//  OpenGL Practice
-//
-//  Created by Omar Stefan Evans on 11/12/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         Message.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-11-12
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #pragma once
 

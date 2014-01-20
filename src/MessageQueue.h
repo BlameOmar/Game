@@ -1,7 +1,3 @@
-/**
- * ©2013 Omar Stefan Evans.  All rights reserved.
- */
-
 /**************************************************************************************************
  * Title:         MessageQueue.h
  * Author:        Omar Stefan Evans

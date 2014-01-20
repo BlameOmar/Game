@@ -12,26 +12,19 @@
 #include <map>
 #include <thread>
 
-#include "types.h"
-#include "utilities.h"
-
-#include "PixelData.h"
-
+#include "Renderer.h"
 #include "MessageQueue.h"
-#include "Message.h"
 
 #include "GameController.h"
 #include "GameState.h"
 
-namespace evansbros { 
-	namespace graphics {
-		class Renderer;
-	}
-	namespace game {
+#include "types.h"
+#include "PixelData.h"
 
-	class MessageQueue;
-	class Message;
-	struct ButtonEvent;
+#include "utilities.h"
+
+namespace evansbros {
+	namespace game {
 
     using graphics::Renderer;
     using graphics::TextureQuality;
@@ -39,36 +32,51 @@ namespace evansbros {
     class GameSystem {
     public:
         /**
-         * 
+         * Constructs the GameSystem with the given Renderer and MessageQueue
          */
-        GameSystem();
+        GameSystem(Renderer *renderer, MessageQueue * messageQueue);
 
-        MessageQueue * getMessageQueue();
-        Renderer * getRenderer();
-
+        /**
+         * Starts the game.
+         */
         void start();
+
+        /**
+         * Stops the game.
+         */
         void stop();
+
     private:
         const natural MAX_UPDATES_PER_CYCLE = 3;
         const natural TARGET_UPDATE_FREQUENCY = 30; // HERTZ
         const microseconds TARGET_UPDATE_PERIOD { 1000 * 1000 / TARGET_UPDATE_FREQUENCY };
 
-        std::thread runloopThread;
-        MessageQueue *messageQueue;
+        Renderer     *renderer     = nullptr;
+        MessageQueue *messageQueue = nullptr;
 
+        std::thread runloopThread;
+
+        std::map<TextureQuality, std::map<string, PixelData>> textures;
+
+        GameController p1Controller;
+        GameController p2Controller;
         GameState gameState;
-        Renderer *renderer;
 
         time_point currentTime;
         time_point lastUpdate;
 
         seconds interpolation;
 
-        GameController p1Controller;
-        GameController p2Controller;
+        bool running = false;
+        bool paused = false;
 
-        bool running;
-        bool paused;
+        void update(seconds dTime);
+        void run();
+
+
+        /******************************************************************************************
+         *****                                Message Handling                                *****
+         ******************************************************************************************/
 
         void handleMessage(Message message);
 
@@ -78,21 +86,10 @@ namespace evansbros {
 
         void handleViewportEvent(ViewportEvent viewportEvent);
 
-        void update(seconds dTime);
-        void run();
 
         /******************************************************************************************
          *****                                 Asset Loading                                  *****
          ******************************************************************************************/
-
-        std::map<string, PixelData> nHD_Textures;
-        std::map<string, PixelData> qHD_Textures;
-        std::map<string, PixelData>  HD_Textures;
-        std::map<string, PixelData> FHD_Textures;
-        std::map<string, PixelData> QHD_Textures;
-        std::map<string, PixelData> UHD_Textures;
-
-        std::map<TextureQuality, std::map<string, PixelData>> textures;
 
         void loadTextures();
         void loadTexture(string textureName);

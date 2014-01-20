@@ -1,22 +1,23 @@
-//
-//  AppDelegate.h
-//  Game
-//
-//  Created by Omar Stefan Evans on 11/23/13.
-//
-//
+/**************************************************************************************************
+ * Title:         Game.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-11-23
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
 #import "GameView.h"
 
-#include <thread>
-
 #include "GameSystem.h"
+
+using namespace evansbros::game;
 
 @interface Game : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property GameView *gameView;
-@property (assign) ::evansbros::game::GameSystem *gameSystem;
+@property (assign) GameSystem *gameSystem;
 
 @end

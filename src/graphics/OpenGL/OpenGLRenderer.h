@@ -11,8 +11,9 @@
 
 #include "Renderer.h"
 #include "OpenGL.h"
+#include "OpenGL_VertexArrayObject.h"
 #include "OpenGL_BufferObject.h"
-#include "OpenGL_ShaderObject.h"
+#include "OpenGL_Shader.h"
 #include "OpenGL_ShaderProgram.h"
 #include <memory>
 
@@ -22,7 +23,6 @@
 
 using std::vector;
 using std::shared_ptr;
-using std::unique_ptr;
 
 namespace evansbros { namespace graphics {
     using namespace evansbros::OpenGL;
@@ -44,20 +44,14 @@ namespace evansbros { namespace graphics {
             GLint height;
         } viewport;
 
-        GLuint vertexArrayObject;
-
         shared_ptr<ShaderProgram> currentProgram = nullptr;
         shared_ptr<ShaderProgram> defaultProgram = nullptr;
 
-        unique_ptr<BufferObject> vertexBufferObject = nullptr;
-        unique_ptr<BufferObject> elementBufferObject = nullptr;
-        unique_ptr<BufferObject> quadElementBufferObject = nullptr;
+        VertexArrayObject vertexArrayObject;
 
-        void loadGPU_Textures();
-        void loadGPU_Textures(const std::vector<string> & textureNames);
-
-        void unloadGPU_Textures();
-        void unloadGPU_Textures(const std::vector<string> & textureNames);
+        BufferObject vertexBufferObject;
+        BufferObject elementBufferObject;
+        BufferObject quadElementBufferObject;
 
         GLuint loadTexture(PixelData imageData);
 
@@ -71,8 +65,14 @@ namespace evansbros { namespace graphics {
         void clearDrawing();
         void drawQuads(Quad quad, string texture, std::vector<vector3> positions);
 
+    protected:
+        virtual void loadGPU_Textures();
+        virtual void loadGPU_Textures(const std::vector<string> & textureNames);
+        virtual void unloadGPU_Textures();
+        virtual void unloadGPU_Textures(const std::vector<string> & textureNames);
     public:
-        virtual void setup();
+        OpenGLRenderer();
+
         virtual void render(seconds interpolation);
         virtual void resizeViewport(natural width, natural height);
     };

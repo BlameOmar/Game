@@ -1,5 +1,5 @@
 /**************************************************************************************************
- * Title:         OpenGL_ShaderObject.cpp
+ * Title:         OpenGL_Shader.cpp
  * Author:        Omar Stefan Evans
  * Created on:    <#Date#>
  * Description:   <#Description#>
@@ -7,14 +7,14 @@
  * Modifications: <#Modifications#>
  **************************************************************************************************/
 
-#include "OpenGL_ShaderObject.h"
+#include "OpenGL_Shader.h"
 #include <iostream>
 #include <stdexcept>
 
 namespace evansbros {
     namespace OpenGL {
 
-        ShaderObject::ShaderObject(ShaderType type, string source) : _type(type)
+        Shader::Shader(ShaderType type, string source) : _type(type)
         {
             const char *source_c_str = source.c_str();
 
@@ -39,28 +39,20 @@ namespace evansbros {
             }
         }
 
-        ShaderObject::ShaderObject(ShaderType type, Data data)
-        : ShaderObject(type, string((char *)data.getBytes(), data.getSize())) {}
+        Shader::Shader(ShaderType type, Data data)
+        : Shader(type, string((char *)data.getBytes(), data.getSize())) {}
 
-        ShaderObject::ShaderObject(ShaderObject && other)
-        {
-            this->_id = other._id;
-            this->_type = other._type;
-
-            other._id = 0;
-        }
-
-        ShaderObject::~ShaderObject()
+        Shader::~Shader()
         {
             glDeleteShader(_id);
         }
 
-        GLuint ShaderObject::getID()
+        GLuint Shader::getID()
         {
             return _id;
         }
 
-        ShaderType ShaderObject::type() const
+        ShaderType Shader::type() const
         {
             return _type;
         }

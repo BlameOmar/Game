@@ -29,6 +29,9 @@ namespace evansbros { namespace graphics {
     }
 
     void Renderer::reloadGPU_Textures() {
+        if (!textures) {
+            return;
+        }
         unloadGPU_Textures();
         loadGPU_Textures();
     }
@@ -43,9 +46,8 @@ namespace evansbros { namespace graphics {
             }
         }
 
-        Quad uncoloredQuad({{0.0, 0.0}, Color()}, {{1.0, 0.0}, Color()}, {{1.0, 1.0}, Color()}, {{0.0, 1.0}, Color()});
         for (auto tile : tiles) {
-            drawQuads(uncoloredQuad, tile.first, tile.second);
+            drawQuads(Quad::COLORLESS, tile.first, tile.second);
         }
     }
 

@@ -1,10 +1,11 @@
-//
-//  message_data_types.h
-//  Game
-//
-//  Created by Omar Stefan Evans on 1/17/14.
-//
-//
+/**************************************************************************************************
+ * Title:         message_data_types.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2014-01-17
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #pragma once
 

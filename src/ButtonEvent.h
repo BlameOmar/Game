@@ -1,10 +1,11 @@
-//
-//  ButtonEvent.h
-//  Game
-//
-//  Created by Omar Stefan Evans on 12/15/13.
-//
-//
+/**************************************************************************************************
+ * Title:         ButtonEvent.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-12-15
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #pragma once
 

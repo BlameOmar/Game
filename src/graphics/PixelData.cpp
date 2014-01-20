@@ -1,10 +1,11 @@
-//
-//  PixelData.cpp
-//  OpenGL Practice
-//
-//  Created by Omar Evans on 7/30/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         PixelData.cpp
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-07-30
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #include "PixelData.h"
 

@@ -13,11 +13,11 @@
 
 namespace evansbros {
     namespace OpenGL {
-        ShaderProgram::ShaderProgram(std::initializer_list<ShaderObject *> shaderObjects)
+        ShaderProgram::ShaderProgram(std::initializer_list<Shader *> shaders)
         {
             _id = glCreateProgram();
-            for (ShaderObject * shaderObject : shaderObjects) {
-                glAttachShader(_id, shaderObject->_id);
+            for (Shader * shader : shaders) {
+                glAttachShader(_id, shader->_id);
             }
 
             glLinkProgram(_id);

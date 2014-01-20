@@ -1,38 +1,40 @@
-//
-//  AppDelegate.m
-//  Game
-//
-//  Created by Omar Stefan Evans on 11/23/13.
-//
-//
+/**************************************************************************************************
+ * Title:         Game.mm
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-11-23
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #import "Game.h"
 
+#include <thread>
+
 using std::thread;
 
+using namespace evansbros::game;
+
 @implementation Game
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+{
+    [self createOpenGLView];
+    //[self.window toggleFullScreen:self];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self.window makeFirstResponder:self.window.contentView];
 
-    self.gameSystem = new ::evansbros::game::GameSystem();
-    self.gameView.gameSystemMessageQueue = self.gameSystem->getMessageQueue();
-    self.gameView.renderer = static_cast<::evansbros::graphics::CGLRenderer *>(self.gameSystem->getRenderer());
+    self.gameSystem = new GameSystem(self.gameView.renderer, self.gameView.messageQueue);
     self.gameSystem->start();
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
     self.gameSystem->stop();
-    [self.window close];
     delete self.gameSystem;
-}
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification
-{
-    [self createOpenGLView];
-    //[self.window toggleFullScreen:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

@@ -1,10 +1,11 @@
-//
-//  CGLRenderer.h
-//  OpenGL Practice
-//
-//  Created by Omar Stefan Evans on 11/15/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         CGLRenderer.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-11-15
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #pragma once
 
@@ -20,13 +21,15 @@ namespace evansbros {
             CGLContextObj nativeGraphicsContext;
         public:
             CGLRenderer();
-            ~CGLRenderer();
 
-            CGLContextObj getNativeGraphicsContext();
-            void setNativeGraphicsContext(CGLContextObj context);
-
-            void setup();
+            void init();
             void render(seconds interpolation);
+
+            void loadGPU_Textures();
+            void loadGPU_Textures(const std::vector<string> & textureNames);
+
+            void unloadGPU_Textures();
+            void unloadGPU_Textures(const std::vector<string> & textureNames);
         };
         
     }

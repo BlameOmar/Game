@@ -1,5 +1,5 @@
 /**************************************************************************************************
- * Title:         OpenGL_ShaderObject.h
+ * Title:         OpenGL_Shader.h
  * Author:        Omar Stefan Evans
  * Created on:    2014-01-19
  * Description:   <#Description#>
@@ -22,13 +22,12 @@ namespace evansbros {
             GEOMETRY_SHADER     = GL_GEOMETRY_SHADER
         };
 
-        class ShaderObject {
+        class Shader {
         public:
-            ShaderObject(ShaderType type, string source);
-            ShaderObject(ShaderType type, Data data);
-            ShaderObject(const ShaderObject & other) = delete;
-            ShaderObject(ShaderObject && other);
-            ~ShaderObject();
+            Shader(ShaderType type, string source);
+            Shader(ShaderType type, Data data);
+            Shader(const Shader & other) = delete;
+            ~Shader();
 
             ShaderType type() const;
             GLuint getID();

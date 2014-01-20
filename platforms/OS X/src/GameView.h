@@ -1,21 +1,22 @@
-//
-//  OpenGLPracticeView.h
-//  OpenGL Practice
-//
-//  Created by Omar Evans on 7/13/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         GameView.h
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-07-13
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
+
 #import <Cocoa/Cocoa.h>
 
-#include "MessageQueue.h"
 #include "CGLRenderer.h"
+#include "MessageQueue.h"
 
-@interface GameView : NSOpenGLView {
-    ::evansbros::graphics::CGLRenderer *_renderer;
-    GLint swapInterval;
-}
+using namespace evansbros;
 
-@property (assign) ::evansbros::game::MessageQueue *gameSystemMessageQueue;
-@property (assign) ::evansbros::graphics::CGLRenderer *renderer;
+@interface GameView : NSOpenGLView
+
+@property (assign) graphics::CGLRenderer *renderer;
+@property (assign) game::MessageQueue *messageQueue;
 
 @end

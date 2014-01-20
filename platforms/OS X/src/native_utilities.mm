@@ -1,10 +1,11 @@
-//
-//  natvie_utilities.cpp
-//  OpenGL Practice
-//
-//  Created by Omar Evans on 7/24/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         native_utilities.mm
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-07-24
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #include "native_utilities.h"
 #import <Foundation/Foundation.h>
@@ -26,13 +27,4 @@ const Data loadAsset(const string assetPath)
     
     Data dataObject(nativeDataObject.length, (byte *)nativeDataObject.bytes);
     return dataObject;
-}
-
-
-evansbros::graphics::Renderer * getPlatformRenderer() {
-    return new graphics::CGLRenderer;
-}
-
-evansbros::graphics::Renderer * getPlatformRenderer(graphics::RenderType hint) {
-    return new graphics::CGLRenderer;
 }

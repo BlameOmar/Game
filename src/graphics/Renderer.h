@@ -41,7 +41,7 @@ namespace evansbros { namespace graphics {
 
     class Renderer {
     public:
-        virtual void setup() = 0;
+        virtual void init() = 0;
         virtual void render(seconds interpolation) = 0;
         virtual void resizeViewport(natural width, natural height) = 0;
 
@@ -64,7 +64,7 @@ namespace evansbros { namespace graphics {
         const GameState *gameState;
 
         TextureQuality textureQuality = TextureQuality::HD;
-        const std::map<TextureQuality, std::map<string, PixelData>> *textures;
+        const std::map<TextureQuality, std::map<string, PixelData>> *textures = nullptr;
 
         void drawTileMap();
 

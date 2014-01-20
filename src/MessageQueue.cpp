@@ -1,7 +1,3 @@
-/**
- * ©2013 Omar Stefan Evans.  All rights reserved.
- */
-
 /**************************************************************************************************
  * Title:         MessageQueue.cpp
  * Author:        Omar Stefan Evans

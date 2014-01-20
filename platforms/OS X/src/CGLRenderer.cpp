@@ -1,37 +1,25 @@
-//
-//  CGLRenderer.cpp
-//  OpenGL Practice
-//
-//  Created by Omar Stefan Evans on 11/15/13.
-//  Copyright (c) 2013 MainChat. All rights reserved.
-//
+/**************************************************************************************************
+ * Title:         CGLRenderer.cpp
+ * Author:        Omar Stefan Evans
+ * Created on:    2013-11-15
+ * Description:   <#Description#>
+ * Purpose:       <#Purpose#>
+ * Modifications: <#Modifications#>
+ **************************************************************************************************/
 
 #include "CGLRenderer.h"
 
 namespace evansbros { namespace graphics {
 
     CGLRenderer::CGLRenderer() {
+        nativeGraphicsContext = CGLGetCurrentContext();
     }
 
-    CGLRenderer::~CGLRenderer() {
-    }
-
-    CGLContextObj CGLRenderer::getNativeGraphicsContext()
-    {
-        return nativeGraphicsContext;
-    }
-
-    void CGLRenderer::setNativeGraphicsContext(CGLContextObj context)
-    {
-        nativeGraphicsContext = context;
-    }
-
-    void CGLRenderer::setup()
+    void CGLRenderer::init()
     {
         CGLLockContext(nativeGraphicsContext);
-        CGLSetCurrentContext(nativeGraphicsContext);
 
-        OpenGLRenderer::setup();
+        CGLSetCurrentContext(nativeGraphicsContext);
 
         CGLUnlockContext(nativeGraphicsContext);
     }
@@ -44,6 +32,42 @@ namespace evansbros { namespace graphics {
 
         CGLFlushDrawable(nativeGraphicsContext);
         
+        CGLUnlockContext(nativeGraphicsContext);
+    }
+
+    void CGLRenderer::loadGPU_Textures()
+    {
+        CGLLockContext(nativeGraphicsContext);
+
+        OpenGLRenderer::loadGPU_Textures();
+
+        CGLUnlockContext(nativeGraphicsContext);
+    }
+
+    void CGLRenderer::loadGPU_Textures(const std::vector<string> & textureNames)
+    {
+        CGLLockContext(nativeGraphicsContext);
+
+        OpenGLRenderer::loadGPU_Textures(textureNames);
+
+        CGLUnlockContext(nativeGraphicsContext);
+    }
+
+    void CGLRenderer::unloadGPU_Textures()
+    {
+        CGLLockContext(nativeGraphicsContext);
+
+        OpenGLRenderer::unloadGPU_Textures();
+
+        CGLUnlockContext(nativeGraphicsContext);
+    }
+
+    void CGLRenderer::unloadGPU_Textures(const std::vector<string> & textureNames)
+    {
+        CGLLockContext(nativeGraphicsContext);
+
+        OpenGLRenderer::unloadGPU_Textures(textureNames);
+
         CGLUnlockContext(nativeGraphicsContext);
     }
 

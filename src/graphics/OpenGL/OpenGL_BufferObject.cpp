@@ -1,5 +1,5 @@
 /**************************************************************************************************
- * Title:         OpenGL_BufferObject.h
+ * Title:         OpenGL_BufferObject.cpp
  * Author:        Omar Stefan Evans
  * Created on:    2014-01-17
  * Description:   <#Description#>
@@ -23,6 +23,18 @@ namespace evansbros {
             glGenBuffers(1, &_bufferObjectID);
             glBindBuffer(GL_COPY_WRITE_BUFFER, _bufferObjectID);
             glBufferData(GL_COPY_WRITE_BUFFER, size, nullptr, usage);
+
+            glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+        }
+
+        BufferObject::BufferObject(const BufferObject & other) : BufferObject(other._size, other._usage)
+        {
+            other.bindTo(GL_COPY_READ_BUFFER);
+            this->bindTo(GL_COPY_WRITE_BUFFER);
+
+            glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, _size);
+
+            glBindBuffer(GL_COPY_READ_BUFFER, 0);
             glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
         }
 

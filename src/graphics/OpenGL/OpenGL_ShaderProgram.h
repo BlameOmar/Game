@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "OpenGL_ShaderObject.h"
+#include "OpenGL_Shader.h"
 #include <initializer_list>
 
 namespace evansbros {
@@ -18,7 +18,7 @@ namespace evansbros {
         class ShaderProgram {
         public:
             ShaderProgram() = default;
-            ShaderProgram(std::initializer_list<ShaderObject *> shaderObjects);
+            ShaderProgram(std::initializer_list<Shader *> shaders);
             ShaderProgram(const ShaderProgram & other) = delete;
             ShaderProgram(ShaderProgram && other);
             ~ShaderProgram();
