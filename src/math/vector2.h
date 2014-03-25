@@ -25,7 +25,7 @@ namespace evansbros { namespace math {
         /**
          * Constructs a two-dimensional vector (x,y) with the given components
          */
-        vector2(real x, real y) : x(), y(y) {}
+        vector2(real x, real y) : x(x), y(y) {}
 
         /**
          * Returns the size of the vector (always 2)

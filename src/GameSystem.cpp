@@ -53,6 +53,10 @@ namespace evansbros {
             loadTextures();
             renderer->loadGPU_Textures();
 
+            gameState.player1 = gameState.createHuman({0.0, 0.0});
+            gameState.player2 = gameState.createHuman({0.0, 0.0});
+            gameState.camera = gameState.createCamera({0.0, 0.0});
+
             currentTime = Clock::now();
             lastUpdate = currentTime;
             interpolation = seconds(0);
@@ -109,71 +113,71 @@ namespace evansbros {
                 return;
             }
 
-            math::vector3 movementDelta;
+            gameState.updateSpatialComponents(dTime);
+
+            math::vector2 movementDelta;
 
             /* Player 1 */
+            SpatialComponent &p1SpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.player1);
+
             if (p1Controller.upButtonIsPressed() && p1Controller.leftButtonIsPressed()) {
-                movementDelta = math::vector3(-math::SQRT_2 / 2, math::SQRT_2 / 2);
+                movementDelta = math::vector2{-math::SQRT_2 / 2, math::SQRT_2 / 2};
             } else if (p1Controller.upButtonIsPressed() && p1Controller.rightButtonIsPressed()) {
-                movementDelta = math::vector3(math::SQRT_2 / 2, math::SQRT_2 / 2);
+                movementDelta = math::vector2{math::SQRT_2 / 2, math::SQRT_2 / 2};
             } else if (p1Controller.downButtonIsPressed() && p1Controller.leftButtonIsPressed()) {
-                movementDelta = math::vector3(-math::SQRT_2 / 2, -math::SQRT_2 / 2);
+                movementDelta = math::vector2{-math::SQRT_2 / 2, -math::SQRT_2 / 2};
             } else if (p1Controller.downButtonIsPressed() && p1Controller.rightButtonIsPressed()) {
-                movementDelta = math::vector3(math::SQRT_2 / 2, -math::SQRT_2 / 2);
+                movementDelta = math::vector2{math::SQRT_2 / 2, -math::SQRT_2 / 2};
             } else if (p1Controller.upButtonIsPressed()) {
-                movementDelta = math::vector3(0, 1);
+                movementDelta = math::vector2{0, 1};
             } else if (p1Controller.downButtonIsPressed()) {
-                movementDelta = math::vector3(0, -1);
+                movementDelta = math::vector2{0, -1};
             } else if (p1Controller.leftButtonIsPressed()) {
-                movementDelta = math::vector3(-1, 0);
+                movementDelta = math::vector2{-1, 0};
             } else if (p1Controller.rightButtonIsPressed()) {
-                movementDelta = math::vector3(1, 0);
-            } else if (gameState.p1State.speed() > 0.0) {
-                movementDelta = -0.5 * ( gameState.p1State.velocity / gameState.p1State.speed() );
+                movementDelta = math::vector2{1, 0};
+            } else if (p1SpatialComponent.speed() > 0.0) {
+                movementDelta = -0.5 * ( p1SpatialComponent.velocity / p1SpatialComponent.speed() );
             }
 
-            gameState.p1State.incrementVelocity(movementDelta);
-
-            if (gameState.p1State.speed() < 0.0625) {
-                gameState.p1State.velocity = math::vector3(0.0, 0.0);
+            p1SpatialComponent.velocity += movementDelta;
+            if (p1SpatialComponent.speed() > 4) {
+                p1SpatialComponent.velocity = 4 * p1SpatialComponent.velocity / p1SpatialComponent.speed();
             }
-
-            gameState.p1State.position += gameState.p1State.velocity * dTime.count();
 
             /* Player 2 */
-            movementDelta = math::vector3(0.0, 0.0);
+            movementDelta = math::vector2{0.0, 0.0};
+            SpatialComponent &p2SpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.player2);
 
             if (p2Controller.upButtonIsPressed() && p2Controller.leftButtonIsPressed()) {
-                movementDelta = math::vector3(-math::SQRT_2 / 2, math::SQRT_2 / 2);
+                movementDelta = math::vector2{-math::SQRT_2 / 2, math::SQRT_2 / 2};
             } else if (p2Controller.upButtonIsPressed() && p2Controller.rightButtonIsPressed()) {
-                movementDelta = math::vector3(math::SQRT_2 / 2, math::SQRT_2 / 2);
+                movementDelta = math::vector2{math::SQRT_2 / 2, math::SQRT_2 / 2};
             } else if (p2Controller.downButtonIsPressed() && p2Controller.leftButtonIsPressed()) {
-                movementDelta = math::vector3(-math::SQRT_2 / 2, -math::SQRT_2 / 2);
+                movementDelta = math::vector2{-math::SQRT_2 / 2, -math::SQRT_2 / 2};
             } else if (p2Controller.downButtonIsPressed() && p2Controller.rightButtonIsPressed()) {
-                movementDelta = math::vector3(math::SQRT_2 / 2, -math::SQRT_2 / 2);
+                movementDelta = math::vector2{math::SQRT_2 / 2, -math::SQRT_2 / 2};
             } else if (p2Controller.upButtonIsPressed()) {
-                movementDelta = math::vector3(0, 1);
+                movementDelta = math::vector2{0, 1};
             } else if (p2Controller.downButtonIsPressed()) {
-                movementDelta = math::vector3(0, -1);
+                movementDelta = math::vector2{0, -1};
             } else if (p2Controller.leftButtonIsPressed()) {
-                movementDelta = math::vector3(-1, 0);
+                movementDelta = math::vector2{-1, 0};
             } else if (p2Controller.rightButtonIsPressed()) {
-                movementDelta = math::vector3(1, 0);
-            } else if (gameState.p2State.speed() > 0.0) {
-                movementDelta = -0.5 * ( gameState.p2State.velocity / gameState.p2State.speed() );
+                movementDelta = math::vector2{1, 0};
+            } else if (p2SpatialComponent.speed() > 0.0) {
+                movementDelta = -0.5 * ( p2SpatialComponent.velocity / p2SpatialComponent.speed() );
+                ;
             }
 
-            gameState.p2State.incrementVelocity(movementDelta);
-
-            if (gameState.p2State.speed() < 0.0625) {
-                gameState.p2State.velocity = math::vector3(0.0, 0.0);
+            p2SpatialComponent.velocity += movementDelta;
+            if (p2SpatialComponent.speed() > 4) {
+                p2SpatialComponent.velocity = 4 * p2SpatialComponent.velocity / p2SpatialComponent.speed();
             }
-            
-            gameState.p2State.position += gameState.p2State.velocity * dTime.count();
-            
-            gameState.cameraState.position = (gameState.p1State.position + gameState.p2State.position) / 2;
-            gameState.cameraState.velocity = (gameState.p1State.velocity + gameState.p2State.velocity) / 2;
-            
+
+            SpatialComponent &cameraSpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.camera);
+//            cameraSpatialComponent.position = (p1SpatialComponent.position + p2SpatialComponent.position) / 2;
+            cameraSpatialComponent.velocity = (p1SpatialComponent.velocity + p2SpatialComponent.velocity) / 2;
         }
         
     }

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0746933618303E19008192B8"
+               BlueprintIdentifier = "07F0871018303F7C00DC5FAE"
                BuildableName = "png.framework"
                BlueprintName = "png"
                ReferencedContainer = "container:libpng.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0746934D18303E19008192B8"
+               BlueprintIdentifier = "07F0872618303F7D00DC5FAE"
                BuildableName = "pngTests.xctest"
                BlueprintName = "pngTests"
                ReferencedContainer = "container:libpng.xcodeproj">
@@ -45,7 +45,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">

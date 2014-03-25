@@ -28,6 +28,8 @@ namespace evansbros { namespace game {
         bool leftButtonIsPressed();
         bool rightButtonIsPressed();
 
+        bool allDirectionalButtonsAreReleased();
+
     private:
         class Button {
         private:

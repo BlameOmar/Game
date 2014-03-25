@@ -14,12 +14,14 @@
 		071AEBDE186BF94D00BDE25A /* vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071AEBBB186BD11E00BDE25A /* vector3.cpp */; };
 		071AEBDF186BF95000BDE25A /* vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071AEBBD186BD14700BDE25A /* vector4.cpp */; };
 		0745EF5E188A20DD00ED613F /* OpenGL_BufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0745EF5C188A20DD00ED613F /* OpenGL_BufferObject.cpp */; };
-		0752099D1852EC7D009F41DF /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0752099B1852EC7D009F41DF /* Component.cpp */; };
 		0752A0B11884B9F200F27438 /* OpenGLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */; };
 		07550B21188BA99500EEF9F2 /* OpenGL_Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B1F188BA99500EEF9F2 /* OpenGL_Shader.cpp */; };
 		07550B26188BBBCC00EEF9F2 /* OpenGL_ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B24188BBBCC00EEF9F2 /* OpenGL_ShaderProgram.cpp */; };
 		07550B29188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B27188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.cpp */; };
-		0792172B1852F2090049268B /* SpatialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079217291852F2090049268B /* SpatialComponent.cpp */; };
+		07550B3F188F271900EEF9F2 /* SpatialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B3D188F271900EEF9F2 /* SpatialComponent.cpp */; };
+		07550B41188F280F00EEF9F2 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B40188F280F00EEF9F2 /* Entity.cpp */; };
+		07550B43188F2BF700EEF9F2 /* GameState_Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B42188F2BF700EEF9F2 /* GameState_Entity.cpp */; };
+		07550B45188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B44188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp */; };
 		07BD122B1841721B007B8E10 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD122A1841721B007B8E10 /* Cocoa.framework */; };
 		07BD12351841721B007B8E10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BD12331841721B007B8E10 /* InfoPlist.strings */; };
 		07BD12371841721B007B8E10 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BD12361841721B007B8E10 /* main.m */; };
@@ -94,8 +96,6 @@
 		0745EF5B18890DC800ED613F /* message_data_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_data_types.h; sourceTree = "<group>"; };
 		0745EF5C188A20DD00ED613F /* OpenGL_BufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL_BufferObject.cpp; sourceTree = "<group>"; };
 		0745EF5D188A20DD00ED613F /* OpenGL_BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_BufferObject.h; sourceTree = "<group>"; };
-		0752099B1852EC7D009F41DF /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = src/engine/components/Component.cpp; sourceTree = SOURCE_ROOT; };
-		0752099C1852EC7D009F41DF /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Component.h; path = src/engine/components/Component.h; sourceTree = SOURCE_ROOT; };
 		0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLRenderer.cpp; sourceTree = "<group>"; };
 		0752A0B01884B9F200F27438 /* OpenGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRenderer.h; sourceTree = "<group>"; };
 		07550B1F188BA99500EEF9F2 /* OpenGL_Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL_Shader.cpp; sourceTree = "<group>"; };
@@ -104,8 +104,14 @@
 		07550B25188BBBCC00EEF9F2 /* OpenGL_ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_ShaderProgram.h; sourceTree = "<group>"; };
 		07550B27188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL_VertexArrayObject.cpp; sourceTree = "<group>"; };
 		07550B28188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_VertexArrayObject.h; sourceTree = "<group>"; };
-		079217291852F2090049268B /* SpatialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpatialComponent.cpp; path = src/engine/components/SpatialComponent.cpp; sourceTree = SOURCE_ROOT; };
-		0792172A1852F2090049268B /* SpatialComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpatialComponent.h; path = src/engine/components/SpatialComponent.h; sourceTree = SOURCE_ROOT; };
+		07550B37188E598100EEF9F2 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
+		07550B39188E669E00EEF9F2 /* Array.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Array.hpp; sourceTree = "<group>"; };
+		07550B3B188F201600EEF9F2 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		07550B3D188F271900EEF9F2 /* SpatialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialComponent.cpp; sourceTree = "<group>"; };
+		07550B3E188F271900EEF9F2 /* SpatialComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialComponent.h; sourceTree = "<group>"; };
+		07550B40188F280F00EEF9F2 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		07550B42188F2BF700EEF9F2 /* GameState_Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState_Entity.cpp; sourceTree = "<group>"; };
+		07550B44188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState_SpatialComponent.cpp; sourceTree = "<group>"; };
 		07A4516E185E52CF00CD41E5 /* ButtonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonEvent.h; sourceTree = "<group>"; };
 		07BD12271841721B007B8E10 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BD122A1841721B007B8E10 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -243,21 +249,12 @@
 		075209931852EBF8009F41DF /* engine */ = {
 			isa = PBXGroup;
 			children = (
-				075209951852EC02009F41DF /* components */,
+				07550B40188F280F00EEF9F2 /* Entity.cpp */,
+				07550B3B188F201600EEF9F2 /* Entity.h */,
+				07550B3D188F271900EEF9F2 /* SpatialComponent.cpp */,
+				07550B3E188F271900EEF9F2 /* SpatialComponent.h */,
 			);
 			path = engine;
-			sourceTree = "<group>";
-		};
-		075209951852EC02009F41DF /* components */ = {
-			isa = PBXGroup;
-			children = (
-				0752099B1852EC7D009F41DF /* Component.cpp */,
-				0752099C1852EC7D009F41DF /* Component.h */,
-				079217291852F2090049268B /* SpatialComponent.cpp */,
-				0792172A1852F2090049268B /* SpatialComponent.h */,
-			);
-			name = components;
-			path = engine/components;
 			sourceTree = "<group>";
 		};
 		07550B2A188CD33500EEF9F2 /* Header Files */ = {
@@ -409,12 +406,16 @@
 				07049FE318839CB5008F3BE3 /* utilities */,
 				07A4516A185E524F00CD41E5 /* message system */,
 				075209931852EBF8009F41DF /* engine */,
+				07550B37188E598100EEF9F2 /* Array.h */,
+				07550B39188E669E00EEF9F2 /* Array.hpp */,
 				07BD125C18417400007B8E10 /* Data.cpp */,
 				07BD125D18417400007B8E10 /* Data.h */,
 				07BD125E18417400007B8E10 /* GameController.cpp */,
 				07BD125F18417400007B8E10 /* GameController.h */,
 				07BD126018417400007B8E10 /* GameState.cpp */,
 				07BD126118417400007B8E10 /* GameState.h */,
+				07550B42188F2BF700EEF9F2 /* GameState_Entity.cpp */,
+				07550B44188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp */,
 				07BD126318417400007B8E10 /* GameSystem.h */,
 				07BD126218417400007B8E10 /* GameSystem.cpp */,
 				07E17C561860ED1A00616ED4 /* GameSystem_AssetLoading.cpp */,
@@ -665,15 +666,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EFD1121861201200C41FAF /* Color.cpp in Sources */,
-				0752099D1852EC7D009F41DF /* Component.cpp in Sources */,
 				07BD127718417400007B8E10 /* GameSystem.cpp in Sources */,
 				07BD127418417400007B8E10 /* Data.cpp in Sources */,
 				071AEBDE186BF94D00BDE25A /* vector3.cpp in Sources */,
 				07550B29188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.cpp in Sources */,
 				07C744FD184175C00094B04C /* native_utilities.mm in Sources */,
+				07550B45188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp in Sources */,
 				07BD127618417400007B8E10 /* GameState.cpp in Sources */,
 				07E17C571860ED1A00616ED4 /* GameSystem_AssetLoading.cpp in Sources */,
-				0792172B1852F2090049268B /* SpatialComponent.cpp in Sources */,
 				07EFD1151861202200C41FAF /* Quad.cpp in Sources */,
 				07BD127518417400007B8E10 /* GameController.cpp in Sources */,
 				07BD123E1841721B007B8E10 /* Game.mm in Sources */,
@@ -686,10 +686,13 @@
 				0752A0B11884B9F200F27438 /* OpenGLRenderer.cpp in Sources */,
 				07C744FC184175C00094B04C /* CGLRenderer.cpp in Sources */,
 				07C7450C184271B20094B04C /* matrix.cpp in Sources */,
+				07550B43188F2BF700EEF9F2 /* GameState_Entity.cpp in Sources */,
 				07BD127D18417400007B8E10 /* utilities.cpp in Sources */,
 				07BD12371841721B007B8E10 /* main.m in Sources */,
 				07550B21188BA99500EEF9F2 /* OpenGL_Shader.cpp in Sources */,
 				07049FD11877A546008F3BE3 /* Vertex.cpp in Sources */,
+				07550B41188F280F00EEF9F2 /* Entity.cpp in Sources */,
+				07550B3F188F271900EEF9F2 /* SpatialComponent.cpp in Sources */,
 				07BD127B18417400007B8E10 /* MessageQueue.cpp in Sources */,
 				07E17C551860EBCA00616ED4 /* GameSystem_MessageHandling.cpp in Sources */,
 				071AEBDD186BF94A00BDE25A /* vector2.cpp in Sources */,

@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 
 namespace evansbros {
@@ -32,4 +33,12 @@ namespace evansbros {
     using natural           = natural_32bit;
     using integer           = integer_32bit;
     using real              = real_32bit;
+
+    using Index             = uintptr_t;
+
+    const size_t minimumSize  = 0;
+    const size_t maximumSize  = SIZE_MAX;
+
+    using ID                = natural;
+
 }

@@ -48,10 +48,10 @@ namespace evansbros { namespace graphics {
         /* Load and create the ShaderObjects */
         Data shaderSource;
 
-        shaderSource = loadAsset("shaders/default.vsh");
+        shaderSource = loadAsset("shaders/default.glsl.vertex");
         Shader vertexShader(ShaderType::VERTEX_SHADER, shaderSource);
 
-        shaderSource = loadAsset("shaders/default.fsh");
+        shaderSource = loadAsset("shaders/default.glsl.fragment");
         Shader fragmentShader(ShaderType::FRAGMENT_SHADER, shaderSource);
 
         /* Link the ShaderObjects into a ShaderProgram */
@@ -65,7 +65,9 @@ namespace evansbros { namespace graphics {
 
     void OpenGLRenderer::render(seconds interpolation)
     {
-        vector3 cameraPosition = gameState->cameraState.position + gameState->cameraState.velocity * interpolation.count();
+        const game::SpatialComponent
+        &cameraSpatialComponent = gameState->getSpatialComponentWithEntityID(gameState->camera);
+        vector3 cameraPosition = cameraSpatialComponent.position + cameraSpatialComponent.velocity * interpolation.count();
 
         updateViewMatrix(cameraPosition);
 
@@ -73,10 +75,16 @@ namespace evansbros { namespace graphics {
 
         drawTileMap();
 
+        const game::SpatialComponent
+        &p1SpatialComponent = gameState->getSpatialComponentWithEntityID(gameState->player1);
+
+        const game::SpatialComponent
+        &p2SpatialComponent = gameState->getSpatialComponentWithEntityID(gameState->player2);
+
         drawQuads(Quad::COLORLESS_CENTERED_UNIT_SQUARE, "test",
                   {
-                      gameState->p1State.position + gameState->p1State.velocity * interpolation.count(),
-                      gameState->p2State.position + gameState->p2State.velocity * interpolation.count()
+                      p1SpatialComponent.position + p1SpatialComponent.velocity * interpolation.count(),
+                      p2SpatialComponent.position + p2SpatialComponent.velocity * interpolation.count()
                   });
     }
 

@@ -89,4 +89,12 @@ namespace evansbros { namespace game {
         return rightButton.isPressed();
     }
 
+    bool GameController::allDirectionalButtonsAreReleased()
+    {
+        return !(upButtonIsPressed() ||
+                 downButtonIsPressed() ||
+                 leftButtonIsPressed() ||
+                 rightButtonIsPressed());
+    }
+
 } }
