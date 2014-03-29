@@ -20,21 +20,20 @@ using namespace evansbros::game;
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
     [self createOpenGLView];
-    //[self.window toggleFullScreen:self];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self.window makeFirstResponder:self.window.contentView];
 
-    self.gameSystem = new GameSystem(self.gameView.renderer, self.gameView.messageQueue);
-    self.gameSystem->start();
+//    self.gameSystem = new GameSystem(self.gameView.renderer, self.gameView.messageQueue);
+//    self.gameSystem->start();
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
-    self.gameSystem->stop();
-    delete self.gameSystem;
+//    self.gameSystem->stop();
+//    delete self.gameSystem;
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

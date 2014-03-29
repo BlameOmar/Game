@@ -13,6 +13,15 @@
 
 using namespace evansbros;
 
+
+@interface GameView ()
+
+- (CVReturn)getFrameForTime:(const CVTimeStamp*)outputTime;
+
+static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp* now, const CVTimeStamp* outputTime, CVOptionFlags flagsIn, CVOptionFlags* flagsOut, void* displayLinkContext);
+
+@end
+
 @implementation GameView
 
 - (id)initWithFrame:(NSRect)frameRect pixelFormat:(NSOpenGLPixelFormat *)format
@@ -22,15 +31,51 @@ using namespace evansbros;
         [self.openGLContext makeCurrentContext];
         _renderer = new graphics::CGLRenderer();
         _messageQueue = new game::MessageQueue(100);
-
-#ifdef DEBUG
-        /* Disable V-Sync */
-        GLint swapInterval = 0;
-        [self.openGLContext setValues:&swapInterval forParameter:NSOpenGLCPSwapInterval];
-#endif
-
+        _gameSystem = new game::GameSystem(_renderer, _messageQueue);
+        initializedGameSystem = NO;
     }
     return self;
+}
+
+- (void)prepareOpenGL
+{
+//#ifdef DEBUG
+//    /* Disable V-Sync */
+//    GLint swapInterval = 0;
+//    [self.openGLContext setValues:&swapInterval forParameter:NSOpenGLCPSwapInterval];
+//#endif
+
+    // Create a display link capable of being used with all active displays
+    CVDisplayLinkCreateWithActiveCGDisplays(&displayLink);
+
+    // Set the renderer output callback function
+    CVDisplayLinkSetOutputCallback(displayLink, &MyDisplayLinkCallback, (__bridge void *)self);
+
+    // Set the display link for the current renderer
+    CGLContextObj cglContext = (CGLContextObj)[[self openGLContext] CGLContextObj];
+    CGLPixelFormatObj cglPixelFormat = (CGLPixelFormatObj)[[self pixelFormat] CGLPixelFormatObj];
+    CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink, cglContext, cglPixelFormat);
+
+    // Activate the display link
+    CVDisplayLinkStart(displayLink);
+}
+
+static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp* now, const CVTimeStamp* outputTime, CVOptionFlags flagsIn, CVOptionFlags* flagsOut, void* displayLinkContext)
+{
+    CVReturn result = [(__bridge GameView*)displayLinkContext getFrameForTime:outputTime];
+    return result;
+}
+
+- (CVReturn)getFrameForTime:(const CVTimeStamp*)outputTime
+{
+    if (!initializedGameSystem) {
+        self.gameSystem->initialize();
+        initializedGameSystem = YES;
+    }
+
+    self.gameSystem->doCycle();
+
+    return kCVReturnSuccess;
 }
 
 - (void)reshape

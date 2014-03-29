@@ -45,10 +45,13 @@ namespace evansbros {
          * Stops the game.
          */
         void stop();
+        void run();
+        void initialize();
+        void doCycle();
 
     private:
         const natural MAX_UPDATES_PER_CYCLE = 3;
-        const natural TARGET_UPDATE_FREQUENCY = 30; // HERTZ
+        const natural TARGET_UPDATE_FREQUENCY = 20; // HERTZ
         const microseconds TARGET_UPDATE_PERIOD { 1000 * 1000 / TARGET_UPDATE_FREQUENCY };
 
         Renderer     *renderer     = nullptr;
@@ -65,14 +68,12 @@ namespace evansbros {
         time_point currentTime;
         time_point lastUpdate;
 
-        seconds interpolation;
+        seconds interpolation {0.0};
 
         bool running = false;
         bool paused = false;
 
         void update(seconds dTime);
-        void run();
-
 
         /******************************************************************************************
          *****                                Message Handling                                *****

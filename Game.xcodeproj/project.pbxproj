@@ -22,6 +22,7 @@
 		07550B41188F280F00EEF9F2 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B40188F280F00EEF9F2 /* Entity.cpp */; };
 		07550B43188F2BF700EEF9F2 /* GameState_Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B42188F2BF700EEF9F2 /* GameState_Entity.cpp */; };
 		07550B45188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B44188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp */; };
+		07805CFD18E76C3B008055F2 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07805CFC18E76C3B008055F2 /* Quartz.framework */; };
 		07BD122B1841721B007B8E10 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD122A1841721B007B8E10 /* Cocoa.framework */; };
 		07BD12351841721B007B8E10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BD12331841721B007B8E10 /* InfoPlist.strings */; };
 		07BD12371841721B007B8E10 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BD12361841721B007B8E10 /* main.m */; };
@@ -112,6 +113,7 @@
 		07550B40188F280F00EEF9F2 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		07550B42188F2BF700EEF9F2 /* GameState_Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState_Entity.cpp; sourceTree = "<group>"; };
 		07550B44188F2EA400EEF9F2 /* GameState_SpatialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState_SpatialComponent.cpp; sourceTree = "<group>"; };
+		07805CFC18E76C3B008055F2 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		07A4516E185E52CF00CD41E5 /* ButtonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonEvent.h; sourceTree = "<group>"; };
 		07BD12271841721B007B8E10 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BD122A1841721B007B8E10 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -182,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07805CFD18E76C3B008055F2 /* Quartz.framework in Frameworks */,
 				07049FE2188396D2008F3BE3 /* png.framework in Frameworks */,
 				07C74500184181670094B04C /* OpenGL.framework in Frameworks */,
 				07BD122B1841721B007B8E10 /* Cocoa.framework in Frameworks */,
@@ -460,6 +463,7 @@
 		07BD12291841721B007B8E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07805CFC18E76C3B008055F2 /* Quartz.framework */,
 				07C744FF184181670094B04C /* OpenGL.framework */,
 				07BD122A1841721B007B8E10 /* Cocoa.framework */,
 				07BD12491841721B007B8E10 /* XCTest.framework */,

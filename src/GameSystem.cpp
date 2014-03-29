@@ -49,6 +49,14 @@ namespace evansbros {
 
         void GameSystem::run()
         {
+            initialize();
+            while (running) {
+                doCycle();
+                std::this_thread::yield();
+            }
+        }
+
+        void GameSystem::initialize() {
             renderer->init();
             loadTextures();
             renderer->loadGPU_Textures();
@@ -59,53 +67,31 @@ namespace evansbros {
 
             currentTime = Clock::now();
             lastUpdate = currentTime;
-            interpolation = seconds(0);
+        }
 
-            time_point currentRender = currentTime;
-            time_point lastRender = currentTime;
+        void GameSystem::doCycle() {
+            currentTime = Clock::now();
 
-
-            const natural NUMBER_OF_SAMPLES = 256;
-            seconds renderPeriods[NUMBER_OF_SAMPLES];
-            natural renderPeriodIndex = 0;
-            real fps;
+            while (!messageQueue->wasEmpty()) {
+                handleMessage(messageQueue->dequeue());
+            }
 
             natural numberOfUpdates = 0;
-            while (running) {
-                currentTime = Clock::now();
-
-                while (!messageQueue->wasEmpty()) {
-                    handleMessage(messageQueue->dequeue());
-                }
-
-                numberOfUpdates = 0;
-                while (currentTime - lastUpdate > TARGET_UPDATE_PERIOD && numberOfUpdates < MAX_UPDATES_PER_CYCLE) {
-                    update(TARGET_UPDATE_PERIOD);
-                    lastUpdate += TARGET_UPDATE_PERIOD;
-                    ++numberOfUpdates;
-                }
-
-                if (numberOfUpdates > 1) {
-                    std::cout << "Frame skipped!\n";
-                }
-
-                if (!paused) {
-                    interpolation = Clock::now() - lastUpdate;
-                }
-
-                currentRender = Clock::now();
-                renderPeriods[renderPeriodIndex] = currentRender - lastRender;
-                renderPeriodIndex = (renderPeriodIndex + 1) % NUMBER_OF_SAMPLES;
-                renderer->render(interpolation);
-                lastRender = currentRender;
-
-                if (renderPeriodIndex == NUMBER_OF_SAMPLES - 1) {
-                    fps = std::accumulate(renderPeriods, renderPeriods + NUMBER_OF_SAMPLES, seconds(0)).count() / NUMBER_OF_SAMPLES;
-                    std::cout << 1.0 / fps << " fps\n";
-                }
-
-                std::this_thread::yield();
+            while (currentTime - lastUpdate > TARGET_UPDATE_PERIOD && numberOfUpdates < MAX_UPDATES_PER_CYCLE) {
+                update(TARGET_UPDATE_PERIOD);
+                lastUpdate += TARGET_UPDATE_PERIOD;
+                ++numberOfUpdates;
             }
+
+            if (numberOfUpdates > 1) {
+                std::cout << numberOfUpdates - 1 << "frame(s) skipped!\n";
+            }
+
+            if (!paused) {
+                interpolation = currentTime - lastUpdate;
+            }
+
+            renderer->render(interpolation);
         }
 
         void GameSystem::update(seconds dTime) {

@@ -8,15 +8,22 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
+#import <Quartz/Quartz.h>
 
+#include "GameSystem.h"
 #include "CGLRenderer.h"
 #include "MessageQueue.h"
 
 using namespace evansbros;
 
-@interface GameView : NSOpenGLView
+@interface GameView : NSOpenGLView {
+@private
+    CVDisplayLinkRef displayLink;
+    BOOL initializedGameSystem;
+}
 
 @property (assign) graphics::CGLRenderer *renderer;
 @property (assign) game::MessageQueue *messageQueue;
+@property (assign) game::GameSystem *gameSystem;
 
 @end
