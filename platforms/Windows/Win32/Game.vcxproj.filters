@@ -164,6 +164,18 @@
     <ClCompile Include="..\..\..\src\graphics\OpenGL\OpenGL_Shader.cpp">
       <Filter>OpenGL\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\engine\Entity.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\engine\SpatialComponent.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameState_Entity.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GameState_SpatialComponent.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameWindow.h">
@@ -282,6 +294,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\graphics\OpenGL\OpenGL_Shader.h">
       <Filter>OpenGL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\engine\Entity.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\engine\SpatialComponent.h">
+      <Filter>Engine\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
