@@ -8,7 +8,7 @@
  **************************************************************************************************/
 
 #include "utilities.h"
-#include <png.h>
+#include "png.h"
 
 namespace evansbros {
 
