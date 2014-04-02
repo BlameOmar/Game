@@ -58,6 +58,8 @@ namespace evansbros {
 
             bool existsEntityWithID(ID entity_id) const;
 
+            void destroyEntityWithID(ID entity_id);
+
             /* Spatial Component Management */
             ID addSpatialComponentToEntity(ID entity_id);
 
@@ -71,6 +73,9 @@ namespace evansbros {
             const Entity & getOwnerOfSpatialComponent(ID component_id) const;
 
             bool existsSpatialComponentWithID(ID component_id) const;
+            bool existsSpatialComponentWithEntityID(ID entity_id) const;
+
+            void destroySpatialComponentWithID(ID component_id);
 
             void updateSpatialComponents(seconds dTime);
 

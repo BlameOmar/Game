@@ -162,7 +162,7 @@ namespace evansbros {
             }
 
             SpatialComponent &cameraSpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.camera);
-//            cameraSpatialComponent.position = (p1SpatialComponent.position + p2SpatialComponent.position) / 2;
+            cameraSpatialComponent.position = (p1SpatialComponent.position + p2SpatialComponent.position) / 2;
             cameraSpatialComponent.velocity = (p1SpatialComponent.velocity + p2SpatialComponent.velocity) / 2;
         }
         
