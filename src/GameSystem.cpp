@@ -104,7 +104,7 @@ namespace evansbros {
             math::vector2 movementDelta;
 
             /* Player 1 */
-            SpatialComponent &p1SpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.player1);
+            SpatialComponent &p1SpatialComponent = gameState.entityManager.getBelongingToEntity<SpatialComponent>(gameState.player1);
 
             if (p1Controller.upButtonIsPressed() && p1Controller.leftButtonIsPressed()) {
                 movementDelta = math::vector2{-math::SQRT_2 / 2, math::SQRT_2 / 2};
@@ -133,7 +133,7 @@ namespace evansbros {
 
             /* Player 2 */
             movementDelta = math::vector2{0.0, 0.0};
-            SpatialComponent &p2SpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.player2);
+            SpatialComponent &p2SpatialComponent = gameState.entityManager.getBelongingToEntity<SpatialComponent>(gameState.player2);
 
             if (p2Controller.upButtonIsPressed() && p2Controller.leftButtonIsPressed()) {
                 movementDelta = math::vector2{-math::SQRT_2 / 2, math::SQRT_2 / 2};
@@ -161,7 +161,7 @@ namespace evansbros {
                 p2SpatialComponent.velocity = 4 * p2SpatialComponent.velocity / p2SpatialComponent.speed();
             }
 
-            SpatialComponent &cameraSpatialComponent = gameState.getSpatialComponentWithEntityID(gameState.camera);
+            SpatialComponent &cameraSpatialComponent = gameState.entityManager.getBelongingToEntity<SpatialComponent>(gameState.camera);
             cameraSpatialComponent.position = (p1SpatialComponent.position + p2SpatialComponent.position) / 2;
             cameraSpatialComponent.velocity = (p1SpatialComponent.velocity + p2SpatialComponent.velocity) / 2;
         }

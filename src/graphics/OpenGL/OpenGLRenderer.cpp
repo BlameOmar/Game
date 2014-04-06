@@ -66,7 +66,7 @@ namespace evansbros { namespace graphics {
     void OpenGLRenderer::render(seconds interpolation)
     {
         const game::SpatialComponent
-        &cameraSpatialComponent = gameState->getSpatialComponentWithEntityID(gameState->camera);
+        &cameraSpatialComponent = gameState->entityManager.getBelongingToEntity<game::SpatialComponent>(gameState->camera);
         vector3 cameraPosition = cameraSpatialComponent.position + cameraSpatialComponent.velocity * interpolation.count();
 
         updateViewMatrix(cameraPosition);
@@ -76,10 +76,10 @@ namespace evansbros { namespace graphics {
         drawTileMap();
 
         const game::SpatialComponent
-        &p1SpatialComponent = gameState->getSpatialComponentWithEntityID(gameState->player1);
+        &p1SpatialComponent = gameState->entityManager.getBelongingToEntity<game::SpatialComponent>(gameState->player1);
 
         const game::SpatialComponent
-        &p2SpatialComponent = gameState->getSpatialComponentWithEntityID(gameState->player2);
+        &p2SpatialComponent = gameState->entityManager.getBelongingToEntity<game::SpatialComponent>(gameState->player2);
 
         drawQuads(Quad::COLORLESS_CENTERED_UNIT_SQUARE, "test",
                   {

@@ -12,39 +12,31 @@
 namespace evansbros {
     namespace game {
 
-        void SpatialState::incrementVelocity(math::vector3 delta) {
-            velocity += delta;
-            if (speed() > max_speed) {
-                velocity = max_speed * velocity / velocity.magnitude();
-            }
-        }
-
-        real SpatialState::speed() {
-            return velocity.magnitude();
-        }
-
         ID GameState::createHuman(math::vector2 position)
         {
-            ID entity_id = createEntity();
-            ID spatialComponent_id = addSpatialComponentToEntity(entity_id);
-            getSpatialComponentWithID(spatialComponent_id).position = position;
+            UniqueID entityUID = entityManager.createEntity();
+            UniqueID spatialComponentUID = entityManager.addToEntity<SpatialComponent>(entityUID);
+            componentManager.get<SpatialComponent>(spatialComponentUID).position = position;
 
-            return entity_id;
+            return entityUID;
         }
 
         ID GameState::createCamera(math::vector2 position)
         {
-            ID entity_id = createEntity();
-            ID spatialComponent_id = addSpatialComponentToEntity(entity_id);
-            getSpatialComponentWithID(spatialComponent_id).position = position;
+            UniqueID entityUID = entityManager.createEntity();
+            UniqueID spatialComponentUID = entityManager.addToEntity<SpatialComponent>(entityUID);
+            componentManager.get<SpatialComponent>(spatialComponentUID).position = position;
 
-            return entity_id;
+            return entityUID;
         }
 
 
         void GameState::updateSpatialComponents(seconds dTime)
         {
-            for (SpatialComponent & component : spatialComponents) {
+            size_t count = componentManager.count<SpatialComponent>();
+            SpatialComponent * components = componentManager.getAll<SpatialComponent>();
+            for (size_t i = 0; i < count; ++i) {
+                SpatialComponent & component = components[i];
                 component.position += component.velocity * dTime.count();
                 if (component.speed() < 0.0625) {
                     component.velocity = {0.0, 0.0};

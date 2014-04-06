@@ -11,8 +11,6 @@
 
 namespace evansbros {
     namespace game {
-        ID SpatialComponent::next_id = 0;
-
         real SpatialComponent::speed() const
         {
             return velocity.magnitude();

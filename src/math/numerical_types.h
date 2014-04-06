@@ -40,5 +40,6 @@ namespace evansbros {
     const size_t maximumSize  = SIZE_MAX;
 
     using ID                = natural;
+    using UniqueID          = natural;
 
 }

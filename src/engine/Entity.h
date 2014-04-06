@@ -13,13 +13,14 @@
 
 namespace evansbros {
     namespace game {
-        struct Entity {
-            static ID next_id;
-
-            ID id = 0;
-
+        class Entity {
+            friend class EntityManager;
+        public:
             Entity() = default;
-            Entity(ID id) : id(id) {}
+            Entity(UniqueID uid) : uid(uid) {}
+            UniqueID getUID() const;
+        private:
+            UniqueID uid = 0;
         };
     }
 }

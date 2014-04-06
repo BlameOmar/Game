@@ -9,23 +9,18 @@
 
 #pragma once
 
-#include "numerical_types.h"
+#include "Component.h"
 #include "vector2.h"
 
 namespace evansbros {
     namespace game {
-        struct SpatialComponent {
-
-            static ID next_id;
-
+        class SpatialComponent : public Component {
+        public:
             math::vector2 position;
             math::vector2 velocity;
 
-            ID id = 0;
-            ID entity_id = 0;
-
             SpatialComponent() = default;
-            SpatialComponent(natural id, natural entity_id) : id(id), entity_id(entity_id) {}
+            SpatialComponent(natural entity_id) : Component(entity_id) {}
 
             real speed() const;
         };

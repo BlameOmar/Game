@@ -82,14 +82,28 @@ namespace evansbros {
         /**
          * @return the number of elements in this Array
          * @see getSize
+         * @see getData();
          */
-        size_t getCount();
+        size_t getCount() const;
 
         /**
          * @return the size of this Array
          * @see getCount
          */
-        size_t getSize();
+        size_t getSize() const;
+
+
+        /**
+         * @return a pointer to the Array data
+         * @see getCount()
+         */
+        T * getData();
+
+        /**
+         * @return a pointer to the Array data (const)
+         * @see getCount()
+         */
+        const T * getData() const;
 
         /**
          * @return an iterator to the begining of this Array

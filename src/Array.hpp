@@ -75,15 +75,25 @@ namespace evansbros {
     }
 
     template <typename T>
-    size_t Array<T>::getCount()
+    size_t Array<T>::getCount() const
     {
         return count;
     }
 
     template <typename T>
-    size_t Array<T>::getSize()
+    size_t Array<T>::getSize() const
     {
         return size;
+    }
+
+    template <typename T>
+    T * Array<T>::getData() {
+        return elements;
+    }
+
+    template <typename T>
+    const T * Array<T>::getData() const {
+        return elements;
     }
 
     template <typename T>

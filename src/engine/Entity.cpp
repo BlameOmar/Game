@@ -11,8 +11,8 @@
 
 namespace evansbros {
     namespace game {
-
-        ID Entity::next_id = 0;
-
+        UniqueID Entity::getUID() const {
+            return uid;
+        }
     }
 }

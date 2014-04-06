@@ -15,68 +15,30 @@
 #include "TileMap.h"
 #include <unordered_map>
 
-#include "Entity.h"
+#include "EntityManager.h"
+#include "ComponentManager.h"
 #include "SpatialComponent.h"
-
 
 namespace evansbros {
     namespace game {
 
-        struct SpatialState {
-            math::vector3 position;
-            math::vector3 velocity;
-
-            void incrementVelocity(math::vector3 delta);
-
-            real speed();
-
-            real max_speed = 4;
-        };
-
         struct GameState {
-            ID player1;
-            ID player2;
-            ID camera;
+            UniqueID player1;
+            UniqueID player2;
+            UniqueID camera;
 
+            GameState() : entityManager(componentManager) {}
+
+            ComponentManager componentManager;
+            EntityManager entityManager;
             Array<Entity> entities;
-            Array<SpatialComponent> spatialComponents;
 
             TileMap currentTileMap;
+
         private:
             std::unordered_map<ID, Index> entityLookupTable;
-            std::unordered_map<ID, Index> spatialComponentLookupTable;
-
             std::unordered_map<ID, ID> entityToSpatialComponentMap;
-
         public:
-
-            /* Entity Management */
-            ID createEntity();
-
-            Entity & getEntityWithID(ID entity_id);
-            const Entity & getEntityWithID(ID entity_id) const;
-
-            bool existsEntityWithID(ID entity_id) const;
-
-            void destroyEntityWithID(ID entity_id);
-
-            /* Spatial Component Management */
-            ID addSpatialComponentToEntity(ID entity_id);
-
-            SpatialComponent & getSpatialComponentWithID(ID component_id);
-            const SpatialComponent & getSpatialComponentWithID(ID component_id) const;
-
-            SpatialComponent & getSpatialComponentWithEntityID(ID entity_id);
-            const SpatialComponent & getSpatialComponentWithEntityID(ID entity_id) const;
-
-            Entity & getOwnerOfSpatialComponent(ID component_id);
-            const Entity & getOwnerOfSpatialComponent(ID component_id) const;
-
-            bool existsSpatialComponentWithID(ID component_id) const;
-            bool existsSpatialComponentWithEntityID(ID entity_id) const;
-
-            void destroySpatialComponentWithID(ID component_id);
-
             void updateSpatialComponents(seconds dTime);
 
             ID createHuman(math::vector2 position);
