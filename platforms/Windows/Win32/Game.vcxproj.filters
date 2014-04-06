@@ -170,10 +170,13 @@
     <ClCompile Include="..\..\..\src\engine\SpatialComponent.cpp">
       <Filter>Engine\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\GameState_Entity.cpp">
+    <ClCompile Include="..\..\..\src\engine\Component.cpp">
       <Filter>Engine\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\GameState_SpatialComponent.cpp">
+    <ClCompile Include="..\..\..\src\engine\ComponentManager.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\engine\EntityManager.cpp">
       <Filter>Engine\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -299,6 +302,15 @@
       <Filter>Engine\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\engine\SpatialComponent.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\engine\Component.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\engine\ComponentManager.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\engine\EntityManager.h">
       <Filter>Engine\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -60,7 +60,8 @@ namespace evansbros {
                 componentLookupTables[t][component.uid] = count;
                 ++count;
 
-                removeFunctionLookupTable[component.uid] = &ComponentManager::remove<ComponentType>;
+                //removeFunctionLookupTable[component.uid] = &ComponentManager::remove<ComponentType>;
+				removeFunctionLookupTable[component.uid] = [this](UniqueID uid) { remove<ComponentType>(uid); };
                 return component.uid;
             }
 
@@ -240,7 +241,7 @@ namespace evansbros {
             std::map<std::type_index, Component *> componentArrays_data;
 
             std::map<std::type_index, std::unordered_map<UniqueID, Index>> componentLookupTables;
-            std::unordered_map<UniqueID, std::function<void(ComponentManager *, UniqueID)>> removeFunctionLookupTable;
+            std::unordered_map<UniqueID, std::function<void(UniqueID)>> removeFunctionLookupTable;
         };
     }
 }

@@ -184,12 +184,13 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
   <ItemGroup>
     <ClCompile Include="..\..\..\external\gl3w\src\gl3w.c" />
     <ClCompile Include="..\..\..\src\Data.cpp" />
+    <ClCompile Include="..\..\..\src\engine\Component.cpp" />
+    <ClCompile Include="..\..\..\src\engine\ComponentManager.cpp" />
     <ClCompile Include="..\..\..\src\engine\Entity.cpp" />
+    <ClCompile Include="..\..\..\src\engine\EntityManager.cpp" />
     <ClCompile Include="..\..\..\src\engine\SpatialComponent.cpp" />
     <ClCompile Include="..\..\..\src\GameController.cpp" />
     <ClCompile Include="..\..\..\src\GameState.cpp" />
-    <ClCompile Include="..\..\..\src\GameState_Entity.cpp" />
-    <ClCompile Include="..\..\..\src\GameState_SpatialComponent.cpp" />
     <ClCompile Include="..\..\..\src\GameSystem.cpp" />
     <ClCompile Include="..\..\..\src\GameSystem_AssetLoading.cpp" />
     <ClCompile Include="..\..\..\src\GameSystem_MessageHandling.cpp" />
@@ -223,7 +224,10 @@ ROBOCOPY /MIR $(SolutionDir)assets $(OutDir)assets</Command>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\ButtonEvent.h" />
     <ClInclude Include="..\..\..\src\Data.h" />
+    <ClInclude Include="..\..\..\src\engine\Component.h" />
+    <ClInclude Include="..\..\..\src\engine\ComponentManager.h" />
     <ClInclude Include="..\..\..\src\engine\Entity.h" />
+    <ClInclude Include="..\..\..\src\engine\EntityManager.h" />
     <ClInclude Include="..\..\..\src\engine\SpatialComponent.h" />
     <ClInclude Include="..\..\..\src\GameController.h" />
     <ClInclude Include="..\..\..\src\GameState.h" />

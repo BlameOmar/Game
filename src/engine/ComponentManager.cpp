@@ -16,8 +16,8 @@ namespace evansbros {
             if (removeFunctionLookupTable.count(uid) == 0) {
                 throw std::runtime_error("The specified component could not be found");
             }
-            std::function<void(ComponentManager*, UniqueID)> removeFunction = removeFunctionLookupTable[uid];
-            removeFunction(this, uid);
+            auto removeFunction = removeFunctionLookupTable[uid];
+            removeFunction(uid);
         }
     }
 }
