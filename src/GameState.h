@@ -9,40 +9,38 @@
 
 #pragma once
 
+#include <set>
+
 #include "vector2.h"
-#include "vector3.h"
-#include "Array.h"
 #include "TileMap.h"
-#include <unordered_map>
 
 #include "EntityManager.h"
 #include "ComponentManager.h"
-#include "SpatialComponent.h"
 
 namespace evansbros {
     namespace game {
 
         struct GameState {
+            ComponentManager componentManager;
+            EntityManager entityManager;
+
+            std::set<std::pair<UniqueID, UniqueID>> collidingEntities;
+
+            TileMap currentTileMap;
+
             UniqueID player1;
             UniqueID player2;
             UniqueID camera;
 
             GameState() : entityManager(componentManager) {}
-
-            ComponentManager componentManager;
-            EntityManager entityManager;
-            Array<Entity> entities;
-
-            TileMap currentTileMap;
-
-        private:
-            std::unordered_map<ID, Index> entityLookupTable;
-            std::unordered_map<ID, ID> entityToSpatialComponentMap;
         public:
             void updateSpatialComponents(seconds dTime);
+            void detectCollisions();
+            void resolveCollisions();
 
-            ID createHuman(math::vector2 position);
-            ID createCamera(math::vector2 position);
+            UniqueID createHuman(math::vector2 position);
+            UniqueID createBall(math::vector2 position);
+            UniqueID createCamera(math::vector2 position);
         };
 
     }

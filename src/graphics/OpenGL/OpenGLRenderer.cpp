@@ -14,6 +14,9 @@
 #include "matrix.h"
 #include "utilities.h"
 
+#include "SpatialComponent.h"
+#include "SpriteComponent.h"
+
 namespace evansbros { namespace graphics {
 
     OpenGLRenderer::OpenGLRenderer()
@@ -75,17 +78,17 @@ namespace evansbros { namespace graphics {
 
         drawTileMap();
 
-        const game::SpatialComponent
-        &p1SpatialComponent = gameState->entityManager.getBelongingToEntity<game::SpatialComponent>(gameState->player1);
+        const game::SpriteComonent * components = gameState->componentManager.getAll<game::SpriteComonent>();
+        const size_t count = gameState->componentManager.count<game::SpriteComonent>();
 
-        const game::SpatialComponent
-        &p2SpatialComponent = gameState->entityManager.getBelongingToEntity<game::SpatialComponent>(gameState->player2);
-
-        drawQuads(Quad::COLORLESS_CENTERED_UNIT_SQUARE, "test",
-                  {
-                      p1SpatialComponent.position + p1SpatialComponent.velocity * interpolation.count(),
-                      p2SpatialComponent.position + p2SpatialComponent.velocity * interpolation.count()
-                  });
+        for (int i = 0; i < count; ++i) {
+            const game::SpriteComonent & spriteComponent = components[i];
+            if (!gameState->entityManager.entityHas<game::SpatialComponent>(spriteComponent.getEntityUID())) {
+                continue;
+            }
+            const game::SpatialComponent & spatialComponent = gameState->entityManager.getBelongingToEntity<game::SpatialComponent>(spriteComponent.getEntityUID());
+            drawQuads(spriteComponent.boundingBox, spriteComponent.texture, { spatialComponent.position + spatialComponent.velocity * interpolation.count()});
+        }
     }
 
     void OpenGLRenderer::useShaderProgram(shared_ptr<ShaderProgram> program)

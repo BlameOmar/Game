@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <numeric>
+#include "SpatialComponent.h"
 
 #include "mathematical_constants.h"
 
@@ -61,8 +62,10 @@ namespace evansbros {
             loadTextures();
             renderer->loadGPU_Textures();
 
-            gameState.player1 = gameState.createHuman({0.0, 0.0});
-            gameState.player2 = gameState.createHuman({0.0, 0.0});
+            gameState.player1 = gameState.createHuman({2.0, 0.0});
+            gameState.player2 = gameState.createHuman({-2.0, 0.0});
+            gameState.createBall({1.0, 0.0});
+            gameState.createBall({-1.0, 0.0});
             gameState.camera = gameState.createCamera({0.0, 0.0});
 
             currentTime = Clock::now();
@@ -84,7 +87,7 @@ namespace evansbros {
             }
 
             if (numberOfUpdates > 1) {
-                std::cout << numberOfUpdates - 1 << "frame(s) skipped!\n";
+                std::cout << numberOfUpdates - 1 << " frame(s) skipped!\n";
             }
 
             if (!paused) {
@@ -100,6 +103,8 @@ namespace evansbros {
             }
 
             gameState.updateSpatialComponents(dTime);
+            gameState.detectCollisions();
+            gameState.resolveCollisions();
 
             math::vector2 movementDelta;
 

@@ -14,6 +14,7 @@
 		071AEBDE186BF94D00BDE25A /* vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071AEBBB186BD11E00BDE25A /* vector3.cpp */; };
 		071AEBDF186BF95000BDE25A /* vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071AEBBD186BD14700BDE25A /* vector4.cpp */; };
 		0745EF5E188A20DD00ED613F /* OpenGL_BufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0745EF5C188A20DD00ED613F /* OpenGL_BufferObject.cpp */; };
+		074BD7E518F7B35A0039B9FF /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074BD7E318F7B35A0039B9FF /* SpriteComponent.cpp */; };
 		07519E9B18ED0F7700B2D42A /* ComponentManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07519E9918ED0F7700B2D42A /* ComponentManager.cpp */; };
 		07519E9D18ED2A5B00B2D42A /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07519E9C18ED2A5B00B2D42A /* Component.cpp */; };
 		07519EA018F10C4200B2D42A /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07519E9E18F10C4200B2D42A /* EntityManager.cpp */; };
@@ -50,6 +51,7 @@
 		07C74500184181670094B04C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C744FF184181670094B04C /* OpenGL.framework */; };
 		07C74506184181FB0094B04C /* GameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C74505184181FB0094B04C /* GameView.mm */; };
 		07C7450C184271B20094B04C /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C7450A184271B20094B04C /* matrix.cpp */; };
+		07DB69FA18F5FFA8003D2AB3 /* CollisionalComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DB69F818F5FFA8003D2AB3 /* CollisionalComponent.cpp */; };
 		07E17C551860EBCA00616ED4 /* GameSystem_MessageHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E17C541860EBCA00616ED4 /* GameSystem_MessageHandling.cpp */; };
 		07E17C571860ED1A00616ED4 /* GameSystem_AssetLoading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E17C561860ED1A00616ED4 /* GameSystem_AssetLoading.cpp */; };
 		07EFD10D18611BBC00C41FAF /* OpenGL_utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EFD10C18611BBC00C41FAF /* OpenGL_utilities.cpp */; };
@@ -98,6 +100,8 @@
 		0745EF5B18890DC800ED613F /* message_data_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_data_types.h; sourceTree = "<group>"; };
 		0745EF5C188A20DD00ED613F /* OpenGL_BufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL_BufferObject.cpp; sourceTree = "<group>"; };
 		0745EF5D188A20DD00ED613F /* OpenGL_BufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_BufferObject.h; sourceTree = "<group>"; };
+		074BD7E318F7B35A0039B9FF /* SpriteComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
+		074BD7E418F7B35A0039B9FF /* SpriteComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
 		07519E9518ED0F6A00B2D42A /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		07519E9918ED0F7700B2D42A /* ComponentManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentManager.cpp; sourceTree = "<group>"; };
 		07519E9A18ED0F7700B2D42A /* ComponentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentManager.h; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 		07C74505184181FB0094B04C /* GameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameView.mm; sourceTree = "<group>"; };
 		07C7450A184271B20094B04C /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
 		07C7450B184271B20094B04C /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		07DB69F818F5FFA8003D2AB3 /* CollisionalComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionalComponent.cpp; sourceTree = "<group>"; };
+		07DB69F918F5FFA8003D2AB3 /* CollisionalComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionalComponent.h; sourceTree = "<group>"; };
 		07E17C541860EBCA00616ED4 /* GameSystem_MessageHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSystem_MessageHandling.cpp; sourceTree = "<group>"; };
 		07E17C561860ED1A00616ED4 /* GameSystem_AssetLoading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSystem_AssetLoading.cpp; sourceTree = "<group>"; };
 		07EFD10B18611BB100C41FAF /* OpenGL_utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_utilities.h; sourceTree = "<group>"; };
@@ -267,6 +273,10 @@
 				07519E9A18ED0F7700B2D42A /* ComponentManager.h */,
 				07550B3D188F271900EEF9F2 /* SpatialComponent.cpp */,
 				07550B3E188F271900EEF9F2 /* SpatialComponent.h */,
+				07DB69F818F5FFA8003D2AB3 /* CollisionalComponent.cpp */,
+				07DB69F918F5FFA8003D2AB3 /* CollisionalComponent.h */,
+				074BD7E318F7B35A0039B9FF /* SpriteComponent.cpp */,
+				074BD7E418F7B35A0039B9FF /* SpriteComponent.h */,
 			);
 			path = engine;
 			sourceTree = "<group>";
@@ -699,6 +709,7 @@
 				0752A0B11884B9F200F27438 /* OpenGLRenderer.cpp in Sources */,
 				07C744FC184175C00094B04C /* CGLRenderer.cpp in Sources */,
 				07C7450C184271B20094B04C /* matrix.cpp in Sources */,
+				07DB69FA18F5FFA8003D2AB3 /* CollisionalComponent.cpp in Sources */,
 				07BD127D18417400007B8E10 /* utilities.cpp in Sources */,
 				07BD12371841721B007B8E10 /* main.m in Sources */,
 				07550B21188BA99500EEF9F2 /* OpenGL_Shader.cpp in Sources */,
@@ -713,6 +724,7 @@
 				07BD127818417400007B8E10 /* PixelData.cpp in Sources */,
 				07049FD51878A2CD008F3BE3 /* TileMap.cpp in Sources */,
 				07BD127A18417400007B8E10 /* Message.cpp in Sources */,
+				074BD7E518F7B35A0039B9FF /* SpriteComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

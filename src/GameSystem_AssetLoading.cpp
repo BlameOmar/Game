@@ -22,6 +22,7 @@ namespace evansbros { namespace game {
         loadTexture("cobblestone");
         loadTexture("water");
         loadTexture("sand");
+        loadTexture("Ball");
     }
 
     void GameSystem::loadTexture(string textureName)
