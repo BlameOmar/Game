@@ -54,6 +54,7 @@
 		07DB69FA18F5FFA8003D2AB3 /* CollisionalComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DB69F818F5FFA8003D2AB3 /* CollisionalComponent.cpp */; };
 		07E17C551860EBCA00616ED4 /* GameSystem_MessageHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E17C541860EBCA00616ED4 /* GameSystem_MessageHandling.cpp */; };
 		07E17C571860ED1A00616ED4 /* GameSystem_AssetLoading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E17C561860ED1A00616ED4 /* GameSystem_AssetLoading.cpp */; };
+		07E841B5199F073B005E2DA2 /* geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E841B3199F073B005E2DA2 /* geometry.cpp */; };
 		07EFD10D18611BBC00C41FAF /* OpenGL_utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EFD10C18611BBC00C41FAF /* OpenGL_utilities.cpp */; };
 		07EFD1121861201200C41FAF /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EFD1101861201200C41FAF /* Color.cpp */; };
 		07EFD1151861202200C41FAF /* Quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EFD1131861202200C41FAF /* Quad.cpp */; };
@@ -181,6 +182,8 @@
 		07DB69F918F5FFA8003D2AB3 /* CollisionalComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionalComponent.h; sourceTree = "<group>"; };
 		07E17C541860EBCA00616ED4 /* GameSystem_MessageHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSystem_MessageHandling.cpp; sourceTree = "<group>"; };
 		07E17C561860ED1A00616ED4 /* GameSystem_AssetLoading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSystem_AssetLoading.cpp; sourceTree = "<group>"; };
+		07E841B3199F073B005E2DA2 /* geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometry.cpp; sourceTree = "<group>"; };
+		07E841B4199F073B005E2DA2 /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
 		07EFD10B18611BB100C41FAF /* OpenGL_utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_utilities.h; sourceTree = "<group>"; };
 		07EFD10C18611BBC00C41FAF /* OpenGL_utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL_utilities.cpp; sourceTree = "<group>"; };
 		07EFD10E18611C8E00C41FAF /* OpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL.h; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 		07BD126618417400007B8E10 /* math */ = {
 			isa = PBXGroup;
 			children = (
+				07E841B3199F073B005E2DA2 /* geometry.cpp */,
+				07E841B4199F073B005E2DA2 /* geometry.h */,
 				07BD126818417400007B8E10 /* numerical_types.h */,
 				07BD126718417400007B8E10 /* mathematical_constants.h */,
 				07C7450B184271B20094B04C /* matrix.h */,
@@ -719,6 +724,7 @@
 				07550B3F188F271900EEF9F2 /* SpatialComponent.cpp in Sources */,
 				07519EA018F10C4200B2D42A /* EntityManager.cpp in Sources */,
 				07BD127B18417400007B8E10 /* MessageQueue.cpp in Sources */,
+				07E841B5199F073B005E2DA2 /* geometry.cpp in Sources */,
 				07E17C551860EBCA00616ED4 /* GameSystem_MessageHandling.cpp in Sources */,
 				071AEBDD186BF94A00BDE25A /* vector2.cpp in Sources */,
 				07BD127818417400007B8E10 /* PixelData.cpp in Sources */,

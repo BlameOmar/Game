@@ -78,11 +78,11 @@ namespace evansbros { namespace graphics {
 
         drawTileMap();
 
-        const game::SpriteComonent * components = gameState->componentManager.getAll<game::SpriteComonent>();
-        const size_t count = gameState->componentManager.count<game::SpriteComonent>();
+        const game::SpriteComponent * components = gameState->componentManager.getAll<game::SpriteComponent>();
+        const size_t count = gameState->componentManager.count<game::SpriteComponent>();
 
         for (int i = 0; i < count; ++i) {
-            const game::SpriteComonent & spriteComponent = components[i];
+            const game::SpriteComponent & spriteComponent = components[i];
             if (!gameState->entityManager.entityHas<game::SpatialComponent>(spriteComponent.getEntityUID())) {
                 continue;
             }

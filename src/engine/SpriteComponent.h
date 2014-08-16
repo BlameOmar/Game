@@ -13,13 +13,13 @@
 
 namespace evansbros {
     namespace game {
-        class SpriteComonent : public Component {
+        class SpriteComponent : public Component {
         public:
             string texture;
             graphics::Quad boundingBox { graphics::Quad::COLORLESS_CENTERED_UNIT_SQUARE };
             
-            SpriteComonent() = default;
-            SpriteComonent(UniqueID entityUID) : Component(entityUID) {}
+            SpriteComponent() = default;
+            SpriteComponent(UniqueID entityUID) : Component(entityUID) {}
         };
     }
 }

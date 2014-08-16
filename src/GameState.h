@@ -20,6 +20,8 @@
 namespace evansbros {
     namespace game {
 
+        class CollisionalComponent;
+
         struct GameState {
             ComponentManager componentManager;
             EntityManager entityManager;
@@ -37,6 +39,12 @@ namespace evansbros {
             void updateSpatialComponents(seconds dTime);
             void detectCollisions();
             void resolveCollisions();
+
+            bool componentsAreColliding_2circular(const CollisionalComponent & collisionalComponentA,
+                                                  const CollisionalComponent & collisionalComponentB);
+            
+            bool componentsAreColliding_2linear(const CollisionalComponent & collisionalComponentA,
+                                                const CollisionalComponent & collisionalComponentB);
 
             UniqueID createHuman(math::vector2 position);
             UniqueID createBall(math::vector2 position);

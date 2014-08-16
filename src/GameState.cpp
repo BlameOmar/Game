@@ -18,24 +18,40 @@ namespace evansbros {
         UniqueID GameState::createHuman(math::vector2 position)
         {
             UniqueID entityUID = entityManager.createEntity();
-            UniqueID spatialComponentUID = entityManager.addToEntity<SpatialComponent>(entityUID);
-            componentManager.get<SpatialComponent>(spatialComponentUID).position = position;
-            entityManager.addToEntity<CollisionalComponent>(entityUID);
-            UniqueID spriteComponentUID = entityManager.addToEntity<SpriteComonent>(entityUID);
-            componentManager.get<SpriteComonent>(spriteComponentUID).texture = "test";
 
+            UniqueID spatialComponentUID = entityManager.addToEntity<SpatialComponent>(entityUID);
+            SpatialComponent & spatialComponent = componentManager.get<SpatialComponent>(spatialComponentUID);
+            spatialComponent.position = position;
+
+            UniqueID collisionalComponentUID = entityManager.addToEntity<CollisionalComponent>(entityUID);
+            CollisionalComponent & collisionalComponent = componentManager.get<CollisionalComponent>(collisionalComponentUID);
+            collisionalComponent.type = CollisionalComponent::Type::Circular;
+            collisionalComponent.data.circularData = {{ 0.0, 0.0 }, 0.5};
+
+            UniqueID spriteComponentUID = entityManager.addToEntity<SpriteComponent>(entityUID);
+            SpriteComponent & spriteComponent = componentManager.get<SpriteComponent>(spriteComponentUID);
+            spriteComponent.texture = "test";
+            
             return entityUID;
         }
 
         UniqueID GameState::createBall(math::vector2 position)
         {
             UniqueID entityUID = entityManager.createEntity();
+
             UniqueID spatialComponentUID = entityManager.addToEntity<SpatialComponent>(entityUID);
-            componentManager.get<SpatialComponent>(spatialComponentUID).position = position;
+            SpatialComponent & spatialComponent = componentManager.get<SpatialComponent>(spatialComponentUID);
+            spatialComponent.position = position;
+
             UniqueID collisionalComponentUID = entityManager.addToEntity<CollisionalComponent>(entityUID);
-            componentManager.get<CollisionalComponent>(collisionalComponentUID).collisionGroupUID = entityUID;
-            UniqueID spriteComponentUID = entityManager.addToEntity<SpriteComonent>(entityUID);
-            componentManager.get<SpriteComonent>(spriteComponentUID).texture = "Ball";
+            CollisionalComponent & collisionalComponent = componentManager.get<CollisionalComponent>(collisionalComponentUID);
+            collisionalComponent.collisionGroupUID = entityUID;
+            collisionalComponent.type = CollisionalComponent::Type::Circular;
+            collisionalComponent.data.circularData = {{ 0.0, 0.0 }, 0.5};
+
+            UniqueID spriteComponentUID = entityManager.addToEntity<SpriteComponent>(entityUID);
+            SpriteComponent & spriteComponent = componentManager.get<SpriteComponent>(spriteComponentUID);
+            spriteComponent.texture = "Ball";
 
             return entityUID;
         }
@@ -43,8 +59,16 @@ namespace evansbros {
         UniqueID GameState::createCamera(math::vector2 position)
         {
             UniqueID entityUID = entityManager.createEntity();
+
             UniqueID spatialComponentUID = entityManager.addToEntity<SpatialComponent>(entityUID);
-            componentManager.get<SpatialComponent>(spatialComponentUID).position = position;
+            SpatialComponent & spatialComponent = componentManager.get<SpatialComponent>(spatialComponentUID);
+            spatialComponent.position = position;
+
+//            UniqueID collisionalComponentUID = entityManager.addToEntity<CollisionalComponent>(entityUID);
+//            CollisionalComponent & collisionalComponent = componentManager.get<CollisionalComponent>(collisionalComponentUID);
+//            collisionalComponent.collisionGroupUID = entityUID;
+//            collisionalComponent.type = CollisionalComponent::Type::Circular;
+//            collisionalComponent.data.circularData = {{ 0.0, 0.0 }, 0.5};
 
             return entityUID;
         }
@@ -76,16 +100,49 @@ namespace evansbros {
 
                     UniqueID entityA = collisionalComponentA.getEntityUID();
                     UniqueID entityB = collisionalComponentB.getEntityUID();
-                    const SpatialComponent & spatialComponentA = entityManager.getBelongingToEntity<SpatialComponent>(entityA);
-                    const SpatialComponent & spatialComponentB = entityManager.getBelongingToEntity<SpatialComponent>(entityB);
-                    math::vector2 collisionalComponentA_position = collisionalComponentA.offset + spatialComponentA.position;
-                    math::vector2 collisionalComponentB_position = collisionalComponentB.offset + spatialComponentB.position;
-                    real distance = (collisionalComponentA_position - collisionalComponentB_position).magnitude();
-                    if (distance < collisionalComponentA.radius + collisionalComponentB.radius) {
+
+                    /* Testing two circular components */
+                    if (collisionalComponentA.type == collisionalComponentB.type &&
+                        collisionalComponentA.type == CollisionalComponent::Type::Circular &&
+                        componentsAreColliding_2circular(collisionalComponentA, collisionalComponentB)) {
+
                         collidingEntities.insert({entityA, entityB});
                     }
+
                 }
             }
+        }
+
+        bool GameState::componentsAreColliding_2circular(const CollisionalComponent & collisionalComponentA,
+                                                         const CollisionalComponent & collisionalComponentB) {
+            const UniqueID entityA = collisionalComponentA.getEntityUID();
+            const UniqueID entityB = collisionalComponentB.getEntityUID();
+            const SpatialComponent & spatialComponentA = entityManager.getBelongingToEntity<SpatialComponent>(entityA);
+            const SpatialComponent & spatialComponentB = entityManager.getBelongingToEntity<SpatialComponent>(entityB);
+
+            auto circleA = collisionalComponentA.data.circularData;
+            auto circleB = collisionalComponentB.data.circularData;
+
+            circleA.center += spatialComponentA.position;
+            circleB.center += spatialComponentB.position;
+
+            return math::geometry::areIntersecting(circleA, circleB);
+        }
+
+        bool GameState::componentsAreColliding_2linear(const CollisionalComponent & collisionalComponentA,
+                                                       const CollisionalComponent & collisionalComponentB) {
+            const UniqueID entityA = collisionalComponentA.getEntityUID();
+            const UniqueID entityB = collisionalComponentB.getEntityUID();
+            const SpatialComponent & spatialComponentA = entityManager.getBelongingToEntity<SpatialComponent>(entityA);
+            const SpatialComponent & spatialComponentB = entityManager.getBelongingToEntity<SpatialComponent>(entityB);
+
+            auto lineSegmentA = collisionalComponentA.data.linearData;
+            auto lineSegmentB = collisionalComponentB.data.linearData;
+
+            lineSegmentA.midpoint += spatialComponentA.position;
+            lineSegmentB.midpoint += spatialComponentB.position;
+
+            return math::geometry::areIntersecting(lineSegmentA, lineSegmentB);
         }
 
         void GameState::resolveCollisions() {
@@ -96,10 +153,10 @@ namespace evansbros {
                 const CollisionalComponent & collisionalComponentB = entityManager.getBelongingToEntity<CollisionalComponent>(entityB);
                 SpatialComponent & spatialComponentA = entityManager.getBelongingToEntity<SpatialComponent>(entityA);
                 SpatialComponent & spatialComponentB = entityManager.getBelongingToEntity<SpatialComponent>(entityB);
-                math::vector2 collisionalComponentA_position = collisionalComponentA.offset + spatialComponentA.position;
-                math::vector2 collisionalComponentB_position = collisionalComponentB.offset + spatialComponentB.position;
+                math::vector2 collisionalComponentA_position = collisionalComponentA.data.offset + spatialComponentA.position;
+                math::vector2 collisionalComponentB_position = collisionalComponentB.data.offset + spatialComponentB.position;
                 real distance = (collisionalComponentA_position - collisionalComponentB_position).magnitude();
-                real delta = (collisionalComponentA.radius + collisionalComponentB.radius - distance) / 2;
+                real delta = (collisionalComponentA.data.circularData.radius + collisionalComponentB.data.circularData.radius - distance) / 2;
 
                 math::vector2 temp = spatialComponentA.velocity;
                 spatialComponentA.position += delta * (spatialComponentA.position - spatialComponentB.position) / (spatialComponentA.position - spatialComponentB.position).magnitude();
