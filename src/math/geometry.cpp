@@ -41,7 +41,8 @@ namespace evansbros { namespace math { namespace geometry {
         real y = l1_slope * x + l1_y_intercept;
 
         math::vector2 intersectionPoint { x, y };
-        return ((l1.midpoint - intersectionPoint).magnitude() <= 0.5 * l1.length);
+        return ((l1.midpoint - intersectionPoint).magnitude() <= 0.5 * l1.length &&
+                (l2.midpoint - intersectionPoint).magnitude() <= 0.5 * l2.length);
     }
     
 }}}
