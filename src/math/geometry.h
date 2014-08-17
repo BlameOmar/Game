@@ -27,6 +27,12 @@ namespace evansbros { namespace math { namespace geometry {
         Circle(vector2 center, real radius) : center(center), radius(radius) { /* Nothing to do here */ }
     };
 
+    struct AABB {
+        vector2 center;
+        real width;
+        real height;
+    };
+
     bool areIntersecting(const Circle c1, const Circle c2);
     bool areIntersecting(const LineSegment l1, const LineSegment l2);
 
