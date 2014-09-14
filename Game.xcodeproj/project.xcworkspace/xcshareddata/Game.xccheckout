@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4E68C1894BB15E4732B56EE22261E5202BC9331E</key>
-		<string>ssh://bitbucket.org/CodeOmar/Game.git</string>
+		<string>bitbucket.org:CodeOmar/game.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Game.xcodeproj/project.xcworkspace</string>
+	<string>Game.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4E68C1894BB15E4732B56EE22261E5202BC9331E</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://bitbucket.org/CodeOmar/Game.git</string>
+	<string>bitbucket.org:CodeOmar/game.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>4E68C1894BB15E4732B56EE22261E5202BC9331E</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Game</string>
+			<string>game</string>
 		</dict>
 	</array>
 </dict>

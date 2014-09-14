@@ -16,14 +16,12 @@
 		0745EF5E188A20DD00ED613F /* OpenGL_BufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0745EF5C188A20DD00ED613F /* OpenGL_BufferObject.cpp */; };
 		074BD7E518F7B35A0039B9FF /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074BD7E318F7B35A0039B9FF /* SpriteComponent.cpp */; };
 		07519E9B18ED0F7700B2D42A /* ComponentManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07519E9918ED0F7700B2D42A /* ComponentManager.cpp */; };
-		07519E9D18ED2A5B00B2D42A /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07519E9C18ED2A5B00B2D42A /* Component.cpp */; };
 		07519EA018F10C4200B2D42A /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07519E9E18F10C4200B2D42A /* EntityManager.cpp */; };
 		0752A0B11884B9F200F27438 /* OpenGLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */; };
 		07550B21188BA99500EEF9F2 /* OpenGL_Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B1F188BA99500EEF9F2 /* OpenGL_Shader.cpp */; };
 		07550B26188BBBCC00EEF9F2 /* OpenGL_ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B24188BBBCC00EEF9F2 /* OpenGL_ShaderProgram.cpp */; };
 		07550B29188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B27188CC7A400EEF9F2 /* OpenGL_VertexArrayObject.cpp */; };
 		07550B3F188F271900EEF9F2 /* SpatialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B3D188F271900EEF9F2 /* SpatialComponent.cpp */; };
-		07550B41188F280F00EEF9F2 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07550B40188F280F00EEF9F2 /* Entity.cpp */; };
 		07805CFD18E76C3B008055F2 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07805CFC18E76C3B008055F2 /* Quartz.framework */; };
 		07BD122B1841721B007B8E10 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD122A1841721B007B8E10 /* Cocoa.framework */; };
 		07BD12351841721B007B8E10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BD12331841721B007B8E10 /* InfoPlist.strings */; };
@@ -106,7 +104,6 @@
 		07519E9518ED0F6A00B2D42A /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		07519E9918ED0F7700B2D42A /* ComponentManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentManager.cpp; sourceTree = "<group>"; };
 		07519E9A18ED0F7700B2D42A /* ComponentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentManager.h; sourceTree = "<group>"; };
-		07519E9C18ED2A5B00B2D42A /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
 		07519E9E18F10C4200B2D42A /* EntityManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
 		07519E9F18F10C4200B2D42A /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
 		0752A0AF1884B9F200F27438 /* OpenGLRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLRenderer.cpp; sourceTree = "<group>"; };
@@ -122,7 +119,6 @@
 		07550B3B188F201600EEF9F2 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		07550B3D188F271900EEF9F2 /* SpatialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialComponent.cpp; sourceTree = "<group>"; };
 		07550B3E188F271900EEF9F2 /* SpatialComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialComponent.h; sourceTree = "<group>"; };
-		07550B40188F280F00EEF9F2 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		07805CFC18E76C3B008055F2 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		07A4516E185E52CF00CD41E5 /* ButtonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonEvent.h; sourceTree = "<group>"; };
 		07BD12271841721B007B8E10 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,11 +262,9 @@
 		075209931852EBF8009F41DF /* engine */ = {
 			isa = PBXGroup;
 			children = (
-				07550B40188F280F00EEF9F2 /* Entity.cpp */,
 				07550B3B188F201600EEF9F2 /* Entity.h */,
 				07519E9E18F10C4200B2D42A /* EntityManager.cpp */,
 				07519E9F18F10C4200B2D42A /* EntityManager.h */,
-				07519E9C18ED2A5B00B2D42A /* Component.cpp */,
 				07519E9518ED0F6A00B2D42A /* Component.h */,
 				07519E9918ED0F7700B2D42A /* ComponentManager.cpp */,
 				07519E9A18ED0F7700B2D42A /* ComponentManager.h */,
@@ -694,7 +688,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EFD1121861201200C41FAF /* Color.cpp in Sources */,
-				07519E9D18ED2A5B00B2D42A /* Component.cpp in Sources */,
 				07BD127718417400007B8E10 /* GameSystem.cpp in Sources */,
 				07BD127418417400007B8E10 /* Data.cpp in Sources */,
 				071AEBDE186BF94D00BDE25A /* vector3.cpp in Sources */,
@@ -720,7 +713,6 @@
 				07550B21188BA99500EEF9F2 /* OpenGL_Shader.cpp in Sources */,
 				07049FD11877A546008F3BE3 /* Vertex.cpp in Sources */,
 				07519E9B18ED0F7700B2D42A /* ComponentManager.cpp in Sources */,
-				07550B41188F280F00EEF9F2 /* Entity.cpp in Sources */,
 				07550B3F188F271900EEF9F2 /* SpatialComponent.cpp in Sources */,
 				07519EA018F10C4200B2D42A /* EntityManager.cpp in Sources */,
 				07BD127B18417400007B8E10 /* MessageQueue.cpp in Sources */,
@@ -924,8 +916,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Game/Game-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -937,7 +928,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "GameTests/GameTests-Info.plist";
+				INFOPLIST_FILE = "platforms/OS X/GameTests/GameTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -973,15 +964,14 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Game/Game-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "GameTests/GameTests-Info.plist";
+				INFOPLIST_FILE = "platforms/OS X/GameTests/GameTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
